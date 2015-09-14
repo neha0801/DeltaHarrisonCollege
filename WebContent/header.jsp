@@ -17,6 +17,9 @@
 					<li><a href="./EnrollAClass.jsp">Enroll</a></li>
 				</c:if>
 				<c:if test="${empty user}">
+					<li><a href="./AllCourses.jsp">Course List</a></li>
+				</c:if>
+				<c:if test="${empty user}">
 					<li><a href="./CurrentSchedule.jsp">Schedule</a></li>
 				</c:if>
 				<c:if test="${empty user}">

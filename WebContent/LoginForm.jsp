@@ -65,6 +65,14 @@
 				</div>
 			</form>
 		</div>
+		
+		<div class="progress">
+  <div class="progress-bar progress-bar-striped" style="width: 20%;"></div>
+  <div class="progress-bar progress-bar-striped progress-bar-success" style="width: 20%;"></div>
+  <div class="progress-bar progress-bar-striped progress-bar-info" style="width: 20%;"></div>
+  <div class="progress-bar progress-bar-striped progress-bar-warning" style="width: 20%;"></div>
+  <div class="progress-bar progress-bar-striped progress-bar-danger" style="width: 20%;"></div>
+</div>
 	</div>
 
 </body>
