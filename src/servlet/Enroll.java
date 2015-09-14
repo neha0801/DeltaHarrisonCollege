@@ -35,6 +35,7 @@ public class Enroll extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		doPost(request,response);
 	}
 
 	/**
@@ -43,12 +44,18 @@ public class Enroll extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub		
 		HttpSession session = request.getSession(true);		
-		HUser user=(HUser) session.getAttribute("user");		
+		HUser user = (HUser) session.getAttribute("user");
+	
 		int newClassId=Integer.parseInt(request.getParameter("classId"));
-		HEnrollment enrollment=new HEnrollment();
+		
+		HEnrollment enrollment= new HEnrollment();
+		
 		enrollment.setStatus("Enrolled");
+		
 		enrollment.setHStudentDetail(user.getHStudentDetail());
+		
 		enrollment.setHClass(DBClass.getClass(newClassId));
+		
 		DBEnrollment.insert(enrollment);
 		getServletContext().getRequestDispatcher("/CurrentSchedule").forward(request, response);
 	}
