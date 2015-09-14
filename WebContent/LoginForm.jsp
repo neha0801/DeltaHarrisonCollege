@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,40 +28,42 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<jsp:include page="./header.jsp"/>
-			<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-			<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-				<div class ="panel-heading">
-					Login
-				</div>
-				<div class ="panel-body">
-				
-					<c:if test="${not empty errorMessage}">
-    					<div class="alert alert-danger"><c:out value="${errorMessage}"/></div>
-					</c:if>
-					
-					<c:if test="${not empty goodMessage}">
-    					<div class="alert alert-success"><c:out value="${goodMessage}"/></div>
-					</c:if>
-					
-					<form role="form" action="Login" method="POST">
-						<div class="form-group">
-							<label for="userName">Username:</label> 
-							<input type="text" class="form-control" name="userName" required />
-							<label for="password">Password:</label> 
-							<input type="password" class="form-control" name="password" required />
-						</div>
-						
-						<div class="form-group">
-							<button type="submit" value="submit" class="btn btn-default">Sign
-								in</button>
+	<jsp:include page="./header.jsp" />
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
+		<div class="panel-heading">Login</div>
+		<div class="panel-body">
 
-							<a href="./RegisterUser.jsp"
-								class="btn btn-default">Register</a>
-						</div>
-					</form>
+			<c:if test="${not empty errorMessage}">
+				<div class="alert alert-danger">
+					<c:out value="${errorMessage}" />
 				</div>
-			</div>
-			
+			</c:if>
+
+			<c:if test="${not empty goodMessage}">
+				<div class="alert alert-success">
+					<c:out value="${goodMessage}" />
+				</div>
+			</c:if>
+
+			<form role="form" action="Login" method="POST">
+				<div class="form-group">
+					<label for="userName"></label> <input type="text"
+						class="form-control" name="userName" placeholder="User Name"
+						required /> <label for="password"></label> <input
+						type="password" class="form-control" name="password"
+						placeholder="Password" required />
+				</div>
+
+				<div class="form-group">
+					<button type="submit" value="submit" class="btn btn-default">Sign
+						in</button>
+
+					<a href="./RegisterUser.jsp" class="btn btn-default">Register</a>
+				</div>
+			</form>
+		</div>
+	</div>
+
 </body>
 </html>
