@@ -11,7 +11,7 @@
   
 CREATE SEQUENCE seq_HUSER
 MINVALUE 1
-START WITH 20
+START WITH 1
 INCREMENT BY 1
 CACHE 10;
 
@@ -28,7 +28,7 @@ CACHE 10;
 
 CREATE SEQUENCE seq_HRole
 MINVALUE 1
-START WITH 20
+START WITH 1
 INCREMENT BY 1
 CACHE 10;
 
@@ -46,7 +46,7 @@ CREATE TABLE H_USER_ROLE
 
 CREATE SEQUENCE seq_HUSER_ROLE
 MINVALUE 1
-START WITH 20
+START WITH 1
 INCREMENT BY 1
 CACHE 10;
 
@@ -62,7 +62,7 @@ CACHE 10;
   
   CREATE SEQUENCE seq_HDepartment
 MINVALUE 1
-START WITH 20
+START WITH 1
 INCREMENT BY 1
 CACHE 10;
 
@@ -85,7 +85,7 @@ CACHE 10;
     
   CREATE SEQUENCE seq_HMAJOR
 MINVALUE 1
-START WITH 20
+START WITH 1
 INCREMENT BY 1
 CACHE 10;
 
@@ -124,7 +124,7 @@ CACHE 10;
   
  CREATE SEQUENCE seq_HSUBJECT
 MINVALUE 1
-START WITH 20
+START WITH 1
 INCREMENT BY 1
 CACHE 10;
 
@@ -151,7 +151,7 @@ CACHE 10;
  
  CREATE SEQUENCE seq_HCOURSE
 MINVALUE 1
-START WITH 20
+START WITH 1
 INCREMENT BY 1
 CACHE 10;
 
@@ -170,7 +170,7 @@ CACHE 10;
 
  CREATE SEQUENCE seq_HCLASSROOM
 MINVALUE 1
-START WITH 20
+START WITH 1
 INCREMENT BY 1
 CACHE 10;
 
@@ -187,7 +187,7 @@ CACHE 10;
   
    CREATE SEQUENCE seq_HSemester
 MINVALUE 1
-START WITH 20
+START WITH 1
 INCREMENT BY 1
 CACHE 10;
 
@@ -204,7 +204,7 @@ CACHE 10;
   
      CREATE SEQUENCE seq_HWEEKDAY
 MINVALUE 1
-START WITH 20
+START WITH 1
 INCREMENT BY 1
 CACHE 10;
 
@@ -234,7 +234,7 @@ CACHE 10;
 
      CREATE SEQUENCE seq_HCLASS
 MINVALUE 1
-START WITH 20
+START WITH 1
 INCREMENT BY 1
 CACHE 10;
 
@@ -256,7 +256,7 @@ CACHE 10;
   
        CREATE SEQUENCE seq_H_CLASS_SCHEDULE
 MINVALUE 1
-START WITH 20
+START WITH 1
 INCREMENT BY 1
 CACHE 10;
 
@@ -280,148 +280,148 @@ CACHE 10;
     
        CREATE SEQUENCE seq_H_ENROLLMENT
 MINVALUE 1
-START WITH 20
+START WITH 1
 INCREMENT BY 1
 CACHE 10;
 
 -------------------------------------------------------------------start triggerss------------------------------------------------------------
---CREATE OR REPLACE TRIGGER trigger_huser
---BEFORE INSERT
---   ON H_USER
---  FOR EACH ROW
---BEGIN
---IF :new.user_id IS NULL THEN
---   :new.user_id := seq_HUSER.nextval();
---   END IF;
---END;
---
---CREATE OR REPLACE TRIGGER trigger_hRole
---BEFORE INSERT
---   ON H_Role
---  FOR EACH ROW
---BEGIN
---IF :new.role_id IS NULL THEN
---   :new.role_id := seq_HROLE.nextval();
---   END IF;
---END;
---
---
---CREATE OR REPLACE TRIGGER trigger_hUser_ROLE
---BEFORE INSERT
---   ON H_USER_ROLE
---  FOR EACH ROW
---BEGIN
---IF :new.USER_ROLE_ID IS NULL THEN
---   :new.USER_ROLE_ID := seq_HUSER_ROLE.nextval();
---   END IF;
---END;
---
---
---CREATE OR REPLACE TRIGGER trigger_H_DEPARTMENT
---BEFORE INSERT
---   ON H_DEPARTMENT
---  FOR EACH ROW
---BEGIN
---IF :new.DEPARTMENT_ID IS NULL THEN
---   :new.DEPARTMENT_ID := seq_HDepartment.nextval();
---   END IF;
---END;
---
---
---
---CREATE OR REPLACE TRIGGER trigger_H_MAJOR
---BEFORE INSERT
---   ON H_MAJOR
---  FOR EACH ROW
---BEGIN
---IF :new.MAJOR_ID IS NULL THEN
---   :new.MAJOR_ID := seq_HMAJOR.nextval();
---   END IF;
---END;
---
---CREATE OR REPLACE TRIGGER trigger_H_SUBJECT
---BEFORE INSERT
---   ON H_SUBJECT
---  FOR EACH ROW
---BEGIN
---IF :new.SUBJECT_ID IS NULL THEN
---   :new.SUBJECT_ID := seq_HSUBJECT.nextval();
---   END IF;
---END;
---
---
---CREATE OR REPLACE TRIGGER trigger_H_COURSE
---BEFORE INSERT
---   ON H_COURSE
---  FOR EACH ROW
---BEGIN
---IF :new.COURSE_ID IS NULL THEN
---   :new.COURSE_ID := seq_HCOURSE.nextval();
---   END IF;
---END;
---
---
---
---CREATE OR REPLACE TRIGGER trigger_H_CLASSROOM
---BEFORE INSERT
---   ON H_CLASSROOM
---  FOR EACH ROW
---BEGIN
---IF :new.CLASSROOM_ID IS NULL THEN
---   :new.CLASSROOM_ID := seq_HCLASSROOM.nextval();
---   END IF;
---END;
---
---CREATE OR REPLACE TRIGGER trigger_H_SEMESTER
---BEFORE INSERT
---   ON H_SEMESTER
---  FOR EACH ROW
---BEGIN
---IF :new.SEMESTER_ID IS NULL THEN
---   :new.SEMESTER_ID := seq_HSemester.nextval();
---   END IF;
---END;
---
---CREATE OR REPLACE TRIGGER trigger_H_WEEKDAY
---BEFORE INSERT
---   ON H_WEEKDAY
---  FOR EACH ROW
---BEGIN
---IF :new.WEEKDAY_ID IS NULL THEN
---   :new.WEEKDAY_ID := seq_HWEEKDAY.nextval();
---   END IF;
---END;
---
---
---CREATE OR REPLACE TRIGGER trigger_H_CLASS
---BEFORE INSERT
---   ON H_CLASS
---  FOR EACH ROW
---BEGIN
---  IF :new.CLASS_ID IS NULL THEN
---    :new.CLASS_ID := seq_HCLASS.nextval();
---  END IF;
---END;
---
---CREATE OR REPLACE TRIGGER trigger_H_CLASS_SCHEDULE
---BEFORE INSERT
---   ON H_CLASS_SCHEDULE
---  FOR EACH ROW
---BEGIN
---  IF :new.CLASS_SCHEDULE_ID IS NULL THEN
---   :new.CLASS_SCHEDULE_ID := seq_H_CLASS_SCHEDULE.nextval();
---  END IF;
---END;
---
---CREATE OR REPLACE TRIGGER trigger_H_ENROLLMENT
---BEFORE INSERT
---   ON H_ENROLLMENT
---  FOR EACH ROW
---BEGIN
---  IF :new.ENROLLMENT_ID IS NULL THEN
---   :new.ENROLLMENT_ID := seq_H_ENROLLMENT.nextval();
---  END IF;
---END;
+CREATE OR REPLACE TRIGGER trigger_huser
+BEFORE INSERT
+   ON H_USER
+  FOR EACH ROW
+BEGIN
+
+   :new.user_id := seq_HUSER.nextval();
+
+END;
+
+CREATE OR REPLACE TRIGGER trigger_hRole
+BEFORE INSERT
+   ON H_Role
+  FOR EACH ROW
+BEGIN
+
+   :new.role_id := seq_HROLE.nextval();
+
+END;
+
+
+CREATE OR REPLACE TRIGGER trigger_hUser_ROLE
+BEFORE INSERT
+   ON H_USER_ROLE
+  FOR EACH ROW
+BEGIN
+
+   :new.USER_ROLE_ID := seq_HUSER_ROLE.nextval();
+
+END;
+
+
+CREATE OR REPLACE TRIGGER trigger_H_DEPARTMENT
+BEFORE INSERT
+   ON H_DEPARTMENT
+  FOR EACH ROW
+BEGIN
+
+   :new.DEPARTMENT_ID := seq_HDepartment.nextval();
+
+END;
+
+
+
+CREATE OR REPLACE TRIGGER trigger_H_MAJOR
+BEFORE INSERT
+   ON H_MAJOR
+  FOR EACH ROW
+BEGIN
+
+   :new.MAJOR_ID := seq_HMAJOR.nextval();
+
+END;
+
+CREATE OR REPLACE TRIGGER trigger_H_SUBJECT
+BEFORE INSERT
+   ON H_SUBJECT
+  FOR EACH ROW
+BEGIN
+
+   :new.SUBJECT_ID := seq_HSUBJECT.nextval();
+
+END;
+
+
+CREATE OR REPLACE TRIGGER trigger_H_COURSE
+BEFORE INSERT
+   ON H_COURSE
+  FOR EACH ROW
+BEGIN
+
+   :new.COURSE_ID := seq_HCOURSE.nextval();
+
+END;
+
+
+
+CREATE OR REPLACE TRIGGER trigger_H_CLASSROOM
+BEFORE INSERT
+   ON H_CLASSROOM
+  FOR EACH ROW
+BEGIN
+
+   :new.CLASSROOM_ID := seq_HCLASSROOM.nextval();
+
+END;
+
+CREATE OR REPLACE TRIGGER trigger_H_SEMESTER
+BEFORE INSERT
+   ON H_SEMESTER
+  FOR EACH ROW
+BEGIN
+
+   :new.SEMESTER_ID := seq_HSemester.nextval();
+
+END;
+
+CREATE OR REPLACE TRIGGER trigger_H_WEEKDAY
+BEFORE INSERT
+   ON H_WEEKDAY
+  FOR EACH ROW
+BEGIN
+
+   :new.WEEKDAY_ID := seq_HWEEKDAY.nextval();
+
+END;
+
+
+CREATE OR REPLACE TRIGGER trigger_H_CLASS
+BEFORE INSERT
+   ON H_CLASS
+  FOR EACH ROW
+BEGIN
+
+    :new.CLASS_ID := seq_HCLASS.nextval();
+
+END;
+
+CREATE OR REPLACE TRIGGER trigger_H_CLASS_SCHEDULE
+BEFORE INSERT
+   ON H_CLASS_SCHEDULE
+  FOR EACH ROW
+BEGIN
+
+   :new.CLASS_SCHEDULE_ID := seq_H_CLASS_SCHEDULE.nextval();
+
+END;
+
+CREATE OR REPLACE TRIGGER trigger_H_ENROLLMENT
+BEFORE INSERT
+   ON H_ENROLLMENT
+  FOR EACH ROW
+BEGIN
+
+   :new.ENROLLMENT_ID := seq_H_ENROLLMENT.nextval();
+
+END;
 
 
 ---------------------------------------------------------------------drop everything starts here------------------------------------------------------------
@@ -457,116 +457,116 @@ CACHE 10;
 
 REM INSERTING into TESTDB.H_WEEKDAY
 SET DEFINE OFF;
-Insert into TESTDB.H_WEEKDAY (WEEKDAY_ID,NAME) values (1,'Monday');
-Insert into TESTDB.H_WEEKDAY (WEEKDAY_ID,NAME) values (2,'Tuesday');
-Insert into TESTDB.H_WEEKDAY (WEEKDAY_ID,NAME) values (3,'Wednesday');
-Insert into TESTDB.H_WEEKDAY (WEEKDAY_ID,NAME) values (4,'Thursday');
-Insert into TESTDB.H_WEEKDAY (WEEKDAY_ID,NAME) values (5,'Friday');
+Insert into TESTDB.H_WEEKDAY (NAME) values ('Monday');
+Insert into TESTDB.H_WEEKDAY (NAME) values ('Tuesday');
+Insert into TESTDB.H_WEEKDAY (NAME) values ('Wednesday');
+Insert into TESTDB.H_WEEKDAY (NAME) values ('Thursday');
+Insert into TESTDB.H_WEEKDAY (NAME) values ('Friday');
 
 
 REM INSERTING into TESTDB.H_CLASSROOM
 SET DEFINE OFF;
-Insert into TESTDB.H_CLASSROOM (CLASSROOM_ID,BUILDING_NAME,ROOM_NUMBER,MAX_CAPACITY,STATUS) values (1,'Hill Center','150',30,'Active');
-Insert into TESTDB.H_CLASSROOM (CLASSROOM_ID,BUILDING_NAME,ROOM_NUMBER,MAX_CAPACITY,STATUS) values (2,'SERC','225',20,'Active');
-Insert into TESTDB.H_CLASSROOM (CLASSROOM_ID,BUILDING_NAME,ROOM_NUMBER,MAX_CAPACITY,STATUS) values (3,'ARC','102',300,'Active');
-Insert into TESTDB.H_CLASSROOM (CLASSROOM_ID,BUILDING_NAME,ROOM_NUMBER,MAX_CAPACITY,STATUS) values (4,'Tillet','115',30,'Active');
+Insert into TESTDB.H_CLASSROOM (BUILDING_NAME,ROOM_NUMBER,MAX_CAPACITY,STATUS) values ('Hill Center','150',30,'Active');
+Insert into TESTDB.H_CLASSROOM (BUILDING_NAME,ROOM_NUMBER,MAX_CAPACITY,STATUS) values ('SERC','225',20,'Active');
+Insert into TESTDB.H_CLASSROOM (BUILDING_NAME,ROOM_NUMBER,MAX_CAPACITY,STATUS) values ('ARC','102',300,'Active');
+Insert into TESTDB.H_CLASSROOM (BUILDING_NAME,ROOM_NUMBER,MAX_CAPACITY,STATUS) values ('Tillet','115',30,'Active');
 
 
 REM INSERTING into TESTDB.H_DEPARTMENT
 SET DEFINE OFF;
-Insert into TESTDB.H_DEPARTMENT (DEPARTMENT_ID,NAME,STATUS) values (1,'Psychology','Active');
-Insert into TESTDB.H_DEPARTMENT (DEPARTMENT_ID,NAME,STATUS) values (2,'History','Active');
-Insert into TESTDB.H_DEPARTMENT (DEPARTMENT_ID,NAME,STATUS) values (3,'Mathematics','Active');
-Insert into TESTDB.H_DEPARTMENT (DEPARTMENT_ID,NAME,STATUS) values (4,'Biology','Active');
-Insert into TESTDB.H_DEPARTMENT (DEPARTMENT_ID,NAME,STATUS) values (5,'English','Active');
-Insert into TESTDB.H_DEPARTMENT (DEPARTMENT_ID,NAME,STATUS) values (6,'Engineering','Active');
-Insert into TESTDB.H_DEPARTMENT (DEPARTMENT_ID,NAME,STATUS) values (7,'Finance and Economics','Active');
-Insert into TESTDB.H_DEPARTMENT (DEPARTMENT_ID,NAME,STATUS) values (8,'Political Science','Active');
-Insert into TESTDB.H_DEPARTMENT (DEPARTMENT_ID,NAME,STATUS) values (9,'Physics','Active');
-Insert into TESTDB.H_DEPARTMENT (DEPARTMENT_ID,NAME,STATUS) values (10,'Music','Active');
+Insert into TESTDB.H_DEPARTMENT (NAME,STATUS) values ('Psychology','Active');
+Insert into TESTDB.H_DEPARTMENT (NAME,STATUS) values ('History','Active');
+Insert into TESTDB.H_DEPARTMENT (NAME,STATUS) values ('Mathematics','Active');
+Insert into TESTDB.H_DEPARTMENT (NAME,STATUS) values ('Biology','Active');
+Insert into TESTDB.H_DEPARTMENT (NAME,STATUS) values ('English','Active');
+Insert into TESTDB.H_DEPARTMENT (NAME,STATUS) values ('Engineering','Active');
+Insert into TESTDB.H_DEPARTMENT (NAME,STATUS) values ('Finance and Economics','Active');
+Insert into TESTDB.H_DEPARTMENT (NAME,STATUS) values ('Political Science','Active');
+Insert into TESTDB.H_DEPARTMENT (NAME,STATUS) values ('Physics','Active');
+Insert into TESTDB.H_DEPARTMENT (NAME,STATUS) values ('Music','Active');
 
 
 REM INSERTING into TESTDB.H_ROLE
 SET DEFINE OFF;
-Insert into TESTDB.H_ROLE (ROLE_ID,NAME) values (1,'Admin');
-Insert into TESTDB.H_ROLE (ROLE_ID,NAME) values (2,'Student');
-Insert into TESTDB.H_ROLE (ROLE_ID,NAME) values (3,'Instructor');
-Insert into TESTDB.H_ROLE (ROLE_ID,NAME) values (4,'Advisor');
+Insert into TESTDB.H_ROLE (NAME) values ('Admin');
+Insert into TESTDB.H_ROLE (NAME) values ('Student');
+Insert into TESTDB.H_ROLE (NAME) values ('Instructor');
+Insert into TESTDB.H_ROLE (NAME) values ('Advisor');
 
 
 
 REM INSERTING into TESTDB.H_SEMESTER
 SET DEFINE OFF;
-Insert into TESTDB.H_SEMESTER (SEMESTER_ID,YEAR,SEASON) values (1,2014,'Spring');
-Insert into TESTDB.H_SEMESTER (SEMESTER_ID,YEAR,SEASON) values (2,2014,'Fall');
-Insert into TESTDB.H_SEMESTER (SEMESTER_ID,YEAR,SEASON) values (3,2015,'Spring');
-Insert into TESTDB.H_SEMESTER (SEMESTER_ID,YEAR,SEASON) values (4,2015,'Fall');
+Insert into TESTDB.H_SEMESTER (YEAR,SEASON) values (2014,'Spring');
+Insert into TESTDB.H_SEMESTER (YEAR,SEASON) values (2014,'Fall');
+Insert into TESTDB.H_SEMESTER (YEAR,SEASON) values (2015,'Spring');
+Insert into TESTDB.H_SEMESTER (YEAR,SEASON) values (2015,'Fall');
 
 
 
 REM INSERTING into TESTDB.H_SUBJECT
 SET DEFINE OFF;
-Insert into TESTDB.H_SUBJECT (SUBJECT_ID,SUBJECT_CODE) values (1,'ALG');
-Insert into TESTDB.H_SUBJECT (SUBJECT_ID,SUBJECT_CODE) values (2,'CALC');
-Insert into TESTDB.H_SUBJECT (SUBJECT_ID,SUBJECT_CODE) values (3,'AMHST');
-Insert into TESTDB.H_SUBJECT (SUBJECT_ID,SUBJECT_CODE) values (4,'WHST');
-Insert into TESTDB.H_SUBJECT (SUBJECT_ID,SUBJECT_CODE) values (5,'RLIT');
-Insert into TESTDB.H_SUBJECT (SUBJECT_ID,SUBJECT_CODE) values (6,'ALIT');
-Insert into TESTDB.H_SUBJECT (SUBJECT_ID,SUBJECT_CODE) values (7,'APSY');
-Insert into TESTDB.H_SUBJECT (SUBJECT_ID,SUBJECT_CODE) values (8,'PSY');
-Insert into TESTDB.H_SUBJECT (SUBJECT_ID,SUBJECT_CODE) values (9,'GEN');
-Insert into TESTDB.H_SUBJECT (SUBJECT_ID,SUBJECT_CODE) values (10,'BIO');
+Insert into TESTDB.H_SUBJECT (SUBJECT_CODE) values ('ALG');
+Insert into TESTDB.H_SUBJECT (SUBJECT_CODE) values ('CALC');
+Insert into TESTDB.H_SUBJECT (SUBJECT_CODE) values ('AMHST');
+Insert into TESTDB.H_SUBJECT (SUBJECT_CODE) values ('WHST');
+Insert into TESTDB.H_SUBJECT (SUBJECT_CODE) values ('RLIT');
+Insert into TESTDB.H_SUBJECT (SUBJECT_CODE) values ('ALIT');
+Insert into TESTDB.H_SUBJECT (SUBJECT_CODE) values ('APSY');
+Insert into TESTDB.H_SUBJECT (SUBJECT_CODE) values ('PSY');
+Insert into TESTDB.H_SUBJECT (SUBJECT_CODE) values ('GEN');
+Insert into TESTDB.H_SUBJECT (SUBJECT_CODE) values ('BIO');
 
 
 
 REM INSERTING into TESTDB.H_USER
 SET DEFINE OFF;
-Insert into TESTDB.H_USER (USER_ID,USER_NAME,PASSWORD,EMAIL,FIRST_NAME,LAST_NAME) values (1,'admin','admin','admin@gmail.com','admin','admin');
-Insert into TESTDB.H_USER (USER_ID,USER_NAME,PASSWORD,EMAIL,FIRST_NAME,LAST_NAME) values (2,'sunny','sunny','sunny@gmail.com','Sunny','Rathor');
-Insert into TESTDB.H_USER (USER_ID,USER_NAME,PASSWORD,EMAIL,FIRST_NAME,LAST_NAME) values (3,'tcruise','tcruise','cruise@gmail.com','Tom','Cruise');
-Insert into TESTDB.H_USER (USER_ID,USER_NAME,PASSWORD,EMAIL,FIRST_NAME,LAST_NAME) values (4,'trump','trump','trump@gmail.com','Donald','Trump');
-Insert into TESTDB.H_USER (USER_ID,USER_NAME,PASSWORD,EMAIL,FIRST_NAME,LAST_NAME) values (5,'gates','gates','gates@microsoft.com','Bill','Gates');
+Insert into TESTDB.H_USER (USER_NAME,PASSWORD,EMAIL,FIRST_NAME,LAST_NAME) values ('admin','admin','admin@gmail.com','admin','admin');
+Insert into TESTDB.H_USER (USER_NAME,PASSWORD,EMAIL,FIRST_NAME,LAST_NAME) values ('sunny','sunny','sunny@gmail.com','Sunny','Rathor');
+Insert into TESTDB.H_USER (USER_NAME,PASSWORD,EMAIL,FIRST_NAME,LAST_NAME) values ('tcruise','tcruise','cruise@gmail.com','Tom','Cruise');
+Insert into TESTDB.H_USER (USER_NAME,PASSWORD,EMAIL,FIRST_NAME,LAST_NAME) values ('trump','trump','trump@gmail.com','Donald','Trump');
+Insert into TESTDB.H_USER (USER_NAME,PASSWORD,EMAIL,FIRST_NAME,LAST_NAME) values ('gates','gates','gates@microsoft.com','Bill','Gates');
 
 
 
 REM INSERTING into TESTDB.H_USER_ROLE
 SET DEFINE OFF;
-Insert into TESTDB.H_USER_ROLE (USER_ROLE_ID,ROLE_ID,USER_ID) values (1,1,1);
-Insert into TESTDB.H_USER_ROLE (USER_ROLE_ID,ROLE_ID,USER_ID) values (2,2,2);
-Insert into TESTDB.H_USER_ROLE (USER_ROLE_ID,ROLE_ID,USER_ID) values (3,3,3);
-Insert into TESTDB.H_USER_ROLE (USER_ROLE_ID,ROLE_ID,USER_ID) values (4,3,4);
-Insert into TESTDB.H_USER_ROLE (USER_ROLE_ID,ROLE_ID,USER_ID) values (5,2,5);
+Insert into TESTDB.H_USER_ROLE (ROLE_ID,USER_ID) values (1,1);
+Insert into TESTDB.H_USER_ROLE (ROLE_ID,USER_ID) values (2,2);
+Insert into TESTDB.H_USER_ROLE (ROLE_ID,USER_ID) values (3,3);
+Insert into TESTDB.H_USER_ROLE (ROLE_ID,USER_ID) values (3,4);
+Insert into TESTDB.H_USER_ROLE (ROLE_ID,USER_ID) values (2,5);
 
 
 
 
 REM INSERTING into TESTDB.H_MAJOR
 SET DEFINE OFF;
-Insert into TESTDB.H_MAJOR (MAJOR_ID,NAME,DEPARTMENT_ID,STATUS) values (1,'Psychology',1,'Active');
-Insert into TESTDB.H_MAJOR (MAJOR_ID,NAME,DEPARTMENT_ID,STATUS) values (2,'History',2,'Active');
-Insert into TESTDB.H_MAJOR (MAJOR_ID,NAME,DEPARTMENT_ID,STATUS) values (3,'Mathematics',3,'Active');
-Insert into TESTDB.H_MAJOR (MAJOR_ID,NAME,DEPARTMENT_ID,STATUS) values (4,'Biology',4,'Active');
-Insert into TESTDB.H_MAJOR (MAJOR_ID,NAME,DEPARTMENT_ID,STATUS) values (5,'English',5,'Active');
-Insert into TESTDB.H_MAJOR (MAJOR_ID,NAME,DEPARTMENT_ID,STATUS) values (6,'Engineering',6,'Active');
-Insert into TESTDB.H_MAJOR (MAJOR_ID,NAME,DEPARTMENT_ID,STATUS) values (7,'Finance and Economics',7,'Active');
-Insert into TESTDB.H_MAJOR (MAJOR_ID,NAME,DEPARTMENT_ID,STATUS) values (8,'Political Science',8,'Active');
-Insert into TESTDB.H_MAJOR (MAJOR_ID,NAME,DEPARTMENT_ID,STATUS) values (9,'Physics',9,'Active');
-Insert into TESTDB.H_MAJOR (MAJOR_ID,NAME,DEPARTMENT_ID,STATUS) values (10,'Music',10,'Active');
+Insert into TESTDB.H_MAJOR (NAME,DEPARTMENT_ID,STATUS) values ('Psychology',1,'Active');
+Insert into TESTDB.H_MAJOR (NAME,DEPARTMENT_ID,STATUS) values ('History',2,'Active');
+Insert into TESTDB.H_MAJOR (NAME,DEPARTMENT_ID,STATUS) values ('Mathematics',3,'Active');
+Insert into TESTDB.H_MAJOR (NAME,DEPARTMENT_ID,STATUS) values ('Biology',4,'Active');
+Insert into TESTDB.H_MAJOR (NAME,DEPARTMENT_ID,STATUS) values ('English',5,'Active');
+Insert into TESTDB.H_MAJOR (NAME,DEPARTMENT_ID,STATUS) values ('Engineering',6,'Active');
+Insert into TESTDB.H_MAJOR (NAME,DEPARTMENT_ID,STATUS) values ('Finance and Economics',7,'Active');
+Insert into TESTDB.H_MAJOR (NAME,DEPARTMENT_ID,STATUS) values ('Political Science',8,'Active');
+Insert into TESTDB.H_MAJOR (NAME,DEPARTMENT_ID,STATUS) values ('Physics',9,'Active');
+Insert into TESTDB.H_MAJOR (NAME,DEPARTMENT_ID,STATUS) values ('Music',10,'Active');
 
 
 
 REM INSERTING into TESTDB.H_COURSE
 SET DEFINE OFF;
-Insert into TESTDB.H_COURSE (COURSE_ID,NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values (1,'Calculus 1',2,3,'Active',3,'101','Introduction to Calculus');
-Insert into TESTDB.H_COURSE (COURSE_ID,NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values (2,'Calculus 2',2,3,'Active',3,'151','Advanced Calculus');
-Insert into TESTDB.H_COURSE (COURSE_ID,NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values (3,'Linear Algebra',1,3,'Active',3,'252','Linear equations and optimization');
-Insert into TESTDB.H_COURSE (COURSE_ID,NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values (4,'Revolutionary History',3,2,'Active',3,'101','Study of the Revolutionary time period');
-Insert into TESTDB.H_COURSE (COURSE_ID,NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values (5,'Civil War History',3,2,'Active',3,'103','Look at the impact of the Civil war');
-Insert into TESTDB.H_COURSE (COURSE_ID,NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values (6,'World War 2',4,2,'Active',3,'210','History of the 2nd world war');
-Insert into TESTDB.H_COURSE (COURSE_ID,NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values (7,'Infant Behavior',7,1,'Active',3,'155','Study infant psychology');
-Insert into TESTDB.H_COURSE (COURSE_ID,NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values (8,'Cognitive Behavior Lab',8,1,'Active',1,'356','Lab course on psychology');
-Insert into TESTDB.H_COURSE (COURSE_ID,NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values (9,'DNA',9,4,'Active',3,'410','Discover the wonders of DNA');
-Insert into TESTDB.H_COURSE (COURSE_ID,NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values (10,'Evolutionary Biology',10,4,'Active',3,'499','Study of evolution');
+Insert into TESTDB.H_COURSE (NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values ('Calculus 1',2,3,'Active',3,'101','Introduction to Calculus');
+Insert into TESTDB.H_COURSE (NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values ('Calculus 2',2,3,'Active',3,'151','Advanced Calculus');
+Insert into TESTDB.H_COURSE (NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values ('Linear Algebra',1,3,'Active',3,'252','Linear equations and optimization');
+Insert into TESTDB.H_COURSE (NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values ('Revolutionary History',3,2,'Active',3,'101','Study of the Revolutionary time period');
+Insert into TESTDB.H_COURSE (NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values ('Civil War History',3,2,'Active',3,'103','Look at the impact of the Civil war');
+Insert into TESTDB.H_COURSE (NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values ('World War 2',4,2,'Active',3,'210','History of the 2nd world war');
+Insert into TESTDB.H_COURSE (NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values ('Infant Behavior',7,1,'Active',3,'155','Study infant psychology');
+Insert into TESTDB.H_COURSE (NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values ('Cognitive Behavior Lab',8,1,'Active',1,'356','Lab course on psychology');
+Insert into TESTDB.H_COURSE (NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values ('DNA',9,4,'Active',3,'410','Discover the wonders of DNA');
+Insert into TESTDB.H_COURSE (NAME,SUBJECT_ID,MAJOR_ID,STATUS,CREDITS,COURSE_NUMBER,DESCRIPTION) values ('Evolutionary Biology',10,4,'Active',3,'499','Study of evolution');
 
 
 
@@ -587,27 +587,27 @@ Insert into TESTDB.H_STUDENT_DETAIL (USER_ID,MAJOR_ID,STUDENT_NUMBER,ENTRY_YEAR)
 
 REM INSERTING into TESTDB.H_CLASS
 SET DEFINE OFF;
-Insert into TESTDB.H_CLASS (CLASS_ID,USER_ID,COURSE_ID,CLASSROOM_ID,SEMESTER_ID,STATUS) values (1,4,1,1,4,'Active');
-Insert into TESTDB.H_CLASS (CLASS_ID,USER_ID,COURSE_ID,CLASSROOM_ID,SEMESTER_ID,STATUS) values (2,4,2,2,4,'Active');
-Insert into TESTDB.H_CLASS (CLASS_ID,USER_ID,COURSE_ID,CLASSROOM_ID,SEMESTER_ID,STATUS) values (3,3,3,3,4,'Active');
-Insert into TESTDB.H_CLASS (CLASS_ID,USER_ID,COURSE_ID,CLASSROOM_ID,SEMESTER_ID,STATUS) values (4,3,4,4,4,'Active');
-Insert into TESTDB.H_CLASS (CLASS_ID,USER_ID,COURSE_ID,CLASSROOM_ID,SEMESTER_ID,STATUS) values (5,4,5,1,3,'Active');
+Insert into TESTDB.H_CLASS (USER_ID,COURSE_ID,CLASSROOM_ID,SEMESTER_ID,STATUS) values (4,1,1,4,'Active');
+Insert into TESTDB.H_CLASS (USER_ID,COURSE_ID,CLASSROOM_ID,SEMESTER_ID,STATUS) values (4,2,2,4,'Active');
+Insert into TESTDB.H_CLASS (USER_ID,COURSE_ID,CLASSROOM_ID,SEMESTER_ID,STATUS) values (3,3,3,4,'Active');
+Insert into TESTDB.H_CLASS (USER_ID,COURSE_ID,CLASSROOM_ID,SEMESTER_ID,STATUS) values (3,4,4,4,'Active');
+Insert into TESTDB.H_CLASS (USER_ID,COURSE_ID,CLASSROOM_ID,SEMESTER_ID,STATUS) values (4,5,1,3,'Active');
 
 
 
 REM INSERTING into TESTDB.H_CLASS_SCHEDULE
 SET DEFINE OFF;
-Insert into TESTDB.H_CLASS_SCHEDULE (CLASS_SCHEDULE_ID,WEEKDAY_ID,CLASS_ID,CLASS_TIME) values (11,1,1,10);
-Insert into TESTDB.H_CLASS_SCHEDULE (CLASS_SCHEDULE_ID,WEEKDAY_ID,CLASS_ID,CLASS_TIME) values (12,2,2,12);
-Insert into TESTDB.H_CLASS_SCHEDULE (CLASS_SCHEDULE_ID,WEEKDAY_ID,CLASS_ID,CLASS_TIME) values (13,3,3,16);
-Insert into TESTDB.H_CLASS_SCHEDULE (CLASS_SCHEDULE_ID,WEEKDAY_ID,CLASS_ID,CLASS_TIME) values (14,4,4,9);
-Insert into TESTDB.H_CLASS_SCHEDULE (CLASS_SCHEDULE_ID,WEEKDAY_ID,CLASS_ID,CLASS_TIME) values (15,5,5,17);
+Insert into TESTDB.H_CLASS_SCHEDULE (WEEKDAY_ID,CLASS_ID,CLASS_TIME) values (1,1,10);
+Insert into TESTDB.H_CLASS_SCHEDULE (WEEKDAY_ID,CLASS_ID,CLASS_TIME) values (2,2,12);
+Insert into TESTDB.H_CLASS_SCHEDULE (WEEKDAY_ID,CLASS_ID,CLASS_TIME) values (3,3,16);
+Insert into TESTDB.H_CLASS_SCHEDULE (WEEKDAY_ID,CLASS_ID,CLASS_TIME) values (4,4,9);
+Insert into TESTDB.H_CLASS_SCHEDULE (WEEKDAY_ID,CLASS_ID,CLASS_TIME) values (5,5,17);
 
 
 REM INSERTING into TESTDB.H_ENROLLMENT
 SET DEFINE OFF;
-Insert into TESTDB.H_ENROLLMENT (ENROLLMENT_ID,USER_ID,GRADE,STATUS,CLASS_ID) values (6,2,'A','Active',1);
-Insert into TESTDB.H_ENROLLMENT (ENROLLMENT_ID,USER_ID,GRADE,STATUS,CLASS_ID) values (7,2,'B','Active',2);
-Insert into TESTDB.H_ENROLLMENT (ENROLLMENT_ID,USER_ID,GRADE,STATUS,CLASS_ID) values (8,2,'A','Active',3);
-Insert into TESTDB.H_ENROLLMENT (ENROLLMENT_ID,USER_ID,GRADE,STATUS,CLASS_ID) values (9,5,'D','Active',4);
-Insert into TESTDB.H_ENROLLMENT (ENROLLMENT_ID,USER_ID,GRADE,STATUS,CLASS_ID) values (10,2,'A','Active',5);
+Insert into TESTDB.H_ENROLLMENT (USER_ID,GRADE,STATUS,CLASS_ID) values (2,'A','Active',1);
+Insert into TESTDB.H_ENROLLMENT (USER_ID,GRADE,STATUS,CLASS_ID) values (2,'B','Active',2);
+Insert into TESTDB.H_ENROLLMENT (USER_ID,GRADE,STATUS,CLASS_ID) values (2,'A','Active',3);
+Insert into TESTDB.H_ENROLLMENT (USER_ID,GRADE,STATUS,CLASS_ID) values (5,'D','Active',4);
+Insert into TESTDB.H_ENROLLMENT (USER_ID,GRADE,STATUS,CLASS_ID) values (2,'A','Active',5);
