@@ -1,7 +1,9 @@
 package db;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
+import model.HStudentDetail;
 import model.HUser;
 import customTools.DBUtil;
 
@@ -31,6 +33,27 @@ public class DBStudentDetail {
 			return false;
 		}
 		finally
+		{
+			em.close();
+		}
+	}
+	
+	public static void insert(HStudentDetail student) 
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		trans.begin(); 
+		try 
+		{
+			em.persist(student);
+			trans.commit();
+		} 
+		catch (Exception e) 
+		{
+			System.out.println(e);
+			trans.rollback();
+		} 
+		finally 
 		{
 			em.close();
 		}

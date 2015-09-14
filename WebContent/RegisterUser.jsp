@@ -61,7 +61,7 @@
 					<label> Your Major</label> 
 					<select>						
 						<c:forEach var="item" items="${majors}">
-							<option id="${item.majorId}">${item.name}</option>
+							<option type="text" name="major">${item.name}</option>
 						</c:forEach>
 					</select><br> <br>
 					<label for="userName"></label> 
