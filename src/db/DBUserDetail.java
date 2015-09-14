@@ -104,5 +104,27 @@ public class DBUserDetail {
 			em.close();
 		}
 	}
+	public static HUser getSingleUser(String userName)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String query = "SELECT * FROM HUser d WHERE UPPER(d.userName) = :userName";
+		System.out.println("Get Single : " + query);
+		HUser user = null;
+		try
+		{
+			user = (HUser) em.createQuery(query)
+					.setParameter("userName", userName.toUpperCase())
+					.getSingleResult();
 
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return user;
+	}
 }

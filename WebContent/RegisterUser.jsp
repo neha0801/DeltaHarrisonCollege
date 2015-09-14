@@ -59,9 +59,9 @@
 						class="form-control" name="email" placeholder="Email" required/>
 						<br>
 					<label> Your Major</label> 
-					<select>						
+					<select name ="major">						
 						<c:forEach var="item" items="${majors}">
-							<option type="text" name="major">${item.name}</option>
+							<option type="text" value=${item.majorId}>${item.name}</option>
 						</c:forEach>
 					</select><br> <br>
 					<label for="userName"></label> 
