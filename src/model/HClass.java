@@ -143,8 +143,20 @@ public class HClass implements Serializable {
 
 		return HEnrollment;
 	}
-	public int getCurrentEnrollment(){
-		return HEnrollments.size();
+	public int getCurrentAvailability(){
+		return HClassroom.getMaxCapacity()-HEnrollments.size();
+	}
+	
+	public String getClassSchedule()
+	{
+		List<HClassSchedule> schedules = this.getHClassSchedules();
+		String scheduleStr = "";
+		
+		for (HClassSchedule schedule : schedules)
+		{
+			scheduleStr += schedule.getHWeekday() + " " + schedule.getClassTime();
+		}
+		return scheduleStr;
 	}
 
 }

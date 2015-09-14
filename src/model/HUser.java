@@ -120,5 +120,19 @@ public class HUser implements Serializable {
 
 		return HUserRole;
 	}
+	
+	public boolean isTimeOk(HClass newClass )
+	{
+		boolean isOk = false;
+		
+		List<HEnrollment> enrollments = this.getHStudentDetail().getHEnrollments();
+		
+		for(HEnrollment enrollment : enrollments)
+		{
+			
+		}
+		
+		return isOk;
+	}
 
 }

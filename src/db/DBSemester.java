@@ -47,4 +47,25 @@ public class DBSemester {
 			em.close();
 		}
 	}
+	
+	public static HSemester getCurrentSemester(){
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT s FROM HSemester s WHERE s.semesterId = (SELECT MAX(t.semesterId) FROM HSemester t)";
+		HSemester current=null;
+		try
+		{
+			Query query = em.createQuery(queryStr);
+			current =   (HSemester) query.getSingleResult();
+			System.out.println("current Semester Id = " +current.getSemesterId());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return current;
+	}
 }
