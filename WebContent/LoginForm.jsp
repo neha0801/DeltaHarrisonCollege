@@ -61,7 +61,7 @@
 					<button type="submit" value="submit" class="btn btn-default">Sign
 						in</button>
 
-					<a href="./RegisterUser.jsp" class="btn btn-default">Register</a>
+					<a href="RegisterUser" class="btn btn-default">Register</a>
 				</div>
 			</form>
 		</div>

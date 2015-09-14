@@ -1,6 +1,7 @@
 package db;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 import customTools.DBUtil;
 import model.HUser;
@@ -51,4 +52,57 @@ public class DBUserDetail {
 			em.close();
 		}
 	}
+	
+	public static boolean isAvailable(HUser user)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String query = "SELECT count(d.userId) FROM HUser d WHERE UPPER(d.userName) = :userName OR UPPER(d.email) = :email";
+		System.out.println("is Available Query : " + query);
+		try
+		{
+			long l = (long) em.createQuery(query)
+					.setParameter("userName", user.getUserName().toUpperCase())
+					.setParameter("email", user.getEmail().toUpperCase())
+					.getSingleResult();
+			if (l>0)
+			{
+				return false;
+			}
+			else
+			{
+				return true;
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+		finally
+		{
+			em.close();
+		}
+	}
+	
+	public static void insert(HUser user) 
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		trans.begin(); 
+		try 
+		{
+			em.persist(user);
+			trans.commit();
+		} 
+		catch (Exception e) 
+		{
+			System.out.println(e);
+			trans.rollback();
+		} 
+		finally 
+		{
+			em.close();
+		}
+	}
+
 }
