@@ -46,7 +46,7 @@
 					
 					<form role="form" action="Login" method="POST">
 						<div class="form-group">
-							<label for="userName">Username:</label> 
+							<label for="userName">User Name:</label> 
 							<input type="text" class="form-control" name="userName" required />
 							<label for="password">Password:</label> 
 							<input type="password" class="form-control" name="password" required />
