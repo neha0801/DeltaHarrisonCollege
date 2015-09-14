@@ -47,7 +47,15 @@
 								<td>${currentClass.HCourse.name}</td>
 								<td>${currentClass.getClassSchedule()}</td>
 								<td>${currentClass.getCurrentAvailability()}</td>
-								<td><a class="btn btn-success" href="Enroll?classId=${currentClass.classId}">Enroll</a></td>
+								
+								<c:if test="${currentClass.hasEnrolled(user.userId)}">
+									<td><a class="btn btn-danger" href="#">Enrolled</a></td>
+								</c:if>
+								
+								<c:if test="${not currentClass.hasEnrolled(user.userId)}">
+									<td><a class="btn btn-success" href="Enroll?classId=${currentClass.classId}">Enroll</a></td>
+								</c:if>
+								
 							</tr>
 						</c:forEach>
 					</tbody>

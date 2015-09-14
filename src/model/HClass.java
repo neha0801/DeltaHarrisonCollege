@@ -1,7 +1,11 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import db.DBUserDetail;
+
 import java.util.List;
 
 
@@ -158,5 +162,23 @@ public class HClass implements Serializable {
 		}
 		return scheduleStr;
 	}
-
+	
+	public boolean hasEnrolled(long userId)
+	{
+		System.out.println("user id = " + userId);
+		boolean hasEnrolled = false;
+		HUser user = DBUserDetail.getUser(userId);
+		
+		List<HEnrollment> enrollments = user.getHStudentDetail().getHEnrollments();
+		
+		for(HEnrollment enrollment : enrollments )
+		{
+			if (this.getClassId() == enrollment.getHClass().getClassId())
+			{
+				hasEnrolled = true;
+				break;
+			}
+		}
+		return hasEnrolled;
+	}
 }
