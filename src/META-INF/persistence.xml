@@ -2,10 +2,25 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="DeltaHarrisonCollege" transaction-type="RESOURCE_LOCAL">
 		<provider> org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>model.HClass</class>
+		<class>model.HClassroom</class>
+		<class>model.HClassSchedule</class>
+		<class>model.HCourse</class>
+		<class>model.HDepartment</class>
+		<class>model.HEnrollment</class>
+		<class>model.HMajor</class>
+		<class>model.HRole</class>
+		<class>model.HSemester</class>
+		<class>model.HStaffDetail</class>
+		<class>model.HStudentDetail</class>
+		<class>model.HSubject</class>
+		<class>model.HUser</class>
+		<class>model.HUserRole</class>
+		<class>model.HWeekday</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-			<property name="javax.persistence.jdbc.user" value="system"/>
-			<property name="javax.persistence.jdbc.password" value="testdb"/>
+			<property name="javax.persistence.jdbc.user" value="testdb"/>
+			<property name="javax.persistence.jdbc.password" value="password"/>
 			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
 		</properties>
 	</persistence-unit>
