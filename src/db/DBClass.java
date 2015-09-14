@@ -35,5 +35,19 @@ public class DBClass
 		}
 		return classes;
 	}
+	
+	public static HClass getClass(long classId)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		try
+		{
+			HClass newClass = em.find(HClass.class, classId);
+			return newClass;
+		}
+		finally
+		{
+			em.close();
+		}
+	}
 
 }
