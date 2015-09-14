@@ -32,7 +32,7 @@
 	<jsp:include page="./header.jsp" />
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-		<div class="panel-heading">Login</div>
+		<div class="panel-heading">Login <span class="glyphicon glyphicon-log-in"></div>
 		<div class="panel-body">
 
 

@@ -13,6 +13,18 @@
 				<c:if test="${empty user}">
 					<li><a href="./RegisterUser.jsp">Register</a></li>
 				</c:if>
+				<c:if test="${empty user}">
+					<li><a href="./EnrollAClass.jsp">Enroll</a></li>
+				</c:if>
+				<c:if test="${empty user}">
+					<li><a href="./CurrentSchedule.jsp">Schedule</a></li>
+				</c:if>
+				<c:if test="${empty user}">
+					<li><a href="./Transcript.jsp">Transcript</a></li>
+				</c:if>
+				<c:if test="${empty user}">
+					<li><a href="./EditUser.jsp">Edit Profile</a></li>
+				</c:if>
 				<c:if test="${not empty user}">
 
 					<c:choose>
