@@ -143,5 +143,8 @@ public class HClass implements Serializable {
 
 		return HEnrollment;
 	}
+	public int getCurrentEnrollment(){
+		return HEnrollments.size();
+	}
 
 }
