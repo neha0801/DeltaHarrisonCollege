@@ -46,16 +46,22 @@
 				</div>
 			</c:if>
 
-			<form role="form" action="Login" method="POST">
+			<form role="form" action="RegisterUser" method="POST">
 				<div class="form-group">
 					<label for="firstName"></label> <input type="text"
 						class="form-control" name="firstName" placeholder="First Name"
 						required /> <label for="lastName"></label> <input type="text"
 						class="form-control" name="lastName" placeholder="Last Name"
-						required /> <label for="userName"></label> <input type="text"
-						class="form-control" name="userName" placeholder="User Name"
-						required /> <label for="password"></label> <input
-						type="password" class="form-control" name="password"
+						required /> <label for="email"></label> <input type="text"
+						class="form-control" name="email" placeholder="Email" required />
+					<label for="userName"></label> <select>
+						<option selected="selected">Major</option>
+						<c:forEach var="item" items="${major}">
+							<option id="${item.major}">${item.major}</option>
+						</c:forEach>
+					</select> <input type="text" class="form-control" name="userName"
+						placeholder="User Name" required /> <label for="password"></label>
+					<input type="password" class="form-control" name="password"
 						placeholder="Password" required />
 				</div>
 
