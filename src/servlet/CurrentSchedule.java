@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import db.DBEnrollment;
+import model.HEnrollment;
 import model.HUser;
 
 /**
@@ -33,7 +36,10 @@ public class CurrentSchedule extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(true);		
 		HUser user=(HUser) session.getAttribute("user");		
-		
+		List<HEnrollment>enrollments=null;
+		enrollments=DBEnrollment.getEnrollmentByStudent(user);
+		request.setAttribute("currentSchedule", enrollments);		
+		getServletContext().getRequestDispatcher("/CurrentSchedule.jsp").forward(request, response);
 	}
 
 	/**

@@ -24,7 +24,7 @@
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>All Available Classes</title>
+<title>Current Student Schedule</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -37,17 +37,16 @@
 						<tr>
 							<td>Course Name</td>
 							<td>Time</td>
-							<td>Availability</td>
+							
 							<td>Action</td>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="currentClass" items="${currentClasses}">
+						<c:forEach var="currentSchedule" items="${currentSchedule}">
 							<tr>
-								<td>${currentClass.HCourse.name}</td>
-								<td>${currentClass.getClassSchedule()}</td>
-								<td>${currentClass.getCurrentAvailability()}</td>
-								<td><a class="btn btn-success" href="Enroll?classId=${currentClass.classId}">Enroll</a></td>
+								<td>${currentSchedule.HClass.HCourse.name}</td>
+								<td>${currentSchedule.HClass.getClassSchedule()}</td>								
+								<td><a class="btn btn-success" href="Drop?classId=${currentClass.classId}">Drop</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
