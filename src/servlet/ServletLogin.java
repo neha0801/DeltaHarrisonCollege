@@ -52,12 +52,12 @@ public class ServletLogin extends HttpServlet {
 		
 		// get back a user id with a user name and password, if fail, return 0
 		long userId = DBUserDetail.login(tempUser);
-		
+		System.out.println(userId);
 		//if login success
 		if (userId>0)
 		{
 			HUser user = DBUserDetail.getUser(userId);
-			
+			System.out.println(user.getUserId());
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			
