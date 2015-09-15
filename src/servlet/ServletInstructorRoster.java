@@ -40,31 +40,50 @@ public class ServletInstructorRoster extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// String action
+		String action = request.getParameter("action");
+		System.out.println(action);
+		if(action==null){
+			action="";
+		}
+		String backAction = String.valueOf(request.getAttribute("action"));
+		System.out.println(backAction);
 		System.out.println("do get of instructor roster");
-		HttpSession session = request.getSession(true);		
-		HUser user = (HUser) session.getAttribute("user");	
-		HStaffDetail instructor = DBStaffDetail.getUser(user.getUserId());
-		List<HClass> classes=DBClass.getInstructorClasses(instructor);
-		//List<HSemester> semesters=DBSemester.getAllSemester();
-		request.setAttribute("classes", classes);
-		//request.setAttribute("semesters", semesters);
-		getServletContext().getRequestDispatcher("/InstructorRoster.jsp").forward(request, response);
+		if (action.equalsIgnoreCase("getAll") || backAction.equalsIgnoreCase("getAll"))
+		{
+			
+			HttpSession session = request.getSession(true);		
+			HUser user = (HUser) session.getAttribute("user");	
+			HStaffDetail instructor = DBStaffDetail.getUser(user.getUserId());
+			List<HClass> classes=DBClass.getInstructorClasses(instructor);
+			//List<HSemester> semesters=DBSemester.getAllSemester();
+			request.setAttribute("classes", classes);
+			//request.setAttribute("semesters", semesters);
+			getServletContext().getRequestDispatcher("/InstructorRoster.jsp").forward(request, response);
+		}
+		else if (action.equalsIgnoreCase("getOne"))
+		{
+			System.out.println("do get of instructor roster, getone");
+			String classIdStr = request.getParameter("classId");
+			if(classIdStr!=null){
+				long classId = Long.parseLong(classIdStr);
+				HClass classObj = DBClass.getClass(classId);
+				List<HEnrollment> enrolledList = DBEnrollment.getEnrollmentByClass(classObj);
+				request.setAttribute("enrolledList", enrolledList);
+				getServletContext().getRequestDispatcher("/ViewStudents.jsp").forward(request, response);
+			}
+		}
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("do post of instructor roster");
-		String classIdStr = request.getParameter("classId");
-		if(classIdStr!=null){
-			long classId = Long.parseLong(classIdStr);
-			HClass classObj = DBClass.getClass(classId);
-			List<HEnrollment> enrolledList = DBEnrollment.getEnrollmentByClass(classObj);
-			request.setAttribute("enrolledList", enrolledList);
-			getServletContext().getRequestDispatcher("/ViewRoster.jsp").forward(request, response);
-		}
-			
+
+			System.out.println("do post of instructor roster");
+			doGet(request,response);
 	}
 
 }

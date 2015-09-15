@@ -117,4 +117,14 @@ public class DBEnrollment {
 		}
 		return enrollments;
 	}
+	
+	public static HEnrollment getEnrollemnt(long enrollmentId) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		try {
+			HEnrollment enroll = em.find(HEnrollment.class, enrollmentId);
+			return enroll;
+		} finally {
+			em.close();
+		}
+	}
 }

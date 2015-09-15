@@ -31,37 +31,44 @@
 	<jsp:include page="./header.jsp" />
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-		<table class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<td>Student Name</td>
-					<td>Student Number</td>
-					<td>Major</td>
-					<td>Entry Year</td>
-				</tr>
-			</thead>
-			<tbody>
-			
-				<c:forEach var="item" items="${enrolledList}">
-				
-					<tr>
-					
-						<td>${item.HStudentDetail.HUser.getFullName()}</td>
-						<td>${item.HStudentDetail.studentNumber}</td>
-						<td>${item.HStudentDetail.HMajor.name}</td>
-						<td>${item.HStudentDetail.entryYear}</td>
-						
-					</tr>
-				</c:forEach>
-			</tbody>
+			<div class="panel-heading">Assign Grades</div>
+		<div class="panel-body">
+		
+		<c:if test="${not empty errorMessage}">
+				<div class="alert alert-danger">
+					<c:out value="${errorMessage}" />
+				</div>
+			</c:if>
 
-
-		</table>
+			<c:if test="${not empty goodMessage}">
+				<div class="alert alert-success">
+					<c:out value="${goodMessage}" />
+				</div>
+			</c:if>
 		<br>
+			<FORM ACTION="AssignGrades" METHOD="post">
+			<div>
+             <INPUT TYPE="radio" NAME="grade" VALUE="A" CHECKED>
+             A
+            <BR>
+            <INPUT TYPE="radio" NAME="grade" VALUE="B">
+             B
+            <BR>
+            <INPUT TYPE="radio" NAME="grade" VALUE="C">
+             C
+            <BR>
+             <INPUT TYPE="radio" NAME="grade" VALUE="D">
+             D
+            <BR> 
+            </div>
+            <input type="hidden" value="${enrollmentId}" name ="enrollmentId">
+            <INPUT TYPE="submit" class="btn pull-right btn-primary" VALUE="Save">
+        </FORM>
+        </div>
 		<br>
-<form action="InstructorRoster" method="GET">
+<!-- <form action="InstructorRoster" method="GET">
 <input type="submit" value="Go back"></input>
-</form>
+</form> -->
 
 
 

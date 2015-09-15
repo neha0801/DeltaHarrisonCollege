@@ -34,33 +34,46 @@
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<td>Course Name</td>
-					<td>Time</td>
-					<td>Classroom</td>
-					<td>Semester</td>
+					<td>Student Name</td>
+					<td>Student Number</td>
+					<td>Major</td>
+					<td>Entry Year</td>
+					<td>Grade</td>
 					<td>Action</td>
 				</tr>
 			</thead>
 			<tbody>
 			
-				<c:forEach var="item" items="${classes}">
+				<c:forEach var="item" items="${enrolledList}">
 				
 					<tr>
-						<td>${item.HCourse.name}</td>
-						<td>${item.getClassSchedule()}</td>
-						<td>${item.getClassroom()}</td>
-						<td>${item.HSemester.getSemester()}</td>
+					<form action="AssignGrades" method="GET" >
+						<td>${item.HStudentDetail.HUser.getFullName()}</td>
+						<td>${item.HStudentDetail.studentNumber}</td>
+						<td>${item.HStudentDetail.HMajor.name}</td>
+						<td>${item.HStudentDetail.entryYear}</td>
+						<td>${item.grade }</td>
 						
-						<td>
-						<a href="InstructorRoster?action=getOne&classId=${item.classId}" class="btn btn-success" >View Students</a></td>
-					
+						<td><input type="hidden" name="enrollmentId" value="${item.enrollmentId}"></input>
+						
+						<c:if test="${not empty item.grade}">
+							<input type="submit" class="btn btn-success" value="Change Grades"></input></td>
+						</c:if>
+						<c:if test="${empty item.grade}">
+						<input type="submit" class="btn btn-success" value="Assign Grades"></input></td>
+						</c:if>
+						</form>
 					</tr>
 				</c:forEach>
 			</tbody>
 
 
 		</table>
-
+		<br>
+		<br>
+<form action="InstructorRoster" method="GET">
+<input type="submit" value="Go back"></input>
+</form>
 
 
 

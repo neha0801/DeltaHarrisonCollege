@@ -15,9 +15,7 @@
 				</c:if>
 				<c:if test="${not empty user}">
 					<li><a href="InstructorClasses">Instructor Classes</a></li>
-					<li><a href="InstructorRoster">Generate your Roster</a></li>
-					<li><a href="AssignGrades">Assign Grades</a></li>
-				
+					<li><a href="InstructorRoster?action=getAll">Generate your Roster</a></li>				
 				</c:if>
 
 			</ul>
