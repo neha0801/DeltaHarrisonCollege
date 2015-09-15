@@ -12,6 +12,7 @@ import javax.persistence.Query;
 import model.HClass;
 import model.HCourse;
 import model.HSemester;
+import model.HUser;
 import customTools.DBUtil;
 
 public class DBCourse {
@@ -28,6 +29,20 @@ public class DBCourse {
 			em.close();
 		}
 		return courses;
+	}
+	
+	public static HCourse getCourse(long courseId)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		try
+		{
+			HCourse course = em.find(HCourse.class, courseId);
+			return course;
+		}
+		finally
+		{
+			em.close();
+		}
 	}
 
 }
