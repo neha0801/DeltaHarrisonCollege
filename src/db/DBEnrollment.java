@@ -7,6 +7,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import customTools.DBUtil;
+import model.HClass;
 import model.HEnrollment;
 import model.HUser;
 
@@ -55,6 +56,40 @@ public class DBEnrollment {
 			em.close();
 		}
 		return enrollments;
+	}
+	
+	
+	public static HEnrollment getEnrollment(long enrollmentId)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		try
+		{
+			HEnrollment newEnrollment = em.find(HEnrollment.class, enrollmentId);
+			return newEnrollment;
+		}
+		finally
+		{
+			em.close();
+		}
+	}
+	public static void update(HEnrollment enrollment) 
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		trans.begin(); 
+		try 
+		{
+			em.merge(enrollment);
+			trans.commit();
+		} catch (Exception e) 
+		{
+			System.out.println(e);
+			trans.rollback();
+		} 
+		finally 
+		{
+			em.close();
+		}
 	}
 
 }

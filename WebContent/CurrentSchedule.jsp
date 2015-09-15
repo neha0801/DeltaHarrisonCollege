@@ -46,7 +46,7 @@
 							<tr>
 								<td>${currentSchedule.HClass.HCourse.name}</td>
 								<td>${currentSchedule.HClass.getClassSchedule()}</td>								
-								<td><a class="btn btn-success" href="Drop?classId=${currentClass.classId}">Drop</a></td>
+								<td><a class="btn btn-success" href="Drop?enrollmentId=${currentSchedule.enrollmentId}">Drop</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
