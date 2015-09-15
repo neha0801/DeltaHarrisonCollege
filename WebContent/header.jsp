@@ -20,6 +20,9 @@
 					<li><a href="./AllCourses.jsp">Course List</a></li>
 				</c:if>
 				<c:if test="${empty user}">
+					<li><a href="./ClassSearchForm.jsp">Search Classes</a></li>
+				</c:if>
+				<c:if test="${empty user}">
 					<li><a href="./CurrentSchedule.jsp">Schedule</a></li>
 				</c:if>
 				<c:if test="${empty user}">
