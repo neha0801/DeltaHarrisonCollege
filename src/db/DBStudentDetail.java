@@ -1,8 +1,13 @@
 package db;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
+import model.HClass;
+import model.HSemester;
 import model.HStudentDetail;
 import model.HUser;
 import customTools.DBUtil;
@@ -58,4 +63,21 @@ public class DBStudentDetail {
 			em.close();
 		}
 	}
+	
+//	public static List<HStudentDetail> getStudent(HClass classes) {
+//		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//		String sql = "SELECT s FROM HStudentDetail s WHERE c.userName) = :userName";
+//		System.out.println("Get Single : " + sql);
+//		TypedQuery<HUser> query = em.createQuery(sql, HUser.class).setParameter("userName", userName.toUpperCase());
+//		HUser user = null;
+//		try {
+//			user = query.getSingleResult();
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			em.close();
+//		}
+//		return user;
+//	}
 }

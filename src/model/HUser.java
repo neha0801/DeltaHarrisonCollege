@@ -134,5 +134,11 @@ public class HUser implements Serializable {
 		
 		return isOk;
 	}
+	
+	public String getFullName(){
+		String nameStr = "";
+		nameStr=this.firstName + " " + this.lastName;
+		return nameStr;
+	}
 
 }

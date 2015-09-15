@@ -92,4 +92,29 @@ public class DBEnrollment {
 		}
 	}
 
+	
+	public static List<HEnrollment> getEnrollmentByClass(HClass classObj)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT e FROM HEnrollment e where e.status= :status and e.HClass= :classObj";
+		System.out.println("SELECT * FROM H_Enrollment e where e.status= 'Enrolled' and e.class_id= " + classObj.getClassId());
+		List<HEnrollment> enrollments = null;
+		try
+		{
+			Query query = em.createQuery(queryStr)
+					.setParameter("status", "Enrolled")
+					.setParameter("classObj", classObj);
+			enrollments =  query.getResultList();
+			System.out.println("size = " + enrollments.size());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return enrollments;
+	}
 }

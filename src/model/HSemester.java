@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 import java.util.List;
@@ -78,4 +79,11 @@ public class HSemester implements Serializable {
 		return HClass;
 	}
 
+	public String getSemester(){
+		String semesterStr = "";
+
+		semesterStr = this.season + "  " + this.year;
+
+		return semesterStr;
+	}
 }
