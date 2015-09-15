@@ -1,7 +1,10 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -103,5 +106,36 @@ public class HStudentDetail implements Serializable {
 	public void setHUser(HUser HUser) {
 		this.HUser = HUser;
 	}
+	
+	public boolean isTimeOk(HClass newClass)
+	{
+		boolean isTimeOk = true;
+		List<HClassSchedule> newSchedules = newClass.getHClassSchedules();
+		
+		List<HEnrollment> currentEnrollments = this.getHEnrollments();
+		
+		List<HClassSchedule> currentSchedules = new ArrayList<HClassSchedule>();
+		
+		for(HEnrollment enrollment : currentEnrollments)
+		{
+			currentSchedules.addAll((enrollment.getHClass().getHClassSchedules()));
+		}
+		
+		outloop:
+		for(HClassSchedule newSchedule : newSchedules)
+		{
+			for(HClassSchedule currentSchedule : currentSchedules)
+			{
+				if(newSchedule.getHWeekday().getWeekdayId() == currentSchedule.getHWeekday().getWeekdayId() && 
+						newSchedule.getClassTime() == currentSchedule.getClassTime())
+				{
+					isTimeOk = false;
+					break outloop;
+				}
+			}
+		}
+		return isTimeOk;
+	}
+	
 
 }

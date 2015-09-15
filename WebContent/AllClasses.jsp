@@ -53,9 +53,16 @@
 								</c:if>
 								
 								<c:if test="${not currentClass.hasEnrolled(user.userId)}">
-									<td><a class="btn btn-success" href="Enroll?classId=${currentClass.classId}">Enroll</a></td>
+								<c:choose>
+								  <c:when test="${user.HStudentDetail.isTimeOk(currentClass)}">
+								    <td><a class="btn btn-success" href="Enroll?classId=${currentClass.classId}">Enroll</a></td>
+								  </c:when>
+
+								  <c:otherwise>
+								   	<td>Time Overlapped</td>
+								  </c:otherwise>
+								</c:choose>	
 								</c:if>
-								
 							</tr>
 						</c:forEach>
 					</tbody>

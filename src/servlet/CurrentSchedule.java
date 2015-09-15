@@ -38,7 +38,7 @@ public class CurrentSchedule extends HttpServlet {
 		HUser user=(HUser) session.getAttribute("user");		
 		List<HEnrollment>enrollments=null;
 		enrollments=DBEnrollment.getEnrollmentByStudent(user);
-		request.setAttribute("currentSchedule", enrollments);		
+		request.setAttribute("enrollments", enrollments);		
 		getServletContext().getRequestDispatcher("/CurrentSchedule.jsp").forward(request, response);
 	}
 
@@ -47,6 +47,7 @@ public class CurrentSchedule extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		doGet(request,response);
 	}
 
 }

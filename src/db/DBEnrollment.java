@@ -37,12 +37,13 @@ public class DBEnrollment {
 	public static List<HEnrollment> getEnrollmentByStudent(HUser user)
 	{
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		String queryStr = "SELECT e FROM HEnrollment e where e.status= :status and e.HStudentDetail= :studentDetail";
+		String queryStr = "SELECT e FROM HEnrollment e where (e.status= :EnrolledStatus or e.status= :DropStatus) and e.HStudentDetail= :studentDetail";
 		List<HEnrollment> enrollments = null;
 		try
 		{
 			Query query = em.createQuery(queryStr)
-					.setParameter("status", "Enrolled")
+					.setParameter("EnrolledStatus", "Enrolled")
+					.setParameter("DropStatus","Dropped")
 					.setParameter("studentDetail", user.getHStudentDetail());
 			enrollments =  query.getResultList();
 			System.out.println("size = " + enrollments.size());
