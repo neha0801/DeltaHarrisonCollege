@@ -59,9 +59,9 @@ public class ServletLogin extends HttpServlet {
 			HUser user = DBUserDetail.getUser(userId);
 			System.out.println(user.getUserId());
 			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
-			
-			getServletContext().getRequestDispatcher("/UserProfile").forward(request, response);
+			session.setAttribute("user", user);	
+			System.out.println(user.getFirstName());
+			getServletContext().getRequestDispatcher("/CurrentSchedule.jsp").forward(request, response);
 		}
 		//if login fail
 		else

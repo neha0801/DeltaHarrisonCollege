@@ -76,7 +76,7 @@ public class ServletRegisterUser extends HttpServlet {
 		if (DBUserDetail.isAvailable(user)) {
 			DBUserDetail.insert(user);
 			request.setAttribute("goodMessage", "Congratz! Account created");
-
+			user = DBUserDetail.getSingleUser(userName);
 			createStudent(user, majorId);
 
 			getServletContext().getRequestDispatcher("/LoginForm.jsp").forward(
@@ -98,7 +98,7 @@ public class ServletRegisterUser extends HttpServlet {
 		Random r = new Random();
 		String studentNumber = String.valueOf(100000 + r.nextInt(899999));
 
-		while (DBStudentDetail.isAvailable(studentNumber)) {
+		while (!DBStudentDetail.isAvailable(studentNumber)) {
 			studentNumber = String.valueOf(100000 + r.nextInt(899999));
 		}
 

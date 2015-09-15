@@ -12,7 +12,7 @@ public class DBStudentDetail {
 	public static boolean isAvailable(String studentNumber)
 	{
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		String query = "SELECT count(d.userId) FROM HStudentDetail d WHERE studentNumber = '" + studentNumber + "'";
+		String query = "SELECT count(d.userId) FROM HStudentDetail d WHERE d.studentNumber = '" + studentNumber + "'";
 		System.out.println("is Available Student Query : " + query);
 		try
 		{
