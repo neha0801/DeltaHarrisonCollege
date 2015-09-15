@@ -31,6 +31,9 @@
 				<c:if test="${empty user}">
 					<li><a href="./EditUser.jsp">Edit Profile</a></li>
 				</c:if>
+				<c:if test="${empty user}">
+					<li><a href="./Admin.jsp">Admin</a></li>
+				</c:if>
 				<c:if test="${not empty user}">
 
 					<c:choose>
