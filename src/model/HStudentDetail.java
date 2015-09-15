@@ -4,7 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+
 import java.util.ArrayList;
+
+import db.DBEnrollment;
+
+
 import java.util.List;
 
 
@@ -107,6 +112,7 @@ public class HStudentDetail implements Serializable {
 		this.HUser = HUser;
 	}
 	
+
 	public boolean isTimeOk(HClass newClass)
 	{
 		boolean isTimeOk = true;
@@ -136,6 +142,29 @@ public class HStudentDetail implements Serializable {
 		}
 		return isTimeOk;
 	}
+
+	
+	public String getOverallGPA(){
+		double sum=0.0;
+		double gpa=0.0;
+		int counter  = 0;
+		for(HEnrollment e:HEnrollments){
+
+			if (e.getGrade() == null)
+			{
+				continue;
+			}
+			else
+			{
+				sum+=DBEnrollment.getGrade(e.getGrade());
+				counter++;
+			}
+		}
+		gpa=sum/counter;
+		return String.format("%.2f",gpa);
+	}
+	
+
 	
 
 }

@@ -24,7 +24,7 @@
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>All Available Classes</title>
+<title>All Courses Offered</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -36,33 +36,26 @@
 					<thead>
 						<tr>
 							<th>Course Name</th>
-							<th>Time</th>
-							<th>Availability</th>
-							<th>Action</th>
+							<th>Subject</th>
+							<th>Major</th>
+							<th>Status</th>
+							<th>Credits</th>
+							<th>Course Number</th>
+							<th>Description</th>
+							
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="currentClass" items="${currentClasses}">
+						<c:forEach var="allCourses" items="${allCourses}">
 							<tr>
-								<td>${currentClass.HCourse.name}</td>
-								<td>${currentClass.getClassSchedule()}</td>
-								<td>${currentClass.getCurrentAvailability()}</td>
+								<td>${allCourses.name}</td>
+								<td>${allCourses.HSubject.subjectCode}</td>
+								<td>${allCourses.HMajor.name}</td>
+								<td>${allCourses.status}</td>
+								<td>${allCourses.credits}</td>
+								<td>${allCourses.courseNumber}</td>
+								<td>${allCourses.description}</td>							
 								
-								<c:if test="${currentClass.hasEnrolled(user.userId)}">
-									<td><a class="btn btn-danger" href="#">Enrolled</a></td>
-								</c:if>
-								
-								<c:if test="${not currentClass.hasEnrolled(user.userId)}">
-								<c:choose>
-								  <c:when test="${user.HStudentDetail.isTimeOk(currentClass)}">
-								    <td><a class="btn btn-success" href="Enroll?classId=${currentClass.classId}">Enroll</a></td>
-								  </c:when>
-
-								  <c:otherwise>
-								   	<td>Time Overlapped</td>
-								  </c:otherwise>
-								</c:choose>	
-								</c:if>
 							</tr>
 						</c:forEach>
 					</tbody>

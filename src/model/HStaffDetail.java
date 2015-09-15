@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -34,6 +36,12 @@ public class HStaffDetail implements Serializable {
 	@JoinColumn(name="DEPARTMENT_ID")
 	private HDepartment HDepartment;
 
+	
+	//bi-directional one-to-one association to HUser
+	@OneToOne
+	@JoinColumn(name="USER_ID" ,  insertable=false, updatable=false)
+	private HUser HUser;
+	
 	public HStaffDetail() {
 	}
 
@@ -60,7 +68,17 @@ public class HStaffDetail implements Serializable {
 	public void setOfficeNumber(String officeNumber) {
 		this.officeNumber = officeNumber;
 	}
+	
 
+
+	public HUser getHUser() {
+		return this.HUser;
+	}
+
+	public void setHUser(HUser HUser) {
+		this.HUser = HUser;
+	}
+	
 	public List<HClass> getHClasses() {
 		return this.HClasses;
 	}

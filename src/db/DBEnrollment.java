@@ -92,5 +92,25 @@ public class DBEnrollment {
 			em.close();
 		}
 	}
+	
+	
+	public static double getGrade(String grade){
+		double grd=0.0;
+		
+		switch (grade) {
+		
+        case "A": grd=4.0;
+        		break;
+        case "B": grd=3.0;
+				  break;
+        case "C": grd=2.0;
+					break;
+        case "D": grd=1.0;
+					break;
+        case "F": grd=0.0;
+					break;
+		}
+		return grd;		
+	}
 
 }
