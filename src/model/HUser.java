@@ -134,5 +134,71 @@ public class HUser implements Serializable {
 		
 		return isOk;
 	}
+	
+	public boolean isAdmin()
+	{
+		boolean isAdmin = false;
+		List<HUserRole> roles = this.getHUserRoles();
+		
+		for(HUserRole role : roles)
+		{
+			if(role.getHRole().getName().equalsIgnoreCase("admin"))
+			{
+				isAdmin = true;
+				break;
+			}
+		}
+		return isAdmin;
+	}
+	
+	public boolean isStudent()
+	{
+		boolean isStudent = false;
+		List<HUserRole> roles = this.getHUserRoles();
+		
+		for(HUserRole role : roles)
+		{
+			if(role.getHRole().getName().equalsIgnoreCase("student"))
+			{
+				isStudent = true;
+				break;
+			}
+		}
+		return isStudent;
+	}
+	
+	public boolean isAdvisor()
+	{
+		boolean isAdvisor = false;
+		List<HUserRole> roles = this.getHUserRoles();
+		
+		for(HUserRole role : roles)
+		{
+			if(role.getHRole().getName().equalsIgnoreCase("advisor"))
+			{
+				isAdvisor = true;
+				break;
+			}
+		}
+		return isAdvisor;
+	}
+	
+	public boolean isInstructor()
+	{
+		boolean isInstructor = false;
+		List<HUserRole> roles = this.getHUserRoles();
+		
+		for(HUserRole role : roles)
+		{
+			if(role.getHRole().getName().equalsIgnoreCase("instructor"))
+			{
+				isInstructor = true;
+				break;
+			}
+		}
+		return isInstructor;
+	}
+	
+
 
 }

@@ -14,8 +14,8 @@
 					<li><a href="./RegisterUser.jsp">Register</a></li>
 				</c:if>
 				<c:if test="${not empty user}">
-
-
+					<li><a href="Logout">Logout</a>
+					<li><a href="AllClasses">Enroll</a>
 				</c:if>
 
 			</ul>

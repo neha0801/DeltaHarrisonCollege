@@ -61,7 +61,7 @@ public class ServletLogin extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);	
 			System.out.println(user.getFirstName());
-			getServletContext().getRequestDispatcher("/CurrentSchedule.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/CurrentSchedule").forward(request, response);
 		}
 		//if login fail
 		else

@@ -37,16 +37,26 @@
 						<tr>
 							<td>Course Name</td>
 							<td>Time</td>
-							
+							<td>Status</td>
 							<td>Action</td>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="currentSchedule" items="${currentSchedule}">
+						<c:forEach var="enrollment" items="${enrollments}">
 							<tr>
-								<td>${currentSchedule.HClass.HCourse.name}</td>
-								<td>${currentSchedule.HClass.getClassSchedule()}</td>								
-								<td><a class="btn btn-success" href="Drop?enrollmentId=${currentSchedule.enrollmentId}">Drop</a></td>
+								<td>${enrollment.HClass.HCourse.name}</td>
+								<td>${enrollment.HClass.getClassSchedule()}</td>	
+								<td>${enrollment.status}</td>		
+								<c:choose>
+								  <c:when test="${enrollment.status == 'Enrolled'}">
+								    <td><a class="btn btn-success" href="Drop?enrollmentId=${enrollment.enrollmentId}">Drop</a></td>
+								  </c:when>
+
+								  <c:otherwise>
+								   	<td> </td>
+								  </c:otherwise>
+								</c:choose>	
+								
 							</tr>
 						</c:forEach>
 					</tbody>
