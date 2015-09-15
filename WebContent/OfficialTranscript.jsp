@@ -24,49 +24,19 @@
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>All Available Classes</title>
+<title>Student Transcript</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<jsp:include page="./header.jsp"/>
 			<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-			<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-
-				<table class="table table-bordered table-striped">
-					<thead>
-						<tr>
-							<th>Course Name</th>
-							<th>Time</th>
-							<th>Availability</th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="currentClass" items="${currentClasses}">
-							<tr>
-								<td>${currentClass.HCourse.name}</td>
-								<td>${currentClass.getClassSchedule()}</td>
-								<td>${currentClass.getCurrentAvailability()}</td>
-								
-								<c:if test="${currentClass.hasEnrolled(user.userId)}">
-									<td><a class="btn btn-danger" href="#">Enrolled</a></td>
-								</c:if>
-								
-								<c:if test="${not currentClass.hasEnrolled(user.userId)}">
-									<td><a class="btn btn-success" href="Enroll?classId=${currentClass.classId}">Enroll</a></td>
-								</c:if>
-								
-							</tr>
-						</c:forEach>
-					</tbody>
-					
-
-				</table>	
-					
-						
-
-
-			
+			<h4>Please pay $5 to receive your official transcript.</h4>
+			<div align="center">
+			<form > 
+			<label >Credit Card Number: </label> 
+ 			<input  type="text" name="CardNum" required ><br> 
+ 			<input type="submit" value="Pay" id="submit"> 
+ 			</form> 			
 			</div>
 			
 </body>
