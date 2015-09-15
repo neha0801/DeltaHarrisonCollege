@@ -1,7 +1,11 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import db.DBEnrollment;
+
 import java.util.List;
 
 
@@ -103,5 +107,28 @@ public class HStudentDetail implements Serializable {
 	public void setHUser(HUser HUser) {
 		this.HUser = HUser;
 	}
+	
+	
+	public String getOverallGPA(){
+		double sum=0.0;
+		double gpa=0.0;
+		int counter  = 0;
+		for(HEnrollment e:HEnrollments){
+
+			if (e.getGrade() == null)
+			{
+				continue;
+			}
+			else
+			{
+				sum+=DBEnrollment.getGrade(e.getGrade());
+				counter++;
+			}
+		}
+		gpa=sum/counter;
+		return String.format("%.2f",gpa);
+	}
+	
+	
 
 }

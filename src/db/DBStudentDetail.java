@@ -3,6 +3,7 @@ package db;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import model.HClass;
 import model.HStudentDetail;
 import model.HUser;
 import customTools.DBUtil;
@@ -54,6 +55,20 @@ public class DBStudentDetail {
 			trans.rollback();
 		} 
 		finally 
+		{
+			em.close();
+		}
+	}
+	
+	public static HStudentDetail getStudentDetail(long userId)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		try
+		{
+			HStudentDetail student = em.find(HStudentDetail.class, userId);
+			return student;
+		}
+		finally
 		{
 			em.close();
 		}
