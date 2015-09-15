@@ -35,13 +35,13 @@
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<td>Course Name</td>
-							<td>Subject</td>
-							<td>Major</td>
-							<td>Status</td>
-							<td>Credits</td>
-							<td>Course Number</td>
-							<td>Description</td>
+							<th>Course Name</th>
+							<th>Subject</th>
+							<th>Major</th>
+							<th>Status</th>
+							<th>Credits</th>
+							<th>Course Number</th>
+							<th>Description</th>
 							
 						</tr>
 					</thead>

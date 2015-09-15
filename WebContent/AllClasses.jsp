@@ -35,10 +35,10 @@
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<td>Course Name</td>
-							<td>Time</td>
-							<td>Availability</td>
-							<td>Action</td>
+							<th>Course Name</th>
+							<th>Time</th>
+							<th>Availability</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					<tbody>
