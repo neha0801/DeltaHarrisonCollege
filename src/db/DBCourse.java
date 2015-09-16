@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 
 
 
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import model.HClass;
@@ -44,5 +45,23 @@ public class DBCourse {
 			em.close();
 		}
 	}
-
+	public static void update(HCourse course) 
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		trans.begin(); 
+		try 
+		{
+			em.merge(course);
+			trans.commit();
+		} catch (Exception e) 
+		{
+			System.out.println(e);
+			trans.rollback();
+		} 
+		finally 
+		{
+			em.close();
+		}
+	}
 }
