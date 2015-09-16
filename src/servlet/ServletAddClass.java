@@ -47,7 +47,7 @@ public class ServletAddClass extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
-		System.out.println("doget of add class");
+		System.out.println("doget of add class :" + action);
 		if(action.equalsIgnoreCase("load")){
 			List<HMajor> majors= DBMajor.getMajors();
 			
@@ -103,11 +103,11 @@ public class ServletAddClass extends HttpServlet {
 			newClass.setHSemester(DBSemester.getSemester(semesterId));
 			newClass.setHClassroom(DBClassroom.getSelectedClassroom(classroomId));
 			newClass.setHStaffDetail(DBStaffDetail.getUser(instructorId));
-			newClass.setStatus("Active");
-			long newClassId = DBClass.insert(newClass);
-			//List<HClassSchedule> classSchedules = new ArrayList<HClassSchedule>();
-			System.out.println("new Class Id " + newClassId);
-			newClass= DBClass.getClass(newClassId);
+			newClass.setStatus("New");
+			DBClass.insert(newClass);
+			List<HClassSchedule> classSchedules = new ArrayList<HClassSchedule>();
+			
+			newClass= DBClass.getNewClass("New");
 			
 			for(int i =1; i<=6;i++){
 				classScheduleIdStr = request.getParameter("time"+i);
@@ -118,14 +118,17 @@ public class ServletAddClass extends HttpServlet {
 					classTime = Integer.parseInt(classScheduleIdStr);
 					schedule.setHWeekday(DBWeekday.getWeekDay(weekdayId));
 					schedule.setClassTime(classTime);
-					DBClassSchedule.insert(schedule);
-					//classSchedules.add(schedule);
+					schedule.setHClass(newClass);
+					//DBClassSchedule.insert(schedule);
+					classSchedules.add(schedule);
 				}
 			}
-			//newClass.setHClassSchedules(classSchedules);
-			
-			
-
+			newClass.setHClassSchedules(classSchedules);
+			newClass.setStatus("Active");
+			DBClass.update(newClass);
+			String goodMessage = "Congratz!! Class Added";
+			request.setAttribute("goodMessage", goodMessage);
+			doGet(request,response);
 		}
 		
 	}

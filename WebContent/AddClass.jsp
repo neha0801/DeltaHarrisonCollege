@@ -152,24 +152,9 @@
 					<option value="19">7:00PM</option>
 					<option value="20">8:00PM</option>
 				</select>
-				<label for="time6">Saturday :</label> <select name="time6">
-					<option value="-1">NO CLASS</option>
-					<option value="8">8:00AM</option>
-					<option value="9">9:00AM</option>
-					<option value="10">10:00AM</option>
-					<option value="11">11:00AM</option>
-					<option value="12">12:00PM</option>
-					<option value="13">1:00PM</option>
-					<option value="14">2:00PM</option>
-					<option value="15">3:00PM</option>
-					<option value="16">4:00PM</option>
-					<option value="17">5:00PM</option>
-					<option value="18">6:00PM</option>
-					<option value="19">7:00PM</option>
-					<option value="20">8:00PM</option>
-				</select>
-				<br>
+
 				<div class="form-group">
+					<input type="hidden" value="load" name="action"></input>
 					<input type="submit" class="btn pull-right btn-danger" value="Add Class"></input>
 				</div>
 			</div>

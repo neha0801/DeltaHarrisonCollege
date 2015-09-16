@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import model.HClass;
 import model.HSemester;
@@ -190,23 +191,59 @@ public class DBClass
 		}
 		return classes;
 	}
-	public static long insert(HClass newClass) {
+	public static void insert(HClass newClass) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
 		trans.begin();
 		try {
 			em.persist(newClass);
-			
 			trans.commit();
-			em.refresh(newClass);
-			System.out.println("insert method class id " +newClass.getClassId());
+			
 		} catch (Exception e) {
 			System.out.println(e);
 			trans.rollback();
 		} finally {
 			em.close();
 		}
-		return newClass.getClassId();
+		
 	}
 
+	
+	public static HClass getNewClass(String status)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT c FROM HClass c where c.status= :status";
+		HClass classOBJ = null;
+		try
+		{
+			TypedQuery<HClass> query = em.createQuery(queryStr,HClass.class)
+					.setParameter("status", "New");
+			classOBJ =  query.getSingleResult();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return classOBJ;
+		
+	}
+	
+	public static void update(HClass classObj) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		trans.begin();
+		try {
+			em.merge(classObj);
+			trans.commit();
+		} catch (Exception e) {
+			System.out.println(e);
+			trans.rollback();
+		} finally {
+			em.close();
+		}
+	}
+	
 }
