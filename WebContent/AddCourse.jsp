@@ -36,7 +36,15 @@
 
 
 <form role="form" action="/ServletAddCourse" method="GET">
-
+<div class="form-group">
+      <label for="sel1">Select Department </label>
+      <select class="form-control" name = "courseDepartment">
+<c:forEach var="department" items="${departments}">
+			
+        <option>${department.name }</option>
+        </c:forEach>
+      </select>
+      </div>
 			<div class="form-group">
 				<label for="courseNumber">Course Number: </label> <input type="text"
 					class="form-control" name="courseNumber"

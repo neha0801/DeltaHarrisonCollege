@@ -32,7 +32,7 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
 		<div class="panel-heading">
-			Admin Department Options <span class="glyphicon glyphicon-user"> <a class="btn btn-success" href="ServletAddCourse.java">Create New Classroom</a>
+			Admin Department Options <span class="glyphicon glyphicon-user"> <a class="btn btn-success" href="ServletAddCourse.java">Create New Department</a>
 		</div>
 		<form role="form" action="/ServletAdminCourse" method="POST">
 		<table class="table table-bordered table-striped">

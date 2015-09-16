@@ -13,7 +13,7 @@ import javax.persistence.Query;
 import model.HClass;
 import model.HCourse;
 import model.HSemester;
-import model.HUser;
+
 import customTools.DBUtil;
 
 public class DBCourse {
@@ -64,4 +64,20 @@ public class DBCourse {
 			em.close();
 		}
 	}
+	
+	 public static void insertCourse(HCourse course) 
+	    {
+	    	EntityManager em = DBUtil.getEmFactory().createEntityManager();
+	    	EntityTransaction profile = em.getTransaction();
+	    	profile.begin();
+	    	try {
+	    	em.persist(course);
+	    	profile.commit();
+	    	} catch (Exception e) {
+	    	System.out.println(e);
+	    	profile.rollback();
+	    	} finally {
+	    
+	    	}
+	    }
 }

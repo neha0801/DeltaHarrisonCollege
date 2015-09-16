@@ -63,7 +63,7 @@
 
 				</div>
 			</form>
-			<form role="form" action="AdminDepartment" method="POST">
+			<form role="form" action="AdminDepartment" method="GET">
 
 				<div class="form-group">
 					<button type="submit" value="submit" class="btn btn-default">Create, update, list or disable a department</button>
@@ -71,7 +71,7 @@
 
 				</div>
 			</form>
-			<form role="form" action="AdminOptions.jsp" method="POST">
+			<form role="form" action="AdminMajor" method="GET">
 
 				<div class="form-group">
 					<button type="submit" value="submit" class="btn btn-default">Create, update, list or disable a major</button>
