@@ -32,24 +32,21 @@
 				</c:if>
 				<c:if test="${not empty user}">
 					<c:if test="${user.isAdmin()}">
-					
+						<li><a href="SearchForUser">Edit User Role</a>
+						<li><a href="AddClass?action=add">Add Class</a></li>	
 					</c:if>
 					<c:if test="${user.isStudent()}">
-					
+						<li><a href="AllClasses">Enroll</a>
 					</c:if>
 					<c:if test="${user.isAdvisor()}">
 					
 					</c:if>
 					<c:if test="${user.isInstructor()}">
-					
+						<li><a href="InstructorClasses">Instructor Classes</a></li>
+						<li><a href="InstructorRoster?action=getAll">Generate your Roster</a></li>		
+						
 					</c:if>
-					
-					
 					<li><a href="Logout">Logout</a>
-					<li><a href="AllClasses">Enroll</a>
-					<li><a href="InstructorClasses">Instructor Classes</a></li>
-					<li><a href="InstructorRoster?action=getAll">Generate your Roster</a></li>		
-					<li><a href="AddClass?action=add">Add Class</a></li>				
 				</c:if>
 
 			</ul>

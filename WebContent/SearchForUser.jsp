@@ -75,10 +75,13 @@
 								<td>${currentUser.lastName}</td>
 								<td>
 									<c:forEach var="userRole" items="${currentUser.HUserRoles}">
-									${userRole.HRole.name} - 
+											
+											<c:if test="${userRole.status == 'Active'}">
+												${userRole.HRole.name} -
+											</c:if> 
 									</c:forEach>
 								</td>
-								<td><a class="btn btn-success" href="AdminEditRole?userId=${currentUser.userId}">Edit</a></td>
+								<td><a class="btn btn-success" href="AdminEditRole?tempUserId=${currentUser.userId}">Edit</a></td>
 								
 								
 							</tr>
