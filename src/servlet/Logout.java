@@ -9,23 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import db.DBClass;
-import db.DBEnrollment;
-import model.HClass;
-import model.HEnrollment;
-import model.HUser;
-
 /**
- * Servlet implementation class Enroll
+ * Servlet implementation class Logout
  */
-@WebServlet("/Enroll")
-public class Enroll extends HttpServlet {
+@WebServlet("/Logout")
+public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Enroll() {
+    public Logout() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,30 +29,17 @@ public class Enroll extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doPost(request,response);
+		HttpSession session = request.getSession();
+		session.invalidate();
+		request.setAttribute("goodMessage", "Logout Successfully!");
+		getServletContext().getRequestDispatcher("/LoginForm.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub		
-		HttpSession session = request.getSession(true);		
-		HUser user = (HUser) session.getAttribute("user");
-	
-		int newClassId=Integer.parseInt(request.getParameter("classId"));
-		
-		HEnrollment enrollment= new HEnrollment();
-		
-		enrollment.setStatus("Enrolled");
-		
-		enrollment.setHStudentDetail(user.getHStudentDetail());
-		
-		enrollment.setHClass(DBClass.getClass(newClassId));
-		
-		
-		DBEnrollment.insert(enrollment);
-		getServletContext().getRequestDispatcher("/CurrentSchedule").forward(request, response);
+		// TODO Auto-generated method stub
 	}
 
 }

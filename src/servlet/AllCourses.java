@@ -1,31 +1,32 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import db.DBClass;
-import db.DBEnrollment;
 import model.HClass;
-import model.HEnrollment;
-import model.HUser;
+import model.HCourse;
+import model.HSemester;
+import db.DBClass;
+import db.DBCourse;
+import db.DBSemester;
 
 /**
- * Servlet implementation class Enroll
+ * Servlet implementation class AllCourses
  */
-@WebServlet("/Enroll")
-public class Enroll extends HttpServlet {
+@WebServlet("/AllCourses")
+public class AllCourses extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Enroll() {
+    public AllCourses() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,30 +36,26 @@ public class Enroll extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doPost(request,response);
+		try
+		{
+		
+			List<HCourse>allCourses =DBCourse.getAllCourses();
+
+			request.setAttribute("allCourses", allCourses);		
+			getServletContext().getRequestDispatcher("/AllCourses.jsp").forward(request, response);
+		}
+		
+		catch(Exception e)
+		{				
+			e.printStackTrace();
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub		
-		HttpSession session = request.getSession(true);		
-		HUser user = (HUser) session.getAttribute("user");
-	
-		int newClassId=Integer.parseInt(request.getParameter("classId"));
-		
-		HEnrollment enrollment= new HEnrollment();
-		
-		enrollment.setStatus("Enrolled");
-		
-		enrollment.setHStudentDetail(user.getHStudentDetail());
-		
-		enrollment.setHClass(DBClass.getClass(newClassId));
-		
-		
-		DBEnrollment.insert(enrollment);
-		getServletContext().getRequestDispatcher("/CurrentSchedule").forward(request, response);
+		// TODO Auto-generated method stub
 	}
 
 }

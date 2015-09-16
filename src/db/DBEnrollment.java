@@ -37,12 +37,13 @@ public class DBEnrollment {
 	public static List<HEnrollment> getEnrollmentByStudent(HUser user)
 	{
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		String queryStr = "SELECT e FROM HEnrollment e where e.status= :status and e.HStudentDetail= :studentDetail";
+		String queryStr = "SELECT e FROM HEnrollment e where (e.status= :EnrolledStatus or e.status= :DropStatus) and e.HStudentDetail= :studentDetail";
 		List<HEnrollment> enrollments = null;
 		try
 		{
 			Query query = em.createQuery(queryStr)
-					.setParameter("status", "Enrolled")
+					.setParameter("EnrolledStatus", "Enrolled")
+					.setParameter("DropStatus","Dropped")
 					.setParameter("studentDetail", user.getHStudentDetail());
 			enrollments =  query.getResultList();
 			System.out.println("size = " + enrollments.size());
@@ -90,6 +91,26 @@ public class DBEnrollment {
 		{
 			em.close();
 		}
+	}
+	
+	
+	public static double getGrade(String grade){
+		double grd=0.0;
+		
+		switch (grade) {
+		
+        case "A": grd=4.0;
+        		break;
+        case "B": grd=3.0;
+				  break;
+        case "C": grd=2.0;
+					break;
+        case "D": grd=1.0;
+					break;
+        case "F": grd=0.0;
+					break;
+		}
+		return grd;		
 	}
 
 	

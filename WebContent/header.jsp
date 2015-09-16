@@ -14,9 +14,14 @@
 					<li><a href="./RegisterUser.jsp">Register</a></li>
 				</c:if>
 				<c:if test="${not empty user}">
+
 					<li><a href="InstructorClasses">Instructor Classes</a></li>
 					<li><a href="InstructorRoster?action=getAll">Generate your Roster</a></li>		
 					<li><a href="AddClass?action=add">Add Class</a></li>				
+
+					<li><a href="Logout">Logout</a>
+					<li><a href="AllClasses">Enroll</a>
+
 				</c:if>
 
 			</ul>
