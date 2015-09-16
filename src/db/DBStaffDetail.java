@@ -1,7 +1,11 @@
 package db;
 
-import javax.persistence.EntityManager;
+import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import model.HClass;
 import model.HStaffDetail;
 import customTools.DBUtil;
 
@@ -15,4 +19,6 @@ public class DBStaffDetail {
 			em.close();
 		}
 	}
+	
+	
 }

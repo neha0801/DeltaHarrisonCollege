@@ -24,7 +24,7 @@
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>Admin Edit Role</title>
+<title>Class Search by Student</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -32,7 +32,7 @@
 	<jsp:include page="./header.jsp" />
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-		<div class="panel-heading">Admin Edit User Role </div>
+		<div class="panel-heading">Search class for Student </div>
 		<div class="panel-body">
 
 
@@ -44,39 +44,59 @@
 
 			
 
-			<form action="AdminEditRole" method="POST">
-
-			
-				<input type="checkbox" name="type" value="Admin" 
-							<c:if test="${user.isAdmin()}">
-								checked
-							</c:if>
-				> Admin<br>
-				
-				<input type="checkbox" name="type" value="Admin" 
-							<c:if test="${user.isStudent()}">
-								checked
-							</c:if>
-				> Student<br>
-				
-				<input type="checkbox" name="type" value="Admin" 
-							<c:if test="${user.isInstructor()}">
-								checked
-							</c:if>
-				> Instructor<br>
-				
-				<input type="checkbox" name="type" value="Admin" 
-							<c:if test="${user.isAdvisor()}">
-								checked
-							</c:if>
-				> Advisor<br>
-
+			<form role="form" action="ClassesByStudent" method="GET">
+				<label for="userName">Student Name:</label> 
+					<input type = "text" name="userName" />
+					<input type="submit" value="Search" class="btn btn-primary"/>
+					
+					<br>
 			</form>
-			
 		</div>
 	</div>
 	
-	
+	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
+
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Course Number</th>
+							<th>Course Name</th>						
+							<th>Semester</th>
+							<th>Subject</th>												
+							<th>Department</th>
+							<th>Status</th>
+							<th>Class Day/Time</th>
+							
+							
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="enrollment" items="${student.HStudentDetail.HEnrollments}">
+							<tr>
+								<td>${enrollment.HClass.HCourse.courseNumber}</td>
+								<td>${enrollment.HClass.HCourse.name}</td>							
+								<td>${enrollment.HClass.HSemester.season} ${currentclass.HSemester.year}</td>
+								<td>${enrollment.HClass.HCourse.HSubject.subjectCode}</td>							
+								<td>${enrollment.HClass.HCourse.HMajor.HDepartment.name}</td>
+								<td>${enrollment.status}</td>
+								<td>
+									<c:forEach var="currentSchedule" items="${enrollment.HClass.HClassSchedules}">
+									${currentSchedule.HWeekday.name} - ${currentSchedule.classTime}
+									</c:forEach>
+								</td>							
+								
+							</tr>
+						</c:forEach>
+					</tbody>
+					
+
+				</table>	
+					
+						
+
+
+			
+			</div>
 	
 	
 	

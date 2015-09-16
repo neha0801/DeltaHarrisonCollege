@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import model.HCourse;
 import customTools.DBUtil;
 
-public class DBCourse {
-	
+public class DBCourse {	
 	
 	public static List<HCourse> getAllCourses()
 	{
