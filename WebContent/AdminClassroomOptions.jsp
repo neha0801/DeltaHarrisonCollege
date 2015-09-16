@@ -50,7 +50,7 @@
 						<td>${classroom.buildingName}</td>
 						<td>${classroom.roomNumber}</td>
 						<td>${classroom.maxCapacity }</td>
-						<td><a class="btn btn-success" href = "EditClassroom?classId=${classroom.classroomId}">Update Classroom</td>
+						<td><a class="btn btn-success" href = "EditClassroom?classroomId=${classroom.classroomId}">Update Classroom</td>
 
 					</tr>
 				</c:forEach>

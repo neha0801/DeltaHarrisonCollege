@@ -1,6 +1,5 @@
 package servlet;
 
-
 import java.io.IOException;
 import java.util.List;
 
@@ -11,21 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.HClassroom;
-import model.HCourse;
+import model.HMajor;
 import db.DBClassroom;
-import db.DBCourse;
+import db.DBMajor;
 
 /**
- * Servlet implementation class ServletAdminClassroom
+ * Servlet implementation class ServletAdminMajor
  */
-@WebServlet("/AdminClassroom")
-public class ServletAdminClassroom extends HttpServlet {
+@WebServlet("/AdminMajor")
+public class ServletAdminMajor extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletAdminClassroom() {
+    public ServletAdminMajor() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,9 +33,9 @@ public class ServletAdminClassroom extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<HClassroom> classrooms = DBClassroom.getAllClassrooms();
-		request.setAttribute("classrooms", classrooms);
-		getServletContext().getRequestDispatcher("/AdminClassroomOptions.jsp").forward(request, response);
+		List<HMajor> majors = DBMajor.getAllMajors();
+		request.setAttribute("majors", majors);
+		getServletContext().getRequestDispatcher("/AdminMajorOptions.jsp").forward(request, response);
 	}
 
 	/**

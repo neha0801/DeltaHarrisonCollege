@@ -6,55 +6,47 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import model.HClassroom;
-import model.HMajor;
+import model.HCourse;
+import model.HDepartment;
 import customTools.DBUtil;
 
-public class DBMajor {
-	public static List<HMajor> getAllMajors() {
+public class DBDepartment {
+	public static List<HDepartment> getAllDepartments() {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		String queryStr = "SELECT h FROM HMajor h";
-		List<HMajor> major = null;
+		String queryStr = "SELECT h FROM HDepartment h";
+		List<HDepartment> departments = null;
 		try {
 			Query query = em.createQuery(queryStr);
-			major = query.getResultList();
+			departments = query.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			em.close();
 		}
-		return major;
+		return departments;
 	}
-	
-	public static HMajor getMajor(long major)
-	{
+
+	public static HDepartment getDepartment(long departmentId) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		try
-		{
-			HMajor majors= em.find(HMajor.class, major);
-			return majors;
-		}
-		finally
-		{
+		try {
+			HDepartment department = em.find(HDepartment.class, departmentId);
+			return department;
+		} finally {
 			em.close();
 		}
 	}
-	public static void update(HMajor major) 
-	{
+
+	public static void update(HDepartment department) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
-		trans.begin(); 
-		try 
-		{
-			em.merge(major);
+		trans.begin();
+		try {
+			em.merge(department);
 			trans.commit();
-		} catch (Exception e) 
-		{
+		} catch (Exception e) {
 			System.out.println(e);
 			trans.rollback();
-		} 
-		finally 
-		{
+		} finally {
 			em.close();
 		}
 	}
