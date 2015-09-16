@@ -104,6 +104,4 @@ public class DBCourse {
 		return courses;
 	}
 
-	
-	
 }

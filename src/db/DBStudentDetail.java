@@ -67,6 +67,22 @@ public class DBStudentDetail {
 	}
 	
 
+
+	public static HStudentDetail getStudentDetail(long userId)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		try
+		{
+			HStudentDetail student = em.find(HStudentDetail.class, userId);
+			return student;
+		}
+		finally
+		{
+			em.close();
+		}
+	}
+
+
 //	public static List<HStudentDetail> getStudent(HClass classes) {
 //		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 //		String sql = "SELECT s FROM HStudentDetail s WHERE c.userName) = :userName";
@@ -84,17 +100,6 @@ public class DBStudentDetail {
 //		return user;
 //	}
 
-	public static HStudentDetail getStudentDetail(long userId)
-	{
-		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		try
-		{
-			HStudentDetail student = em.find(HStudentDetail.class, userId);
-			return student;
-		}
-		finally
-		{
-			em.close();
-		}
-	}
+
+
 }
