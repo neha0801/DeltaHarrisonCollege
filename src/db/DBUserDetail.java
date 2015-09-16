@@ -2,6 +2,7 @@ package db;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import customTools.DBUtil;
 import model.HUser;
@@ -81,13 +82,12 @@ public class DBUserDetail {
 
 	public static HUser getSingleUser(String userName) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		String query = "SELECT * FROM HUser d WHERE UPPER(d.userName) = :userName";
-		System.out.println("Get Single : " + query);
+		String sql = "SELECT d FROM HUser d WHERE UPPER(d.userName) = :userName";
+		System.out.println("Get Single : " + sql);
+		TypedQuery<HUser> query = em.createQuery(sql, HUser.class).setParameter("userName", userName.toUpperCase());
 		HUser user = null;
 		try {
-			user = (HUser) em.createQuery(query)
-					.setParameter("userName", userName.toUpperCase())
-					.getSingleResult();
+			user = query.getSingleResult();
 
 		} catch (Exception e) {
 			e.printStackTrace();

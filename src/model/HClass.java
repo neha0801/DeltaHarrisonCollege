@@ -181,4 +181,12 @@ public class HClass implements Serializable {
 		}
 		return hasEnrolled;
 	}
+	public String getClassroom()
+	{
+		String classroomStr = "";
+		System.out.println("building " + this.getHClassroom().getBuildingName());
+		classroomStr = this.getHClassroom().getBuildingName() + " Room# " + this.getHClassroom().getRoomNumber();
+		
+		return classroomStr;
+	}
 }
