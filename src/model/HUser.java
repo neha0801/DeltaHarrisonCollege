@@ -136,6 +136,14 @@ public class HUser implements Serializable {
 	}
 	
 
+
+	public String getFullName(){
+		String nameStr = "";
+		nameStr=this.firstName + " " + this.lastName;
+		return nameStr;
+	}
+
+
 	public boolean isAdmin()
 	{
 		boolean isAdmin = false;
@@ -199,14 +207,7 @@ public class HUser implements Serializable {
 		}
 		return isInstructor;
 	}
-	
 
-
-	public String getFullName(){
-		String nameStr = "";
-		nameStr=this.firstName + " " + this.lastName;
-		return nameStr;
-	}
 
 
 }

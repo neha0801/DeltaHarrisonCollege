@@ -67,6 +67,7 @@ public class DBStudentDetail {
 	}
 	
 
+
 	public static HStudentDetail getStudentDetail(long userId)
 	{
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -80,6 +81,7 @@ public class DBStudentDetail {
 			em.close();
 		}
 	}
+
 
 //	public static List<HStudentDetail> getStudent(HClass classes) {
 //		EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -97,5 +99,7 @@ public class DBStudentDetail {
 //		}
 //		return user;
 //	}
+
+
 
 }
