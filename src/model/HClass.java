@@ -158,7 +158,7 @@ public class HClass implements Serializable {
 		
 		for (HClassSchedule schedule : schedules)
 		{
-			scheduleStr += schedule.getHWeekday().getName() + " at " + schedule.getClassTime() + ":00";
+			scheduleStr += schedule.getHWeekday().getName() + " at " + schedule.getClassTime() + ":00" + "\n";
 		}
 		return scheduleStr;
 	}

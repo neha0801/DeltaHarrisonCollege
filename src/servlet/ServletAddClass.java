@@ -70,9 +70,7 @@ public class ServletAddClass extends HttpServlet {
 			request.setAttribute("classrooms", classrooms);
 			request.setAttribute("semesters", semesters);
 			getServletContext().getRequestDispatcher("/AddClass.jsp").forward(request, response);
-		} else if(action.equalsIgnoreCase("add")){
-			
-		}
+		} 
 	}
 
 	/**

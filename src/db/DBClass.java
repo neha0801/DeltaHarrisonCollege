@@ -127,6 +127,29 @@ public class DBClass
 		return classes;
 	}
 	
+	public static List<HClass> getAdminClasses()
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT c FROM HClass c where c.status= :status ";
+		List<HClass> classes = null;
+		try
+		{
+			Query query = em.createQuery(queryStr)
+					.setParameter("status", "Active");
+			classes =  query.getResultList();
+			System.out.println("size = " + classes.size());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return classes;
+	}
+	
 	public static HClass getClass(long classId)
 	{
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
