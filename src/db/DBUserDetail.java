@@ -8,6 +8,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import customTools.DBUtil;
+import model.HClass;
 import model.HStaffDetail;
 import model.HSubject;
 import model.HUser;
@@ -108,7 +109,22 @@ public class DBUserDetail {
 		}
 		return user;
 	}
+	public static HUser getUserByClass(HClass classObj) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String sql = "SELECT d FROM HUser d WHERE d.HClass = :classObj";
+		System.out.println("Get Single : " + sql);
+		TypedQuery<HUser> query = em.createQuery(sql, HUser.class).setParameter("classObj", classObj);
+		HUser user = null;
+		try {
+			user = query.getSingleResult();
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
+		return user;
+	}
 	public static void update(HUser user) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
