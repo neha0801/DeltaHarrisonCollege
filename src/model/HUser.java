@@ -135,6 +135,7 @@ public class HUser implements Serializable {
 		return isOk;
 	}
 	
+
 	public boolean isAdmin()
 	{
 		boolean isAdmin = false;
@@ -199,6 +200,13 @@ public class HUser implements Serializable {
 		return isInstructor;
 	}
 	
+
+
+	public String getFullName(){
+		String nameStr = "";
+		nameStr=this.firstName + " " + this.lastName;
+		return nameStr;
+	}
 
 
 }

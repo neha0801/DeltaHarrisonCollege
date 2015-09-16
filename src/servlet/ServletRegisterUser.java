@@ -72,11 +72,13 @@ public class ServletRegisterUser extends HttpServlet {
 		user.setEmail(email);
 		user.setUserName(userName);
 		user.setPassword(password);
+		
 
 		if (DBUserDetail.isAvailable(user)) {
 			DBUserDetail.insert(user);
 			request.setAttribute("goodMessage", "Congratz! Account created");
 			user = DBUserDetail.getSingleUser(userName);
+			System.out.println("user email " + user.getEmail());
 			createStudent(user, majorId);
 
 			getServletContext().getRequestDispatcher("/LoginForm.jsp").forward(
@@ -101,11 +103,13 @@ public class ServletRegisterUser extends HttpServlet {
 		while (!DBStudentDetail.isAvailable(studentNumber)) {
 			studentNumber = String.valueOf(100000 + r.nextInt(899999));
 		}
-
-		student.setHUser(user);
+		System.out.println("user ID " + user.getUserId());
+		student.setUserId(user.getUserId());
+		
 		student.setHMajor(major);
 		student.setStudentNumber(studentNumber);
 		student.setEntryYear("2015");
+		
 		DBStudentDetail.insert(student);
 	}
 
