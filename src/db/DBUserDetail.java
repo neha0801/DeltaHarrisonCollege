@@ -1,7 +1,10 @@
 package db;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import customTools.DBUtil;
@@ -97,6 +100,18 @@ public class DBUserDetail {
 		return user;
 	}
 
+	
+	public static List<HUser> getUsersForAdmin(String name){
+		List<HUser>users=null;
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT u FROM HUser u WHERE u.firstName LIKE :name1 OR  u.lastName LIKE :name2 OR  u.userName LIKE :name3";
+		Query query = em.createQuery(queryStr)
+				.setParameter("name2", "%" + name + "%")
+				.setParameter("name3", "%" + name + "%")
+				.setParameter("name1", "%" + name + "%");
+		users =  query.getResultList();
+		return users;
+	}
 	public static void update(HUser user) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();

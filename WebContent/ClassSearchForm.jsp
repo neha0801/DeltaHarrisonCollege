@@ -121,7 +121,7 @@
 								<td>${currentClass.HCourse.HSubject.subjectCode}</td>								
 								<td>${currentClass.HStaffDetail.HUser.firstName} ${currentClass.HStaffDetail.HUser.lastName}</td>
 								<td>${currentClass.HCourse.HMajor.HDepartment.name}</td>
-								<td>time</td>
+								<td>${currentClass.getClassSchedule()}</td>
 								
 								
 							</tr>
