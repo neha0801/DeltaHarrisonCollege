@@ -1,10 +1,15 @@
 package db;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import customTools.DBUtil;
+import model.HStaffDetail;
+import model.HSubject;
 import model.HUser;
 
 public class DBUserDetail {
@@ -111,4 +116,29 @@ public class DBUserDetail {
 			em.close();
 		}
 	}
+	
+	
+	public static List<HUser> getAllUser()
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT s FROM HUser s";
+		List<HUser> users = null;
+		try
+		{
+			Query query = em.createQuery(queryStr);
+					
+			users =  query.getResultList();
+			System.out.println("size = " + users.size());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return users;
+	}
+	
 }

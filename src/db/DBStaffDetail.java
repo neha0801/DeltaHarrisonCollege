@@ -1,8 +1,12 @@
 package db;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import model.HStaffDetail;
+import model.HSubject;
 import customTools.DBUtil;
 
 public class DBStaffDetail {
@@ -15,4 +19,5 @@ public class DBStaffDetail {
 			em.close();
 		}
 	}
+
 }

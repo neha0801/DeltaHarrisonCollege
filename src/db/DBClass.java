@@ -3,6 +3,7 @@ package db;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import model.HClass;
@@ -189,4 +190,23 @@ public class DBClass
 		}
 		return classes;
 	}
+	public static long insert(HClass newClass) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		trans.begin();
+		try {
+			em.persist(newClass);
+			
+			trans.commit();
+			em.refresh(newClass);
+			System.out.println("insert method class id " +newClass.getClassId());
+		} catch (Exception e) {
+			System.out.println(e);
+			trans.rollback();
+		} finally {
+			em.close();
+		}
+		return newClass.getClassId();
+	}
+
 }
