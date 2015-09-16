@@ -24,11 +24,14 @@ public class DBClass
 		{
 			whereClause += " WHERE 0=0 ";
 		}
+		
 		else
 		{
 			whereClause += " WHERE c.HCourse.HSubject.subjectId = :subjectId ";
 			hasSubject = true;
 		}
+		
+		
 		if (instructor == null || instructor.isEmpty())
 		{
 			whereClause += " AND 0=0 ";
@@ -38,6 +41,7 @@ public class DBClass
 			whereClause += " AND (c.HStaffDetail.HUser.firstName LIKE :instructor1 OR  c.HStaffDetail.HUser.lastName LIKE :instructor2) ";
 			hasInstructor = true;
 		}
+		
 		
 		if (time.equalsIgnoreCase("all"))
 		{
@@ -57,6 +61,7 @@ public class DBClass
 			whereClause += " AND c.HCourse.HMajor.HDepartment.departmentId = :departmentId ";
 			hasDepartment = true;
 		}
+		
 		System.out.println("whereClause = " + whereClause);
 		String queryStr  = "SELECT c FROM HClass c " + whereClause;
 		System.out.println("queryStr = " + queryStr);
