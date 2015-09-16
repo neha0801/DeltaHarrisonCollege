@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,63 +24,44 @@
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>Admin</title>
+<title>Edit Classroom</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<jsp:include page="./header.jsp" />
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-		<div class="panel-heading">
-			Admin <span class="glyphicon glyphicon-user">
-		</div>
+		<div class="panel-heading">Edit Classroom</div>
 		<div class="panel-body">
 
-			<c:if test="${not empty errorMessage}">
-				<div class="alert alert-danger">
-					<c:out value="${errorMessage}" />
-				</div>
-			</c:if>
 
-			<c:if test="${not empty goodMessage}">
-				<div class="alert alert-success">
-					<c:out value="${goodMessage}" />
-				</div>
-			</c:if>
-			<form role="form" action="AdminCourse" method="GET">
+<form role="form" action="EditClassroom" method="POST">
 
+			<div class="form-group">
+				<label for="classroomName">Building Name: </label> <input type="text"
+					class="form-control" name="classroomName"
+					value="${classroom.buildingName}" required />
+			</div>
+			<div class="form-group">
+					<label for="classroomNumber">Room Number: </label> <input type="text"
+						class="form-control" name="classroomNumber" value = "${classroom.roomNumber}"
+						required />
+				</div>
 				<div class="form-group">
-					<button type="submit" value="submit" class="btn btn-default">Create, update, list or disable a course</button>
-
+					<label for="classroomMaxCapacity">Max Capacity: </label> <input type="text"
+						class="form-control" name="classroomMaxCapacity" value = ${classroom.maxCapacity }
+						required />
+				</div>
+					<div class="form-group">
+					<button type="submit" value="submit" class="btn btn-default">Update</button>
+${errorMessage}
 
 				</div>
-			</form>
-<form role="form" action="AdminClassroom" method="GET">
+</form>
 
-				<div class="form-group">
-					<button type="submit" value="submit" class="btn btn-default">Create, update, list or disable a classroom</button>
-
-
-				</div>
-			</form>
-			<form role="form" action="AdminOptions.jsp" method="POST">
-
-				<div class="form-group">
-					<button type="submit" value="submit" class="btn btn-default">Create, update, list or disable a department</button>
-
-
-				</div>
-			</form>
-			<form role="form" action="AdminOptions.jsp" method="POST">
-
-				<div class="form-group">
-					<button type="submit" value="submit" class="btn btn-default">Create, update, list or disable a major</button>
-
-
-				</div>
-			</form>
 		</div>
 	</div>
 
 </body>
+</html>
 </html>

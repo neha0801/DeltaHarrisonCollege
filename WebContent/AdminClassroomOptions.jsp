@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,7 +24,7 @@
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>Admin</title>
+<title>Admin Classroom Options</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -32,54 +32,37 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
 		<div class="panel-heading">
-			Admin <span class="glyphicon glyphicon-user">
+			Admin Classroom Options <span class="glyphicon glyphicon-user"> <a class="btn btn-success" href="ServletAddCourse.java">Create New Classroom</a>
 		</div>
-		<div class="panel-body">
+		<form role="form" action="/ServletAdminCourse" method="POST">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<td>Building Name</td>
+					<td>Room Number</td>
+					<td>Max Capacity</td>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<c:forEach var="classroom" items="${classrooms}">
+					<tr>
+						<td>${classroom.buildingName}</td>
+						<td>${classroom.roomNumber}</td>
+						<td>${classroom.maxCapacity }</td>
+						<td><a class="btn btn-success" href = "EditClassroom?classId=${classroom.classroomId}">Update Classroom</td>
 
-			<c:if test="${not empty errorMessage}">
-				<div class="alert alert-danger">
-					<c:out value="${errorMessage}" />
-				</div>
-			</c:if>
-
-			<c:if test="${not empty goodMessage}">
-				<div class="alert alert-success">
-					<c:out value="${goodMessage}" />
-				</div>
-			</c:if>
-			<form role="form" action="AdminCourse" method="GET">
-
-				<div class="form-group">
-					<button type="submit" value="submit" class="btn btn-default">Create, update, list or disable a course</button>
-
-
-				</div>
-			</form>
-<form role="form" action="AdminClassroom" method="GET">
-
-				<div class="form-group">
-					<button type="submit" value="submit" class="btn btn-default">Create, update, list or disable a classroom</button>
+					</tr>
+				</c:forEach>
+			</tbody>
 
 
-				</div>
-			</form>
-			<form role="form" action="AdminOptions.jsp" method="POST">
-
-				<div class="form-group">
-					<button type="submit" value="submit" class="btn btn-default">Create, update, list or disable a department</button>
+		</table>
+</form>
 
 
-				</div>
-			</form>
-			<form role="form" action="AdminOptions.jsp" method="POST">
-
-				<div class="form-group">
-					<button type="submit" value="submit" class="btn btn-default">Create, update, list or disable a major</button>
 
 
-				</div>
-			</form>
-		</div>
 	</div>
 
 </body>
