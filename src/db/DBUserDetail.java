@@ -43,7 +43,14 @@ public class DBUserDetail {
 		try {
 			HUser user = em.find(HUser.class, userId);
 			return user;
-		} finally {
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;	
+			}
+			finally {
+		
 			em.close();
 		}
 	}

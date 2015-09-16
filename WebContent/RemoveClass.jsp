@@ -24,7 +24,7 @@
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>Your Classes for current semester</title>
+<title>Remove Classes</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
