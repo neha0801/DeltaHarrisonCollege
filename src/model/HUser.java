@@ -167,7 +167,7 @@ public class HUser implements Serializable {
 		
 		for(HUserRole role : roles)
 		{
-			if(role.getHRole().getName().equalsIgnoreCase("admin"))
+			if(role.getHRole().getName().equalsIgnoreCase("admin") && role.getStatus().equalsIgnoreCase("active"))
 			{
 				isAdmin = true;
 				break;
@@ -183,7 +183,7 @@ public class HUser implements Serializable {
 		
 		for(HUserRole role : roles)
 		{
-			if(role.getHRole().getName().equalsIgnoreCase("student"))
+			if(role.getHRole().getName().equalsIgnoreCase("student") && role.getStatus().equalsIgnoreCase("active"))
 			{
 				isStudent = true;
 				break;
@@ -199,7 +199,7 @@ public class HUser implements Serializable {
 		
 		for(HUserRole role : roles)
 		{
-			if(role.getHRole().getName().equalsIgnoreCase("advisor"))
+			if(role.getHRole().getName().equalsIgnoreCase("advisor") && role.getStatus().equalsIgnoreCase("active"))
 			{
 				isAdvisor = true;
 				break;
@@ -215,7 +215,7 @@ public class HUser implements Serializable {
 		
 		for(HUserRole role : roles)
 		{
-			if(role.getHRole().getName().equalsIgnoreCase("instructor"))
+			if(role.getHRole().getName().equalsIgnoreCase("instructor") && role.getStatus().equalsIgnoreCase("active"))
 			{
 				isInstructor = true;
 				break;

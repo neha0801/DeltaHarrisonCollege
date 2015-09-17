@@ -18,6 +18,9 @@ public class HUserRole implements Serializable {
 	@Column(name="USER_ROLE_ID")
 	private long userRoleId;
 
+	@Column(name="STATUS")
+	private String status;
+	
 	//bi-directional many-to-one association to HRole
 	@ManyToOne
 	@JoinColumn(name="ROLE_ID")
@@ -28,8 +31,6 @@ public class HUserRole implements Serializable {
 	@JoinColumn(name="USER_ID")
 	private HUser HUser;
 
-	@Column(name="STATUS")
-	private String status;
 	
 	
 	public String getStatus() {

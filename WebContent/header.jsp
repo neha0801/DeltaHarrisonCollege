@@ -11,10 +11,32 @@
 	    padding: 4px;
 	}
 	
+	.navbar-inverse
+	{
+		background-color: #1E6912;
+		
+	}
+	
+	.navbar-inverse .navbar-nav > li > a
+	{
+		color: #64B058;
+	}
+	
+	.navbar-inverse .navbar-nav > li > a:hover,
+	.navbar-inverse .navbar-nav > li > a:focus 
+	{
+	    color: #96D38D;
+	}
+	
+	
 	body 
 	{
-	    background-image: url("logo.png");
-	    background-color:rgba(0, 0, 0, 0.8);
+			background: #64B058 url("logo.png") no-repeat fixed bottom; 
+	}
+
+	
+	.navbar-inverse .navbar-nav > .dropdown > .dropdown-menu {
+	    background-color: #3C8D2F;
 	}
 
 </style>
@@ -30,22 +52,70 @@
 					<li><a href="RegisterUser.jsp">Register</a></li>
 				</c:if>
 				<c:if test="${not empty user}">
+				
+				
 					<c:if test="${user.isAdmin()}">
-						<li><a href="SearchForUser">Edit User Role</a>
-						<li><a href="RemoveClass?action=load">Remove Class</a></li>		
+					  	<li role="presentation" class="dropdown">
+    						<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      							Admin Functions <span class="caret"></span>
+    						</a>
+	    					<ul class="dropdown-menu">
+	      						<li> <a href="#">Manage Courses</a> </li>
+	      						<li> <a href="#">Manage Classrooms</a> </li>
+	      						<li> <a href="#">Manage Departments</a> </li>
+	      						<li> <a href="#">Manage Majors</a> </li>
+	      						<li><a href="SearchForUser">Manage User Role</a>
+	      						<li><a href="AddClass?action=load">Add Class</a></li>
+	      						<li><a href="RemoveClass?action=load">Remove Class</a></li>
+	      						<li><a href="#">Override Enrollment</a></li>		
+	    					</ul>
+  						</li>	
 						<li><a href="AdminReportSelection.jsp">Admin Reports</a></li>		
-						<li><a href="AddClass?action=load">Add Class</a></li>
+						
 					</c:if>
+					
+					
 					<c:if test="${user.isStudent()}">
-						<li><a href="AllClasses">Enroll</a>
+						<li><a href="CurrentSchedule">Current Schedule</a></li>
+						<li><a href="AllClasses">Enroll</a></li>
+					  	<li role="presentation" class="dropdown">
+    						<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      							Transcript <span class="caret"></span>
+    						</a>
+	    					<ul class="dropdown-menu">
+	      						<li><a href="Transcript?type=Unofficial">View Unofficial Transcript</a></li>
+	      						<li><a href="Transcript?type=Official">Order Official Transcript</a></li>
+	    					</ul>
+  						</li>
+
+
 					</c:if>
+					
+					
 					<c:if test="${user.isAdvisor()}">
 					
 					</c:if>
+					
+					
 					<c:if test="${user.isInstructor()}">
-						<li><a href="InstructorClasses">Instructor Classes</a></li>
-						<li><a href="InstructorRoster?action=getAll">Generate your Roster</a></li>		
+						<li><a href="InstructorClasses">Current Classes</a></li>
+						<li><a href="InstructorRoster?action=getAll">Class Roster</a></li>
+						<li><a href="InstructorRoster?action=getAll">Assign Grade</a></li>
+						<li><a href="InstructorRoster?action=getAll">View Gradesheet</a></li>
 					</c:if>
+					
+					
+				  	<li role="presentation" class="dropdown">
+   						<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+     							Courses <span class="caret"></span>
+   						</a>
+    					<ul class="dropdown-menu">
+      						<li><a href="AllCourses">View All Courses</a></li>
+      						<li><a href="CourseSearch">Courses by Department</a></li>
+    					</ul>
+ 						</li>  						
+					<li><a href="ClassSearch">Search for Classes</a></li>
+					<li><a href="MajorSearch">Majors</a></li>
 					<li><a href="Logout">Logout</a>
 				</c:if>
 			</ul>
