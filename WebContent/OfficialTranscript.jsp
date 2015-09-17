@@ -30,6 +30,7 @@
 <body>
 	<jsp:include page="./header.jsp"/>
 			<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+			
 			<h4>Please pay $5 to receive your official transcript.</h4>
 			<div align="center">
 			<form action="Transcript" method="GET" > 
@@ -40,6 +41,7 @@
  			</form> 			
 			</div>
 ${message1}
+			<h2 align="center">Official Transcript</h2>
 ${message}
 				<table class="table table-bordered table-striped">
 					<thead>
