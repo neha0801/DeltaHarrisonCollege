@@ -97,7 +97,7 @@
 		      						<li><a href="SearchForUser">Manage User Role</a>
 		      						<li><a href="AddClass?action=load">Add Class</a></li>
 		      						<li><a href="RemoveClass?action=load">Remove Class</a></li>
-		      						<li><a href="#">Override Enrollment</a></li>		
+		      						<li><a href="OverrideEnrollment">Override Enrollment</a></li>		
 		    					</ul>
 	  						</li>	
 							<li><a href="AdminReportSelection.jsp">Admin Reports</a></li>		
