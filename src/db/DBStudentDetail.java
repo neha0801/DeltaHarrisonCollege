@@ -4,12 +4,11 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import model.HClass;
-
 import model.HSemester;
-
 import model.HStudentDetail;
 import model.HUser;
 import customTools.DBUtil;
@@ -83,6 +82,45 @@ public class DBStudentDetail {
 	}
 
 
+	public static HStudentDetail getStudentDetail(String studentNumber)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT d FROM HStudentDetail d WHERE d.studentNumber = :studentNumber";
+		HStudentDetail student=null;
+		try
+		{
+			Query query = em.createQuery(queryStr)
+					
+					.setParameter("studentNumber", studentNumber);
+			student =  (HStudentDetail) query.getSingleResult();
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return student;
+	}
+//	public static List<HStudentDetail> getStudent(HClass classes) {
+//		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//		String sql = "SELECT s FROM HStudentDetail s WHERE c.userName) = :userName";
+//		System.out.println("Get Single : " + sql);
+//		TypedQuery<HUser> query = em.createQuery(sql, HUser.class).setParameter("userName", userName.toUpperCase());
+//		HUser user = null;
+//		try {
+//			user = query.getSingleResult();
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			em.close();
+//		}
+//		return user;
+//	}
 
 
 

@@ -55,7 +55,12 @@
 								<c:if test="${not currentClass.hasEnrolled(user.userId)}">
 								<c:choose>
 								  <c:when test="${user.HStudentDetail.isTimeOk(currentClass)}">
+								  <c:if test="${currentClass.getCurrentAvailability()<=0}">
+									<td><a class="btn btn-danger" href="#">Full</a></td>
+									</c:if>
+									<c:if test="${currentClass.getCurrentAvailability()>0}">
 								    <td><a class="btn btn-success" href="Enroll?classId=${currentClass.classId}">Enroll</a></td>
+								    </c:if>
 								  </c:when>
 
 								  <c:otherwise>
