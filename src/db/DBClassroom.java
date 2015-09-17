@@ -38,9 +38,10 @@ public class DBClassroom {
 		
 		
 		
-		if (studentNumber.equalsIgnoreCase("all"))
+		if (studentNumber == null || studentNumber.isEmpty())
 		{
 			whereClause += " AND 0=0 ";
+			
 		}
 		else
 		{
@@ -48,7 +49,7 @@ public class DBClassroom {
 			hasStudent = true;
 		}
 		System.out.println("whereClause = " + whereClause);
-		String queryStr  = "SELECT cr FROM HClass c, HClassroom cr,HEnrollment e,HStudentDetail sd WHERE c.HClassroom.classroomId = cr.classroomId AND e.HClass.classId=c.classId AND e.HStudentDetail.userId=sd.userId" + whereClause;
+		String queryStr  = "SELECT  distinct cr FROM HClass c, HClassroom cr,HEnrollment e,HStudentDetail sd, HCourse course WHERE course.courseId = c.HCourse.courseId AND c.HClassroom.classroomId = cr.classroomId AND e.HClass.classId=c.classId AND e.HStudentDetail.userId=sd.userId" + whereClause;
 		System.out.println("queryStr = " + queryStr);
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		List<HClassroom> classrooms = null;
@@ -77,7 +78,7 @@ public class DBClassroom {
 
 				
 			classrooms =  query.getResultList();
-			System.out.println("size = " + classrooms.size());
+			System.out.println(" Classroom List size = " + classrooms.size());
 		}
 		catch (Exception e)
 		{

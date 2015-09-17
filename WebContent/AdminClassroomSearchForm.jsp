@@ -87,13 +87,11 @@
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th>Course Number</th>
-							<th>Course Name</th>
+							<th>Room Number</th>
+							<th>Building Name</th>
 							<th>Status</th>
-							<th>Semester</th>
-							<th>Subject</th>							
-							<th>Department</th>
-							<th>Class Day/Time</th>
+							<th>Max Capacity</th>
+							
 							
 							
 						</tr>
@@ -102,7 +100,9 @@
 						<c:forEach var="classroom" items="${classrooms}">
 							<tr>
 								<td>${classroom.roomNumber}</td>
-
+								<td>${classroom.buildingName}</td>
+								<td>${classroom.status}</td>
+								<td>${classroom.maxCapacity}</td>
 
 							</tr>
 						</c:forEach>
