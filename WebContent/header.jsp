@@ -35,6 +35,7 @@
 						<li><a href="RemoveClass?action=load">Remove Class</a></li>		
 						<li><a href="AdminReportSelection.jsp">Admin Reports</a></li>		
 						<li><a href="AddClass?action=load">Add Class</a></li>
+						<li><a href="CreditFee?action=load">Tuition Credit Fee</a></li>
 					</c:if>
 					<c:if test="${user.isStudent()}">
 						<li><a href="AllClasses">Enroll</a>

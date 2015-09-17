@@ -44,6 +44,11 @@ public class HClass implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="USER_ID")
 	private HStaffDetail HStaffDetail;
+	
+	//bi-directional many-to-one association to HCreditTuition
+	@ManyToOne
+	@JoinColumn(name="CREDIT_TUITION_ID")
+	private HCreditTuition HCreditTuition;
 
 	//bi-directional many-to-one association to HClassSchedule
 	@OneToMany(mappedBy="HClass")
@@ -102,6 +107,14 @@ public class HClass implements Serializable {
 
 	public void setHStaffDetail(HStaffDetail HStaffDetail) {
 		this.HStaffDetail = HStaffDetail;
+	}
+
+	public HCreditTuition getHCreditTuition() {
+		return HCreditTuition;
+	}
+
+	public void setHCreditTuition(HCreditTuition hCreditTuition) {
+		HCreditTuition = hCreditTuition;
 	}
 
 	public List<HClassSchedule> getHClassSchedules() {
