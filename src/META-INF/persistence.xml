@@ -7,7 +7,7 @@
 
 		<provider> org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		
-
+		
 		<class>model.HClass</class>
 		<class>model.HClassroom</class>
 		<class>model.HClassSchedule</class>
