@@ -8,7 +8,6 @@ import javax.persistence.TypedQuery;
 
 import model.HCourse;
 import model.HStaffDetail;
-import model.HSubject;
 import customTools.DBUtil;
 
 public class DBStaffDetail {
@@ -40,4 +39,5 @@ public class DBStaffDetail {
 	}
 	return instructors;
 }
+
 }

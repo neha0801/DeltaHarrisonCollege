@@ -1,7 +1,10 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,10 +38,23 @@ public class HUser implements Serializable {
 	//bi-directional one-to-one association to HStudentDetail
 	@OneToOne(mappedBy="HUser")
 	private HStudentDetail HStudentDetail;
+	
+	@OneToOne(mappedBy="HUser")
+	private HStaffDetail HStaffDetail;
 
 	//bi-directional many-to-one association to HUserRole
 	@OneToMany(mappedBy="HUser")
 	private List<HUserRole> HUserRoles;
+
+	
+	
+	public HStaffDetail getHStaffDetail() {
+		return HStaffDetail;
+	}
+
+	public void setHStaffDetail(HStaffDetail hStaffDetail) {
+		HStaffDetail = hStaffDetail;
+	}
 
 	public HUser() {
 	}
@@ -206,6 +222,56 @@ public class HUser implements Serializable {
 			}
 		}
 		return isInstructor;
+	}
+	
+	public List<Long> getPossibleRoles()
+	{
+		List<Long> possibleRoles = new ArrayList<Long>();
+		
+		if (!isAdmin())
+		{
+			possibleRoles.add((long) 1);
+		}
+		
+		if (!isStudent())
+		{
+			possibleRoles.add((long) 2);
+		}
+		
+		if (!isInstructor())
+		{
+			possibleRoles.add((long) 3);
+		}
+		
+		if (!isAdvisor())
+		{
+			possibleRoles.add((long) 4);
+		}
+		
+		return possibleRoles;
+	}
+	
+	public String getRoleFromId(String id)
+	{
+		String role = "";
+		if(id.equalsIgnoreCase("1"))
+		{
+			role = "Admin";
+		}
+		else if(id.equalsIgnoreCase("2"))
+		{
+			role = "Student";
+		}
+		else if(id.equalsIgnoreCase("3"))
+		{
+			role = "Instructor";
+		}
+		else if(id.equalsIgnoreCase("4"))
+		{
+			role = "Advisor";
+		}
+		
+		return role;
 	}
 
 

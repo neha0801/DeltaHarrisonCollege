@@ -13,8 +13,7 @@ import javax.persistence.TypedQuery;
 import model.HCourse;
 import customTools.DBUtil;
 
-public class DBCourse {
-	
+public class DBCourse {	
 	
 	public static List<HCourse> getAllCourses()
 	{

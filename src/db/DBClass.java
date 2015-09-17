@@ -8,8 +8,10 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import model.HClass;
+import model.HCourse;
 import model.HSemester;
 import model.HStaffDetail;
+import model.HStudentDetail;
 import model.HUser;
 import customTools.DBUtil;
 
@@ -24,12 +26,12 @@ public class DBClass
 		boolean hasDepartment = false;
 		if (subjectId.equalsIgnoreCase("all"))
 		{
-			whereClause += " WHERE 0=0 ";
+			whereClause += " AND 0=0 ";
 		}
 		
 		else
 		{
-			whereClause += " WHERE c.HCourse.HSubject.subjectId = :subjectId ";
+			whereClause += " AND c.HCourse.HSubject.subjectId = :subjectId ";
 			hasSubject = true;
 		}
 		
@@ -51,7 +53,8 @@ public class DBClass
 		}
 		else
 		{
-			
+			whereClause += " AND cs.classTime = :classTime ";
+			hasTime = true;
 		}
 		
 		if (departmentId.equalsIgnoreCase("all"))
@@ -65,7 +68,7 @@ public class DBClass
 		}
 		
 		System.out.println("whereClause = " + whereClause);
-		String queryStr  = "SELECT c FROM HClass c " + whereClause;
+		String queryStr  = "SELECT c FROM HClass c, HClassSchedule cs WHERE c.classId = cs.HClass.classId " + whereClause;
 		System.out.println("queryStr = " + queryStr);
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		List<HClass> classes = null;
@@ -87,12 +90,15 @@ public class DBClass
 			if(hasTime)
 			{
 				
+				query.setParameter("classTime", Integer.parseInt(time));
 			}
 			
 			if(hasDepartment)
 			{
 				query.setParameter("departmentId", Long.parseLong(departmentId));
 			}
+			
+
 				
 			classes =  query.getResultList();
 			System.out.println("size = " + classes.size());
@@ -219,6 +225,7 @@ public class DBClass
 		}
 		return classes;
 	}
+
 	public static void insert(HClass newClass) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
@@ -273,5 +280,73 @@ public class DBClass
 			em.close();
 		}
 	}
+
+	public static List<HClass> getInstructorClassesAllSemesters(HStaffDetail user)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT c FROM HClass c where c.HStaffDetail = :user ";
+		System.out.println(queryStr);
+		List<HClass> classes = null;
+		try
+		{
+			Query query = em.createQuery(queryStr)
+					.setParameter("user", user);
+					
+			classes =  query.getResultList();
+			System.out.println("size = " + classes.size());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return classes;
+	}
+	
+	public static List<HClass> getAllClassesForCourse(String courseId)
+	{
+		String whereClause = "";
+		boolean hasCourse = false;
+		if (courseId.equalsIgnoreCase("all"))
+		{
+			whereClause += " WHERE 0=0  ";
+		}
+		else
+		{
+			whereClause += " WHERE c.HCourse.courseId = :courseId ";
+			hasCourse = true;
+		}
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT c FROM HClass c "+whereClause;
+		System.out.println(queryStr);
+		List<HClass> classes = null;
+		try
+		{
+			Query query = em.createQuery(queryStr);
+			if(hasCourse)
+			{
+				query.setParameter("courseId",Long.parseLong(courseId));
+			}
+			
+					
+					
+			classes =  query.getResultList();
+			System.out.println("size = " + classes.size());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return classes;
+	}
+	
+
 	
 }
