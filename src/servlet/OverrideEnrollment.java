@@ -60,12 +60,17 @@ public class OverrideEnrollment extends HttpServlet {
 			String classId = request.getParameter("class");
 			HStudentDetail student=DBStudentDetail.getStudentDetail(studentNumber);
 			HClass currentClass=DBClass.getClass(Long.parseLong(classId));
+			if(currentClass.hasEnrolled(student.getUserId())){
+				request.setAttribute("errorMessage", "Student Already Enrolled in this class!");	
+			}
+			else{
 			HEnrollment enrollment=new HEnrollment();
 			enrollment.setHClass(currentClass);
 			enrollment.setHStudentDetail(student);
 			enrollment.setStatus("Enrolled");
 			DBEnrollment.insert(enrollment);
 			request.setAttribute("goodMessage", "Student Successfully Enrolled");
+			}
 			HSemester currentSemester=DBSemester.getCurrentSemester();
 			List<HClass> classes = DBClass.getAllClasses(currentSemester);		
 			request.setAttribute("classes", classes);
