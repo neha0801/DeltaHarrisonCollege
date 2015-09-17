@@ -11,11 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import db.DBMajor;
+import db.DBRole;
 import db.DBStudentDetail;
 import db.DBUserDetail;
+import db.DBUserRole;
+import model.HRole;
 import model.HStudentDetail;
 import model.HUser;
 import model.HMajor;
+import model.HUserRole;
 
 /**
  * Servlet implementation class ServletRegisterUser
@@ -80,7 +84,7 @@ public class ServletRegisterUser extends HttpServlet {
 			user = DBUserDetail.getSingleUser(userName);
 			System.out.println("user email " + user.getEmail());
 			createStudent(user, majorId);
-
+			assignRole(user);
 			getServletContext().getRequestDispatcher("/LoginForm.jsp").forward(
 					request, response);
 		}
@@ -113,4 +117,14 @@ public class ServletRegisterUser extends HttpServlet {
 		DBStudentDetail.insert(student);
 	}
 
+	private void assignRole(HUser user) {		
+		HUserRole userRole = new HUserRole();
+		
+		userRole.setHUser(user);
+		HRole role = DBRole.getRole(2);
+		System.out.println("Role " + role.getName());
+		userRole.setHRole(role);
+		DBUserRole.insert(userRole);
+	}
+	
 }

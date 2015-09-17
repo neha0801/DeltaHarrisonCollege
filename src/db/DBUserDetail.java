@@ -1,10 +1,16 @@
 package db;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import customTools.DBUtil;
+import model.HClass;
+import model.HStaffDetail;
+import model.HSubject;
 import model.HUser;
 
 public class DBUserDetail {
@@ -103,7 +109,22 @@ public class DBUserDetail {
 		}
 		return user;
 	}
+	public static HUser getUserByClass(HClass classObj) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String sql = "SELECT d FROM HUser d WHERE d.HClass = :classObj";
+		System.out.println("Get Single : " + sql);
+		TypedQuery<HUser> query = em.createQuery(sql, HUser.class).setParameter("classObj", classObj);
+		HUser user = null;
+		try {
+			user = query.getSingleResult();
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
+		return user;
+	}
 	public static void update(HUser user) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
@@ -118,4 +139,29 @@ public class DBUserDetail {
 			em.close();
 		}
 	}
+	
+	
+	public static List<HUser> getAllUser()
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT s FROM HUser s";
+		List<HUser> users = null;
+		try
+		{
+			Query query = em.createQuery(queryStr);
+					
+			users =  query.getResultList();
+			System.out.println("size = " + users.size());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return users;
+	}
+	
 }

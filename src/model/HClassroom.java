@@ -99,5 +99,11 @@ public class HClassroom implements Serializable {
 
 		return HClass;
 	}
+	
+	public String getClassroom(){
+		String classroom = "";
+		classroom = this.buildingName + " Room# " + this.roomNumber;
+		return classroom;
+	}
 
 }
