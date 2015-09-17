@@ -24,12 +24,12 @@ public class DBClass
 		boolean hasDepartment = false;
 		if (subjectId.equalsIgnoreCase("all"))
 		{
-			whereClause += " WHERE 0=0 ";
+			whereClause += " AND 0=0 ";
 		}
 		
 		else
 		{
-			whereClause += " WHERE c.HCourse.HSubject.subjectId = :subjectId ";
+			whereClause += " AND c.HCourse.HSubject.subjectId = :subjectId ";
 			hasSubject = true;
 		}
 		
@@ -51,7 +51,8 @@ public class DBClass
 		}
 		else
 		{
-			
+			whereClause += " AND cs.classTime = :classTime ";
+			hasTime = true;
 		}
 		
 		if (departmentId.equalsIgnoreCase("all"))
@@ -65,7 +66,7 @@ public class DBClass
 		}
 		
 		System.out.println("whereClause = " + whereClause);
-		String queryStr  = "SELECT c FROM HClass c " + whereClause;
+		String queryStr  = "SELECT c FROM HClass c, HClassSchedule cs WHERE c.classId = cs.HClass.classId " + whereClause;
 		System.out.println("queryStr = " + queryStr);
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		List<HClass> classes = null;
@@ -87,12 +88,15 @@ public class DBClass
 			if(hasTime)
 			{
 				
+				query.setParameter("classTime", Integer.parseInt(time));
 			}
 			
 			if(hasDepartment)
 			{
 				query.setParameter("departmentId", Long.parseLong(departmentId));
 			}
+			
+
 				
 			classes =  query.getResultList();
 			System.out.println("size = " + classes.size());

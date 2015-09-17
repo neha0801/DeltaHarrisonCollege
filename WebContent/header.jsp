@@ -15,7 +15,6 @@
 	{
 	    background-image: url("logo.png");
 	    background-color:rgba(0, 0, 0, 0.8);
-	    
 	}
 
 </style>
@@ -32,29 +31,23 @@
 				</c:if>
 				<c:if test="${not empty user}">
 					<c:if test="${user.isAdmin()}">
-					
+						<li><a href="SearchForUser">Edit User Role</a>
+						<li><a href="RemoveClass?action=load">Remove Class</a></li>		
+						<li><a href="AdminReportSelection.jsp">Admin Reports</a></li>		
+						<li><a href="AddClass?action=load">Add Class</a></li>
 					</c:if>
 					<c:if test="${user.isStudent()}">
-					
+						<li><a href="AllClasses">Enroll</a>
 					</c:if>
 					<c:if test="${user.isAdvisor()}">
 					
 					</c:if>
 					<c:if test="${user.isInstructor()}">
-					
+						<li><a href="InstructorClasses">Instructor Classes</a></li>
+						<li><a href="InstructorRoster?action=getAll">Generate your Roster</a></li>		
 					</c:if>
-					
-					
 					<li><a href="Logout">Logout</a>
-					<li><a href="AllClasses">Enroll</a>
-					<li><a href="InstructorClasses">Instructor Classes</a></li>
-					<li><a href="InstructorRoster?action=getAll">Generate your Roster</a></li>		
-
-					<li><a href="AddClass?action=load">Add Class</a></li>				
-					<li><a href="RemoveClass?action=load">Remove Class</a></li>		
-					<li><a href="AdminReportSelection.jsp">Admin Reports</a></li>	
 				</c:if>
-
 			</ul>
 		</div>
 	</div>

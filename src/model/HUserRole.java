@@ -28,6 +28,18 @@ public class HUserRole implements Serializable {
 	@JoinColumn(name="USER_ID")
 	private HUser HUser;
 
+	@Column(name="STATUS")
+	private String status;
+	
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public HUserRole() {
 	}
 
@@ -38,6 +50,8 @@ public class HUserRole implements Serializable {
 	public void setUserRoleId(long userRoleId) {
 		this.userRoleId = userRoleId;
 	}
+	
+	
 
 	public HRole getHRole() {
 		return this.HRole;
@@ -54,5 +68,7 @@ public class HUserRole implements Serializable {
 	public void setHUser(HUser HUser) {
 		this.HUser = HUser;
 	}
+	
+	
 
 }
