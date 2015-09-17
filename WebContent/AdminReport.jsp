@@ -27,7 +27,6 @@
 <title>Admin Reports</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 
-
 </head>
 <body>
 	<jsp:include page="./header.jsp" />
@@ -47,61 +46,64 @@
 		<div class="panel-heading">Reports</div>
 		<div class="panel-body">
 
-			<form action="AdminReports" method="GET">
-				<input type="hidden" value="ByInstructor" name="ReportType"></input>
-				<input type="submit" class="btn btn-success"
-					value="Students taught by an instructor"></input>
-			</form> <br>
-			<form action="AdminReports" method="GET">
-				<input type="hidden" value="ByClass" name="ReportType"></input>
-				<input type="submit" class="btn btn-success"
-					value="Instructors  that have taught by a class"></input>
-			</form>
-			
+
 			<c:if test="${reportType eq 'ByInstructor'}">
-			<br>
-			<label>Selection:</label>
-			<br>
 				<table class="table table-bordered table-striped">
-					<tbody>
-						<form action="AdminReports" method="POST">
+					<thead>
 						<tr>
-							<td><label>Instructor</label> <select name="instructor">
-									<c:forEach var="item" items="${instructors}">
-										<option type="text" value="${item.userId}">${item.getFullName()}</option>
-									</c:forEach>
-							</select></td>
-							<td><input type="hidden" 	value="ByInstructor" name="reportType">
-							<input type="submit" class="btn pull-right btn-warning"
-								value="View Students"></input></td>
-						</form>
+							<td>Student Name</td>
+							<td>Student Number</td>
+							<td>Major</td>
+							<td>Entry Year</td>
 						</tr>
+					</thead>
+					<tbody>
+
+						<c:forEach var="item" items="${userList}">
+
+							<tr>
+
+								<td>${item.getFullName()}</td>
+								<td>${item.HStudentDetail.studentNumber}</td>
+								<td>${item.HStudentDetail.HMajor.name}</td>
+								<td>${item.HStudentDetail.entryYear}</td>
+
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
+				<a href="AdminReportSelection.jsp" class="btn btn-primary"> Go Back</a>
 			</c:if>
+			
 			<c:if test="${reportType eq 'ByClass'}">
-				<br>
-			<label>Selection:</label>
-			<br>
 				<table class="table table-bordered table-striped">
-					<tbody>
-						<form action="AdminReports" method="POST">
+					<thead>
 						<tr>
-							<td><label>Class</label> <select name="courseList">
-									<c:forEach var="item" items="${courseList}">
-										<option type="text" value="${item.courseId}">${item.name}</option>
-									</c:forEach>
-							</select></td>
-							<td><input type="hidden" 	value="ByClass" name="reportType">
-							<input type="submit" class="btn pull-right btn-warning"
-								value="View Instructors"></input></td>
-						</form>
+							<td>Instructor Name</td>
+							<td>Employee Number</td>
+							<td>Department</td>
+							<td>Office Number</td>
 						</tr>
+					</thead>
+					<tbody>
+
+						<c:forEach var="item" items="${instructorList}">
+
+							<tr>
+
+								<td>${item.HUser.getFullName()}</td>
+								<td>${item.employeeNumber}</td>
+								<td>${item.HDepartment.name}</td>
+								<td>${item.officeNumber}</td>
+
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
+				<a href="AdminReportSelection.jsp" class="btn btn-primary"> Go Back</a>
 			</c:if>
 
- 
+
 		</div>
 	</div>
 
