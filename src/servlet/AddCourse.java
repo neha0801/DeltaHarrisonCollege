@@ -57,8 +57,8 @@ public class AddCourse extends HttpServlet {
 		String courseDescription = request.getParameter("courseDescription");
 		String courseMajorId = request.getParameter("courseMajor");
 		String courseSubjectId = request.getParameter("courseSubject");
-		System.out.println(courseMajorId);
-		
+		String courseStatus = request.getParameter("courseStatus");
+		 
 		int courseCredits = Integer.parseInt(request.getParameter("courseCredits"));
 	
 		long courseMajorLong =  Long.parseLong(courseMajorId);
@@ -73,7 +73,7 @@ public class AddCourse extends HttpServlet {
 		course.setCredits(courseCredits);
 		course.setHMajor(major);
 		course.setHSubject(subject);
-		
+		course.setStatus(courseStatus);
 		DBCourse.insertCourse(course);
 		String errorMessage = "Course Added";
 		request.setAttribute("errorMessage", errorMessage);

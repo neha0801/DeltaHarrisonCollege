@@ -58,6 +58,12 @@
 						required />
 				</div>
 				
+				<label for="sel1">Status: </label>
+				<select class="form-control" name="courseStatus">
+						<option value="Active" <c:if test="${course.status eq 'Active'}">selected</c:if> >Active</option>
+						<option value="Inactive" <c:if test="${course.status eq 'Inactive'}">selected</c:if> >Inactive</option>
+				</select>
+				
 				<label for="sel1">Subject Code: </label><select class="form-control" name="courseSubject">
 					<c:forEach var="subject" items="${subjects}">
 

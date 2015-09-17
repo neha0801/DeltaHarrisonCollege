@@ -32,7 +32,7 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
 		<div class="panel-heading">
-			Admin Classroom Options <span class="glyphicon glyphicon-user"> <a class="btn btn-success" href="ServletAddCourse.java">Create New Classroom</a>
+			Admin Classroom Options <span class="glyphicon glyphicon-user"> <a class="btn btn-success" href="AddClassroom.jsp">Create New Classroom</a>
 		</div>
 		<form role="form" action="/ServletAdminCourse" method="POST">
 		<table class="table table-bordered table-striped">
@@ -41,6 +41,7 @@
 					<td>Building Name</td>
 					<td>Room Number</td>
 					<td>Max Capacity</td>
+					<td>Status</td>
 				</tr>
 			</thead>
 			
@@ -50,6 +51,7 @@
 						<td>${classroom.buildingName}</td>
 						<td>${classroom.roomNumber}</td>
 						<td>${classroom.maxCapacity }</td>
+						<td>${classroom.status }</td>
 						<td><a class="btn btn-success" href = "EditClassroom?classroomId=${classroom.classroomId}">Update Classroom</td>
 
 					</tr>

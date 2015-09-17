@@ -51,7 +51,7 @@ public class EditDepartment extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String departmentName = request.getParameter("departmentName");
-		
+		String departmentStatus = request.getParameter("departmentStatus");
 
 		String errorMessage = "";
 
@@ -63,6 +63,16 @@ System.out.println(departmentId);
 			HDepartment department = DBDepartment.getDepartment(departmentIdLong);
 			if (departmentName != null) {
 				department.setName(departmentName);
+				DBDepartment.update(department);
+				
+			} else {
+				errorMessage = "No grade is selected!!";
+				request.setAttribute("errorMessage", errorMessage);
+				getServletContext().getRequestDispatcher("EditDepartment.jsp")
+						.forward(request, response);
+			}
+			if (departmentStatus != null) {
+				department.setStatus(departmentStatus);
 				DBDepartment.update(department);
 				
 			} else {

@@ -32,14 +32,14 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
 		<div class="panel-heading">
-			Admin Major Options <span class="glyphicon glyphicon-user"> <a class="btn btn-success" href="ServletAddCourse.java">Create New Major</a>
+			Admin Major Options <span class="glyphicon glyphicon-user"> <a class="btn btn-success" href="AddMajor.jsp">Create New Major</a>
 		</div>
 		<form role="form" action="/ServletAdminMajor" method="POST">
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
 					<td>Major Name</td>
-					
+					<td>Status</td>
 				</tr>
 			</thead>
 			
@@ -47,7 +47,7 @@
 				<c:forEach var="major" items="${majors}">
 					<tr>
 						<td>${major.name}</td>
-						
+						<td>${major.status}</td>
 						<td><a class="btn btn-success" href = "EditMajor?majorId=${major.majorId}">Update Major</td>
 
 					</tr>

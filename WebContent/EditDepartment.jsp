@@ -43,7 +43,11 @@
 					value="${department.name}" required />
 			</div>
 			<div class="form-group">
-			
+			<label for="sel1">Status: </label>
+				<select class="form-control" name="departmentStatus">
+						<option value="Active" <c:if test="${department.status eq 'Active'}">selected</c:if> >Active</option>
+						<option value="Inactive" <c:if test="${department.status eq 'Inactive'}">selected</c:if> >Inactive</option>
+				</select>
 					<div class="form-group">
 					<button type="submit" value="submit" class="btn btn-default">Update</button>
 ${errorMessage}

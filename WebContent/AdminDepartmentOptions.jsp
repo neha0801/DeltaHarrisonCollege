@@ -32,13 +32,14 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
 		<div class="panel-heading">
-			Admin Department Options <span class="glyphicon glyphicon-user"> <a class="btn btn-success" href="ServletAddCourse.java">Create New Department</a>
+			Admin Department Options <span class="glyphicon glyphicon-user"> <a class="btn btn-success" href="AddDepartment.jsp">Create New Department</a>
 		</div>
 		<form role="form" action="/ServletAdminCourse" method="POST">
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
 					<td>Department Name</td>
+						<td>Status</td>
 				</tr>
 			</thead>
 			
@@ -46,7 +47,7 @@
 				<c:forEach var="department" items="${departments}">
 					<tr>
 						<td>${department.name}</td>
-						<td>${classroom.roomNumber}</td>
+						<td>${department.status}</td>
 						<td><a class="btn btn-success" href = "EditDepartment?departmentId=${department.departmentId}">Update Department</td>
 
 					</tr>

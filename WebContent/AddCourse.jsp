@@ -61,7 +61,17 @@
 					<label for="courseCredits">Credits: </label> <input type="text"
 						class="form-control" name="courseCredits" required />
 				</div>
-				<label for="sel1">Subject Code: </label><select class="form-control" name="courseSubject">
+
+
+				<label for="sel1">Status: </label><select class="form-control"
+					name="courseStatus">
+					<option value="#">Select</option>
+
+					<option value="Active">Active</option>
+					<option value="Inactive">Inactive</option>
+				</select> <label for="sel1">Subject Code: </label><select
+					class="form-control" name="courseSubject">
+					<option value="#">Select</option>
 					<c:forEach var="subject" items="${subjects}">
 
 						<option value="${subject.subjectId}">${subject.subjectCode}</option>

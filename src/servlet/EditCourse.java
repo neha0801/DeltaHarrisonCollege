@@ -64,7 +64,7 @@ public class EditCourse extends HttpServlet {
 		String description = request.getParameter("courseDescription");
 		String credits = request.getParameter("courseCredits");
 		String courseSubjectId = request.getParameter("courseSubject");
-	
+		String courseStatus = request.getParameter("courseStatus");
 		
 		
 		String errorMessage = "";
@@ -135,7 +135,17 @@ public class EditCourse extends HttpServlet {
 						.forward(request, response);
 			}
 			
+			if (courseName != null) {
+				course.setStatus(courseStatus);
+				DBCourse.update(course);
+				
 			
+			} else {
+				errorMessage = "No status is selected!!";
+				request.setAttribute("errorMessage", errorMessage);
+				getServletContext().getRequestDispatcher("EditCourse.jsp")
+						.forward(request, response);
+			}
 			
 			errorMessage = "Course Updated";
 			request.setAttribute("errorMessage", errorMessage);

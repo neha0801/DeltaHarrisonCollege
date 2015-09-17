@@ -52,6 +52,12 @@
 						class="form-control" name="classroomMaxCapacity" value = ${classroom.maxCapacity }
 						required />
 				</div>
+				<label for="sel1">Status: </label>
+				<select class="form-control" name="classroomStatus">
+						<option value="Active" <c:if test="${classroom.status eq 'Active'}">selected</c:if> >Active</option>
+						<option value="Inactive" <c:if test="${classroom.status eq 'Inactive'}">selected</c:if> >Inactive</option>
+				</select>
+				
 					<div class="form-group">
 					<button type="submit" value="submit" class="btn btn-default">Update</button>
 ${errorMessage}

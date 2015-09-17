@@ -60,7 +60,7 @@ public class EditClassroom extends HttpServlet {
 		String classroomName = request.getParameter("classroomName");
 		String classroomNumber = request.getParameter("classroomNumber");
 		String classroomMaxCapacity = request.getParameter("classroomMaxCapacity");
-		
+		String classroomStatus = request.getParameter("classroomStatus");
 
 		String errorMessage = "";
 
@@ -101,6 +101,17 @@ public class EditClassroom extends HttpServlet {
 				getServletContext().getRequestDispatcher("EditClassroom.jsp")
 						.forward(request, response);
 			}
+			if (classroomStatus != null) {
+				classroom.setStatus(classroomStatus);
+				DBClassroom.update(classroom);
+				
+			} else {
+				errorMessage = "No grade is selected!!";
+				request.setAttribute("errorMessage", errorMessage);
+				getServletContext().getRequestDispatcher("EditClassroom.jsp")
+						.forward(request, response);
+			}
+			
 			errorMessage = "Classroom Updated";
 			request.setAttribute("errorMessage", errorMessage);
 			getServletContext().getRequestDispatcher("/AdminClassroom")
