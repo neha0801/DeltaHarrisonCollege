@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 import javax.servlet.ServletException;
@@ -35,6 +36,10 @@ public class EditMajor extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		long majorId = Long.parseLong(request.getParameter("majorId"));
+		List<HDepartment> departments = DBDepartment.getAllDepartments();
+		request.setAttribute("departments", departments);
+		
+		
 		HMajor major = DBMajor.getMajor(majorId);
 		HttpSession session = request.getSession();
 		session.setAttribute("majorIdUpdate", majorId);
@@ -50,7 +55,11 @@ public class EditMajor extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 String majorName = request.getParameter("majorName");
 		String majorStatus = request.getParameter("majorStatus");
-
+		String majorDepartment = request.getParameter("majorDepartment");
+		
+		
+		
+		
 		String errorMessage = "";
 
 		HttpSession session = request.getSession();
@@ -78,6 +87,23 @@ String majorName = request.getParameter("majorName");
 				getServletContext().getRequestDispatcher("EditDepartment.jsp")
 						.forward(request, response);
 			}
+			
+			if (majorDepartment != null) {
+				long majorDepartmentLong = Long.parseLong(majorDepartment);
+				HDepartment department = DBDepartment.getDepartment(majorDepartmentLong);
+				
+				major.setHDepartment(department);
+				DBMajor.update(major);
+				
+			} else {
+				errorMessage = "No grade is selected!!";
+				request.setAttribute("errorMessage", errorMessage);
+				getServletContext().getRequestDispatcher("EditDepartment.jsp")
+						.forward(request, response);
+			}
+			
+			
+			
 			errorMessage = "Major Updated";
 			request.setAttribute("errorMessage", errorMessage);
 			getServletContext().getRequestDispatcher("/AdminMajor")

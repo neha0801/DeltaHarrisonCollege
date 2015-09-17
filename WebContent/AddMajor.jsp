@@ -24,41 +24,45 @@
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>Edit Major</title>
+<title>Add Major</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<jsp:include page="./header.jsp" />
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-		<div class="panel-heading">Edit Major</div>
+		<div class="panel-heading">Add Major</div>
 		<div class="panel-body">
 
 
-<form role="form" action="EditMajor" method="POST">
+<form role="form" action="AddMajor" method="POST">
 
 			<div class="form-group">
 				<label for="departmentName">Major Name: </label> <input type="text"
 					class="form-control" name="majorName"
-					value="${major.name}" required />
+					required />
 			</div>
-			<div class="form-group">
 			
-			<label for="sel1">Department: </label><select class="form-control" name="majorDepartment">
+			</select> <label for="sel1">Department: </label><select
+					class="form-control" name="majorDepartment">
+					<option value="#">Select</option>
 					<c:forEach var="department" items="${departments}">
 
-						<option value="${department.departmentId}"<c:if test="${major.HDepartment.departmentId eq department.departmentId}">selected</c:if>>${department.name}</option>
+						<option value="${department.departmentId}">${department.name}</option>
 					</c:forEach>
 				</select>
 			
 			
-			<label for="sel1">Status: </label>
-				<select class="form-control" name="majorStatus">
-						<option value="Active" <c:if test="${major.status eq 'Active'}">selected</c:if> >Active</option>
-						<option value="Inactive" <c:if test="${major.status eq 'Inactive'}">selected</c:if> >Inactive</option>
+			<div class="form-group">
+			<label for="sel1">Status: </label><select class="form-control"
+					name="majorStatus">
+					<option value="#">Select</option>
+
+					<option value="Active">Active</option>
+					<option value="Inactive">Inactive</option>
 				</select>
 					<div class="form-group">
-					<button type="submit" value="submit" class="btn btn-default">Update</button>
+					<button type="submit" value="submit" class="btn btn-default">Create Major</button>
 ${errorMessage}
 
 				</div>

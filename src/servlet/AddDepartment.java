@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,22 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.HClassroom;
 import model.HDepartment;
-import model.HMajor;
 import db.DBClassroom;
 import db.DBDepartment;
-import db.DBMajor;
 
 /**
- * Servlet implementation class ServletAdminMajor
+ * Servlet implementation class AddDepartment
  */
-@WebServlet("/AdminMajor")
-public class ServletAdminMajor extends HttpServlet {
+@WebServlet("/AddDepartment")
+public class AddDepartment extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletAdminMajor() {
+    public AddDepartment() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,18 +32,25 @@ public class ServletAdminMajor extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<HMajor> majors = DBMajor.getAllMajors();
-		List<HDepartment> departments = DBDepartment.getAllDepartments();
-		request.setAttribute("departments", departments);
-		request.setAttribute("majors", majors);
-		getServletContext().getRequestDispatcher("/AdminMajorOptions.jsp").forward(request, response);
+		// TODO Auto-generated method stub
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request,response);
+		String departmentName = request.getParameter("departmentName");
+		String departmentStatus = request.getParameter("departmentStatus");
+		model.HDepartment department = new HDepartment();
+		department.setName(departmentName);
+		department.setStatus(departmentStatus);
+		DBDepartment.update(department);
+		
+		
+		String errorMessage = "Department Added";
+		request.setAttribute("errorMessage", errorMessage);
+		getServletContext().getRequestDispatcher("/AdminDepartment")
+		.forward(request, response);
 	}
 
 }
