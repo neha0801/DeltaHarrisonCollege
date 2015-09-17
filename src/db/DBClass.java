@@ -3,7 +3,9 @@ package db;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import model.HClass;
 import model.HSemester;
@@ -134,6 +136,29 @@ public class DBClass
 		return classes;
 	}
 	
+	public static List<HClass> getAdminClasses()
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT c FROM HClass c where c.status= :status ";
+		List<HClass> classes = null;
+		try
+		{
+			Query query = em.createQuery(queryStr)
+					.setParameter("status", "Active");
+			classes =  query.getResultList();
+			System.out.println("size = " + classes.size());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return classes;
+	}
+	
 	public static HClass getClass(long classId)
 	{
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -198,4 +223,59 @@ public class DBClass
 		}
 		return classes;
 	}
+	public static void insert(HClass newClass) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		trans.begin();
+		try {
+			em.persist(newClass);
+			trans.commit();
+			
+		} catch (Exception e) {
+			System.out.println(e);
+			trans.rollback();
+		} finally {
+			em.close();
+		}
+		
+	}
+
+	
+	public static HClass getNewClass(String status)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT c FROM HClass c where c.status= :status";
+		HClass classOBJ = null;
+		try
+		{
+			TypedQuery<HClass> query = em.createQuery(queryStr,HClass.class)
+					.setParameter("status", "New");
+			classOBJ =  query.getSingleResult();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return classOBJ;
+		
+	}
+	
+	public static void update(HClass classObj) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		trans.begin();
+		try {
+			em.merge(classObj);
+			trans.commit();
+		} catch (Exception e) {
+			System.out.println(e);
+			trans.rollback();
+		} finally {
+			em.close();
+		}
+	}
+	
 }

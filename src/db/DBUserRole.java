@@ -2,7 +2,8 @@ package db;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-
+import model.HUserRole;
+import customTools.DBUtil;
 import model.HEnrollment;
 import model.HUserRole;
 import customTools.DBUtil;
@@ -40,6 +41,7 @@ public class DBUserRole {
 		} 
 		finally 
 		{
+
 			em.close();
 		}
 	}

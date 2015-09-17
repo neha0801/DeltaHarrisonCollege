@@ -1,6 +1,7 @@
 package db;
 
 import javax.persistence.EntityManager;
+
 import javax.persistence.EntityTransaction;
 
 import model.HRole;
@@ -8,9 +9,12 @@ import model.HUser;
 import customTools.DBUtil;
 
 public class DBRole {
-	public static HRole getRole(long roleId) {
+	
+	public static HRole getRole(long roleId) 
+	{
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		try {
+		try 
+		{
 			HRole role = em.find(HRole.class, roleId);
 			return role;
 		}
@@ -18,12 +22,11 @@ public class DBRole {
 		{
 			e.printStackTrace();
 			return null;	
-			}
-			finally {
-		
+		}
+		finally 
+		{
 			em.close();
 		}
 	}
-	
-
 }
+	
