@@ -8,8 +8,10 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import model.HClass;
+import model.HCourse;
 import model.HSemester;
 import model.HStaffDetail;
+import model.HStudentDetail;
 import model.HUser;
 import customTools.DBUtil;
 
@@ -223,6 +225,7 @@ public class DBClass
 		}
 		return classes;
 	}
+
 	public static void insert(HClass newClass) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
@@ -277,5 +280,73 @@ public class DBClass
 			em.close();
 		}
 	}
+
+	public static List<HClass> getInstructorClassesAllSemesters(HStaffDetail user)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT c FROM HClass c where c.HStaffDetail = :user ";
+		System.out.println(queryStr);
+		List<HClass> classes = null;
+		try
+		{
+			Query query = em.createQuery(queryStr)
+					.setParameter("user", user);
+					
+			classes =  query.getResultList();
+			System.out.println("size = " + classes.size());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return classes;
+	}
+	
+	public static List<HClass> getAllClassesForCourse(String courseId)
+	{
+		String whereClause = "";
+		boolean hasCourse = false;
+		if (courseId.equalsIgnoreCase("all"))
+		{
+			whereClause += " WHERE 0=0  ";
+		}
+		else
+		{
+			whereClause += " WHERE c.HCourse.courseId = :courseId ";
+			hasCourse = true;
+		}
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT c FROM HClass c "+whereClause;
+		System.out.println(queryStr);
+		List<HClass> classes = null;
+		try
+		{
+			Query query = em.createQuery(queryStr);
+			if(hasCourse)
+			{
+				query.setParameter("courseId",Long.parseLong(courseId));
+			}
+			
+					
+					
+			classes =  query.getResultList();
+			System.out.println("size = " + classes.size());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return classes;
+	}
+	
+
 	
 }

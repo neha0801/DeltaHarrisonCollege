@@ -24,7 +24,7 @@
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>Admin Search for User</title>
+<title>Admin Edit Role</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -32,7 +32,7 @@
 	<jsp:include page="./header.jsp" />
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-		<div class="panel-heading">Admin Search for a User to Edit </div>
+		<div class="panel-heading">Admin Edit User Role </div>
 		<div class="panel-body">
 
 
