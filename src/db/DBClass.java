@@ -177,6 +177,7 @@ public class DBClass
 		String queryStr = "SELECT c FROM HClass c where c.HStaffDetail = :user and c.status= :status";
 		System.out.println(queryStr);
 		List<HClass> classes = null;
+		
 		try
 		{
 			Query query = em.createQuery(queryStr)
@@ -260,6 +261,41 @@ public class DBClass
 		}
 		return classes;
 	}
-	
+	public static List<HClass> getActiveClassesForDept(String deptId){
+		String whereClause = "";
+		boolean hasDepartment = false;
+		List<HClass> classes=null;
+		if (deptId.equalsIgnoreCase("all"))
+		{
+			whereClause += " AND 0=0 ";
+		}
+		else
+		{
+			whereClause += " AND c.HCourse.HMajor.HDepartment.departmentId = :deptId ";
+			hasDepartment = true;
+		}
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT c FROM HClass c WHERE c.status= :activeStatus"+whereClause;
+		System.out.println(queryStr);
+		try
+		{
+			Query query = em.createQuery(queryStr).setParameter("activeStatus","Active");
+			if(hasDepartment){
+					query.setParameter("deptId",Long.parseLong(deptId));	
+						
+			}
+			classes =  query.getResultList();
+			System.out.println("size = " + classes.size());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return classes;
+	}
 	
 }
