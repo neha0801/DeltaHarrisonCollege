@@ -61,7 +61,9 @@
 					<select name="class">		
 
 						<c:forEach var="currentclass" items="${classes}">
-							<option value="${currentclass.classId}">${currentclass.HCourse.name}</option>
+							<option value="${currentclass.classId}">${currentclass.HCourse.name}<c:forEach var="currentSchedule" items="${currentclass.HClassSchedules}">
+									${currentSchedule.HWeekday.name} - ${currentSchedule.classTime}
+									</c:forEach></option>
 						</c:forEach>
 
 					</select>
