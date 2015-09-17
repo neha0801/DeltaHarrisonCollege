@@ -15,9 +15,12 @@ import javax.servlet.http.HttpSession;
 import com.sun.org.apache.bcel.internal.classfile.Code;
 
 import db.DBCourse;
-import db.DBDepartment;
+import db.DBMajor;
+import db.DBSubject;
 import model.HCourse;
-import model.HDepartment;
+import model.HMajor;
+import model.HSubject;
+
 
 /**
  * Servlet implementation class AddCourse
@@ -38,8 +41,10 @@ public class AddCourse extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<HDepartment> departments = DBDepartment.getAllDepartments();
-		request.setAttribute("departments", departments);
+		List<HMajor> majors = DBMajor.getAllMajors();
+		request.setAttribute("majors", majors);
+		List<HSubject> subjects = DBSubject.getAllSubjects();
+		request.setAttribute("subjects", subjects);
 		getServletContext().getRequestDispatcher("/AddCourse.jsp").forward(request, response);
 	}
 
@@ -50,15 +55,24 @@ public class AddCourse extends HttpServlet {
 		String courseNumber = request.getParameter("courseNumber");
 		String courseName = request.getParameter("courseName");
 		String courseDescription = request.getParameter("courseDescription");
-		String courseDepartment = request.getParameter("courseDepartment");
+		String courseMajorId = request.getParameter("courseMajor");
+		String courseSubjectId = request.getParameter("courseSubject");
+		System.out.println(courseMajorId);
 		
 		int courseCredits = Integer.parseInt(request.getParameter("courseCredits"));
+	
+		long courseMajorLong =  Long.parseLong(courseMajorId);
+		long courseSubjectLong =  Long.parseLong(courseSubjectId);
+		HMajor major = DBMajor.getMajor(courseMajorLong);
+		HSubject subject = DBSubject.getSubject(courseSubjectLong);
 		
 		model.HCourse course = new HCourse();
 		course.setCourseNumber(courseNumber);
 		course.setName(courseName);
 		course.setDescription(courseDescription);
 		course.setCredits(courseCredits);
+		course.setHMajor(major);
+		course.setHSubject(subject);
 		
 		DBCourse.insertCourse(course);
 		String errorMessage = "Course Added";

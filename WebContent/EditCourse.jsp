@@ -57,6 +57,13 @@
 						class="form-control" name="courseCredits" value = ${course.credits }
 						required />
 				</div>
+				
+				<label for="sel1">Subject Code: </label><select class="form-control" name="courseSubject">
+					<c:forEach var="subject" items="${subjects}">
+
+						<option value="${subject.subjectId}">${subject.subjectCode}</option>
+					</c:forEach>
+				</select>
 					<div class="form-group">
 					<button type="submit" value="submit" class="btn btn-default">Update</button>
 ${errorMessage}

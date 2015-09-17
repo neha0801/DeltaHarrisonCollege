@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -35,42 +35,44 @@
 		<div class="panel-body">
 
 
-<form role="form" action="/ServletAddCourse" method="GET">
-<div class="form-group">
-      <label for="sel1">Select Department </label>
-      <select class="form-control" name = "courseDepartment">
-<c:forEach var="department" items="${departments}">
-			
-        <option>${department.name }</option>
-        </c:forEach>
-      </select>
-      </div>
-			<div class="form-group">
-				<label for="courseNumber">Course Number: </label> <input type="text"
-					class="form-control" name="courseNumber"
-					required />
-			</div>
-			<div class="form-group">
-				<label for="courseName">Course Name: </label> <input type="text"
-					class="form-control" name="courseName"
-					 required />
-			</div>
-			<div class="form-group">
-					<label for="courseDescription">Description: </label> <input type="text"
-						class="form-control" name="courseDescription" 
-						required />
+			<form role="form" action="AddCourse" method="POST">
+				<div class="form-group">
+					<label for="sel1">Select Major </label> <select
+						class="form-control" name="courseMajor">
+						<c:forEach var="major" items="${majors}">
+
+							<option value="${major.majorId}">${major.name}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="courseNumber">Course Number: </label> <input
+						type="text" class="form-control" name="courseNumber" required />
+				</div>
+				<div class="form-group">
+					<label for="courseName">Course Name: </label> <input type="text"
+						class="form-control" name="courseName" required />
+				</div>
+				<div class="form-group">
+					<label for="courseDescription">Description: </label> <input
+						type="text" class="form-control" name="courseDescription" required />
 				</div>
 				<div class="form-group">
 					<label for="courseCredits">Credits: </label> <input type="text"
-						class="form-control" name="courseCredits" 
-						required />
+						class="form-control" name="courseCredits" required />
 				</div>
-					<div class="form-group">
+				<label for="sel1">Subject Code: </label><select class="form-control" name="courseSubject">
+					<c:forEach var="subject" items="${subjects}">
+
+						<option value="${subject.subjectId}">${subject.subjectCode}</option>
+					</c:forEach>
+				</select>
+				<div class="form-group">
 					<button type="submit" value="submit" class="btn btn-default">Update</button>
-${errorMessage}
+					${errorMessage}
 
 				</div>
-</form>
+			</form>
 
 		</div>
 	</div>

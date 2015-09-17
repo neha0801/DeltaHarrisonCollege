@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 import javax.servlet.ServletException;
@@ -11,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.HCourse;
+import model.HSubject;
 import model.HUser;
 import db.DBCourse;
+import db.DBSubject;
 import db.DBUserDetail;
 
 /**
@@ -42,6 +45,9 @@ public class EditCourse extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("courseIdUpdate", courseId);
 
+		List<HSubject> subjects = DBSubject.getAllSubjects();
+		request.setAttribute("subjects", subjects);
+		
 		request.setAttribute("course", course);
 		getServletContext().getRequestDispatcher("/EditCourse.jsp").forward(
 				request, response);
@@ -57,7 +63,10 @@ public class EditCourse extends HttpServlet {
 		String courseName = request.getParameter("courseName");
 		String description = request.getParameter("courseDescription");
 		String credits = request.getParameter("courseCredits");
-
+		String courseSubjectId = request.getParameter("courseSubject");
+	
+		
+		
 		String errorMessage = "";
 
 		HttpSession session = request.getSession();
@@ -71,7 +80,7 @@ public class EditCourse extends HttpServlet {
 				DBCourse.update(course);
 				
 			} else {
-				errorMessage = "No grade is selected!!";
+				errorMessage = "No course number is selected!!";
 				request.setAttribute("errorMessage", errorMessage);
 				getServletContext().getRequestDispatcher("EditCourse.jsp")
 						.forward(request, response);
@@ -82,7 +91,7 @@ public class EditCourse extends HttpServlet {
 				
 			
 			} else {
-				errorMessage = "No grade is selected!!";
+				errorMessage = "No name is selected!!";
 				request.setAttribute("errorMessage", errorMessage);
 				getServletContext().getRequestDispatcher("EditCourse.jsp")
 						.forward(request, response);
@@ -93,7 +102,7 @@ public class EditCourse extends HttpServlet {
 				
 			
 			} else {
-				errorMessage = "No grade is selected!!";
+				errorMessage = "No description is selected!!";
 				request.setAttribute("errorMessage", errorMessage);
 				getServletContext().getRequestDispatcher("EditCourse.jsp")
 						.forward(request, response);
@@ -106,11 +115,28 @@ public class EditCourse extends HttpServlet {
 		
 			
 			} else {
-				errorMessage = "No grade is selected!!";
+				errorMessage = "No credits are selected!!";
 				request.setAttribute("errorMessage", errorMessage);
 				getServletContext().getRequestDispatcher("EditCourse.jsp")
 						.forward(request, response);
 			}
+			if (courseSubjectId != null) {
+				long courseSubjectLong =  Long.parseLong(courseSubjectId);
+				HSubject subject = DBSubject.getSubject(courseSubjectLong);
+				course.setHSubject(subject);
+				DBCourse.update(course);
+				
+		
+			
+			} else {
+				errorMessage = "No credits are selected!!";
+				request.setAttribute("errorMessage", errorMessage);
+				getServletContext().getRequestDispatcher("EditCourse.jsp")
+						.forward(request, response);
+			}
+			
+			
+			
 			errorMessage = "Course Updated";
 			request.setAttribute("errorMessage", errorMessage);
 			getServletContext().getRequestDispatcher("/AdminCourse")
