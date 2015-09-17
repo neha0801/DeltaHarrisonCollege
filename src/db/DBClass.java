@@ -272,7 +272,7 @@ public class DBClass
 		else
 		{
 			whereClause += " AND c.HCourse.HMajor.HDepartment.departmentId = :deptId ";
-			hasDepartment = true;
+			hasDepartment = true;                                                               
 		}
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		String queryStr = "SELECT c FROM HClass c WHERE c.status= :activeStatus"+whereClause;
