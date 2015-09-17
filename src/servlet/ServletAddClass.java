@@ -21,6 +21,7 @@ import db.DBClass;
 import db.DBClassSchedule;
 import db.DBClassroom;
 import db.DBCourse;
+import db.DBCreditTuition;
 import db.DBMajor;
 import db.DBSemester;
 import db.DBStaffDetail;
@@ -102,30 +103,48 @@ public class ServletAddClass extends HttpServlet {
 			newClass.setHClassroom(DBClassroom.getSelectedClassroom(classroomId));
 			newClass.setHStaffDetail(DBStaffDetail.getUser(instructorId));
 			newClass.setStatus("New");
-			DBClass.insert(newClass);
-			List<HClassSchedule> classSchedules = new ArrayList<HClassSchedule>();
-			
-			newClass= DBClass.getNewClass("New");
-			
-			for(int i =1; i<=6;i++){
+			long maxCreditId = DBCreditTuition.getLatestFeeID();
+			newClass.setHCreditTuition(DBCreditTuition.getCreditTuitionFee(maxCreditId));
+			int count =0;
+			for(int i =1; i<=5;i++){
 				classScheduleIdStr = request.getParameter("time"+i);
-				System.out.println("schedule id " + classScheduleIdStr);
 				if(!classScheduleIdStr.equalsIgnoreCase("-1")){
-					HClassSchedule schedule = new HClassSchedule();
-					weekdayId = i;
-					classTime = Integer.parseInt(classScheduleIdStr);
-					schedule.setHWeekday(DBWeekday.getWeekDay(weekdayId));
-					schedule.setClassTime(classTime);
-					schedule.setHClass(newClass);
-					//DBClassSchedule.insert(schedule);
-					classSchedules.add(schedule);
-				}
+					count++;
+				}				
 			}
-			newClass.setHClassSchedules(classSchedules);
-			newClass.setStatus("Active");
-			DBClass.update(newClass);
-			String goodMessage = "Congratz!! Class Added";
-			request.setAttribute("goodMessage", goodMessage);
+			if(count<=0){
+				String errorMessage = "Class Schedule Missing!! Try Again";
+				request.setAttribute("errorMessage", errorMessage);
+			}else{
+				DBClass.insert(newClass);
+				List<HClassSchedule> classSchedules = new ArrayList<HClassSchedule>();
+				System.out.println();
+				newClass= DBClass.getNewClass("New");
+				
+				for(int i =1; i<=5;i++){
+					classScheduleIdStr = request.getParameter("time"+i);
+					System.out.println("schedule id " + classScheduleIdStr);
+					if(!classScheduleIdStr.equalsIgnoreCase("-1")){
+						HClassSchedule schedule = new HClassSchedule();
+						weekdayId = i;
+						classTime = Integer.parseInt(classScheduleIdStr);
+						schedule.setHWeekday(DBWeekday.getWeekDay(weekdayId));
+						schedule.setClassTime(classTime);
+						schedule.setHClass(newClass);
+						classSchedules.add(schedule);
+						
+					}
+				}
+				System.out.println("count = " + count);
+			
+					newClass.setHClassSchedules(classSchedules);
+					newClass.setStatus("Active");
+				
+					DBClass.update(newClass);
+					String goodMessage = "Congratz!! Class Added";
+					request.setAttribute("goodMessage", goodMessage);				
+			}
+			
 			doGet(request,response);
 		}
 		

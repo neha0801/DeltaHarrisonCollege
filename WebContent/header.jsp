@@ -63,6 +63,7 @@
 	
 
 </style>
+
 <div class="logo">
 	<img src="logo.png" width="82px" alt="Harrison College" class="img-rounded" style="background-color: #1E6912; padding:2px;" />
 </div>
@@ -80,6 +81,7 @@
 					<c:if test="${empty user}">
 						<li><a href="LoginForm.jsp">Login</a></li>
 						<li><a href="RegisterUser.jsp">Register</a></li>
+
 					</c:if>
 					<c:if test="${not empty user}">
 					
@@ -97,7 +99,9 @@
 		      						<li><a href="SearchForUser">Manage User Role</a>
 		      						<li><a href="AddClass?action=load">Add Class</a></li>
 		      						<li><a href="RemoveClass?action=load">Remove Class</a></li>
-		      						<li><a href="OverrideEnrollment">Override Enrollment</a></li>		
+		      						<li><a href="OverrideEnrollment">Override Enrollment</a></li>
+  									<li><a href="CreditFee?action=load">Tuition Credit Fee</a></li>
+									<li><a href="Revenue?action=load">Revenue</a></li>		
 		    					</ul>
 	  						</li>	
 							<li><a href="AdminReportSelection.jsp">Admin Reports</a></li>		

@@ -1,7 +1,13 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import db.DBCreditTuition;
+import db.DBSemester;
+
+import java.text.DecimalFormat;
 import java.util.List;
 
 
@@ -100,6 +106,40 @@ public class HDepartment implements Serializable {
 		HStaffDetail.setHDepartment(null);
 
 		return HStaffDetail;
+	}
+	
+	public String getRevenue(String semesterIdStr){
+		int credits =0;
+		double revenue=0.0;
+		if(semesterIdStr!=null){
+			long semesterId = Long.parseLong(semesterIdStr);
+			
+			for(HMajor major : this.HMajors){			
+				for(HCourse course : major.getHCourses())
+				{
+					for(HClass currentClass : course.getHClasses())
+					{
+						for(HEnrollment enrollment: currentClass.getHEnrollments())
+						{
+							long checkSemId = currentClass.getHSemester().getSemesterId();
+							if(checkSemId==semesterId)
+							{
+								credits += course.getCredits();
+							}
+						}
+					}
+				}
+
+						
+					
+				
+			}
+		}
+		HCreditTuition creditFee = DBCreditTuition.getCreditTuitionFee(DBCreditTuition.getLatestFeeID());
+		revenue = credits * creditFee.getCreditFee(); 
+		System.out.println("revenue by department");
+		String revenueStr = DecimalFormat.getCurrencyInstance().format(revenue);
+		return revenueStr;
 	}
 
 }
