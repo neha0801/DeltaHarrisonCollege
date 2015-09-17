@@ -30,19 +30,27 @@
 <body>
 	<jsp:include page="./header.jsp"/>
 			<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-			
-			<h4>Please pay $5 to receive your official transcript.</h4>
-			<div align="center">
-			<form action="Transcript" method="GET" > 
-			<label >Credit Card Number: </label> 
- 			<input  type="text" name="CardNum" required ><br> 
- 			<input  type="hidden" name="type" value="official" ><br> 
- 			<input type="submit" value="Pay" id="submit"> 
- 			</form> 			
+			<div class="col-sm-8 col-sm-offset-2" style="padding:10px;">
+				<h4>Please pay $5 to receive your official transcript.</h4>
+				<form action="Transcript" method="GET" > 
+					<label >Credit Card Number: </label> 
+		 			<input  type="text" name="CardNum" required ><br> 
+		 			<input  type="hidden" name="type" value="official" ><br> 
+		 			<input class="btn btn-primary" type="submit" value="Pay" id="submit"> <br> 
+ 				</form> 
 			</div>
-${message1}
-			<h2 align="center">Official Transcript</h2>
-${message}
+			<br>
+			<div class="panel panel-default col-sm-8 col-sm-offset-2">
+			  <!-- Default panel contents -->
+			  <div class="panel-heading">
+			  	${message1}
+			  	<h2>Official Transcript</h2>			  
+			  </div>
+			  <div class="panel-body">
+			    ${message}
+			  </div>
+			
+			  <!-- Table -->
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
@@ -62,19 +70,13 @@ ${message}
 							</tr>
 						</c:forEach>
 							<tr>
-								<td colspan="3" alight="right">Overall GPA = </td>
+								<td colspan="3" align="right">Overall GPA = </td>
 								<td>${gpa}</td>
 							</tr>
 					
 					</tbody>
-					
-
 				</table>	
-					
-						
-
-
+			</div>
 			
-			</div>			
 </body>
 </html>
