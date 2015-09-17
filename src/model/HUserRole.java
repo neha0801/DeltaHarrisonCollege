@@ -18,6 +18,9 @@ public class HUserRole implements Serializable {
 	@Column(name="USER_ROLE_ID")
 	private long userRoleId;
 
+	@Column(name="STATUS")
+	private String status;
+	
 	//bi-directional many-to-one association to HRole
 	@ManyToOne
 	@JoinColumn(name="ROLE_ID")
@@ -27,6 +30,16 @@ public class HUserRole implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="USER_ID")
 	private HUser HUser;
+
+	
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public HUserRole() {
 	}
@@ -38,6 +51,8 @@ public class HUserRole implements Serializable {
 	public void setUserRoleId(long userRoleId) {
 		this.userRoleId = userRoleId;
 	}
+	
+	
 
 	public HRole getHRole() {
 		return this.HRole;
@@ -54,5 +69,7 @@ public class HUserRole implements Serializable {
 	public void setHUser(HUser HUser) {
 		this.HUser = HUser;
 	}
+	
+	
 
 }

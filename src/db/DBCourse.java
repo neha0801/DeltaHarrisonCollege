@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import model.HCourse;
 import customTools.DBUtil;
@@ -103,5 +104,26 @@ public class DBCourse {
 		}
 		return courses;
 	}
-
+	public static HCourse getSelectedCourse(long id)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT c FROM HCourse c where c.courseId = :id";
+		System.out.println("Query from getCourses :" + queryStr);
+		HCourse course = null;
+		try
+		{
+			TypedQuery<HCourse> query = em.createQuery(queryStr,HCourse.class).setParameter("id", id);
+			course =  query.getSingleResult();
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return course;
+	}
 }

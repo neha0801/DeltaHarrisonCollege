@@ -61,7 +61,27 @@ public class ServletLogin extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);	
 			System.out.println(user.getFirstName());
-			getServletContext().getRequestDispatcher("/CurrentSchedule").forward(request, response);
+			if(user.isAdmin())
+			{
+				getServletContext().getRequestDispatcher("/AdminReportSelection.jsp").forward(request, response);
+			}
+			else if (user.isStudent())
+			{
+				getServletContext().getRequestDispatcher("/CurrentSchedule").forward(request, response);
+			}
+			else if (user.isAdvisor())
+			{
+				getServletContext().getRequestDispatcher("/CurrentSchedule").forward(request, response);
+			}
+			else if (user.isInstructor())
+			{
+				getServletContext().getRequestDispatcher("/InstructorRoster?action=getAll").forward(request, response);
+			}
+			else
+			{
+				getServletContext().getRequestDispatcher("/Logout").forward(request, response);
+			}
+			
 		}
 		//if login fail
 		else

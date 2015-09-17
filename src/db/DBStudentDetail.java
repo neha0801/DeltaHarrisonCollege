@@ -81,6 +81,7 @@ public class DBStudentDetail {
 		}
 	}
 
+
 	public static HStudentDetail getStudentDetail(String studentNumber)
 	{
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -120,6 +121,7 @@ public class DBStudentDetail {
 //		}
 //		return user;
 //	}
+
 
 
 

@@ -1,7 +1,10 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,10 +38,23 @@ public class HUser implements Serializable {
 	//bi-directional one-to-one association to HStudentDetail
 	@OneToOne(mappedBy="HUser")
 	private HStudentDetail HStudentDetail;
+	
+	@OneToOne(mappedBy="HUser")
+	private HStaffDetail HStaffDetail;
 
 	//bi-directional many-to-one association to HUserRole
 	@OneToMany(mappedBy="HUser")
 	private List<HUserRole> HUserRoles;
+
+	
+	
+	public HStaffDetail getHStaffDetail() {
+		return HStaffDetail;
+	}
+
+	public void setHStaffDetail(HStaffDetail hStaffDetail) {
+		HStaffDetail = hStaffDetail;
+	}
 
 	public HUser() {
 	}
@@ -151,7 +167,7 @@ public class HUser implements Serializable {
 		
 		for(HUserRole role : roles)
 		{
-			if(role.getHRole().getName().equalsIgnoreCase("admin"))
+			if(role.getHRole().getName().equalsIgnoreCase("admin") && role.getStatus().equalsIgnoreCase("active"))
 			{
 				isAdmin = true;
 				break;
@@ -167,7 +183,7 @@ public class HUser implements Serializable {
 		
 		for(HUserRole role : roles)
 		{
-			if(role.getHRole().getName().equalsIgnoreCase("student"))
+			if(role.getHRole().getName().equalsIgnoreCase("student") && role.getStatus().equalsIgnoreCase("active"))
 			{
 				isStudent = true;
 				break;
@@ -183,7 +199,7 @@ public class HUser implements Serializable {
 		
 		for(HUserRole role : roles)
 		{
-			if(role.getHRole().getName().equalsIgnoreCase("advisor"))
+			if(role.getHRole().getName().equalsIgnoreCase("advisor") && role.getStatus().equalsIgnoreCase("active"))
 			{
 				isAdvisor = true;
 				break;
@@ -199,13 +215,63 @@ public class HUser implements Serializable {
 		
 		for(HUserRole role : roles)
 		{
-			if(role.getHRole().getName().equalsIgnoreCase("instructor"))
+			if(role.getHRole().getName().equalsIgnoreCase("instructor") && role.getStatus().equalsIgnoreCase("active"))
 			{
 				isInstructor = true;
 				break;
 			}
 		}
 		return isInstructor;
+	}
+	
+	public List<Long> getPossibleRoles()
+	{
+		List<Long> possibleRoles = new ArrayList<Long>();
+		
+		if (!isAdmin())
+		{
+			possibleRoles.add((long) 1);
+		}
+		
+		if (!isStudent())
+		{
+			possibleRoles.add((long) 2);
+		}
+		
+		if (!isInstructor())
+		{
+			possibleRoles.add((long) 3);
+		}
+		
+		if (!isAdvisor())
+		{
+			possibleRoles.add((long) 4);
+		}
+		
+		return possibleRoles;
+	}
+	
+	public String getRoleFromId(String id)
+	{
+		String role = "";
+		if(id.equalsIgnoreCase("1"))
+		{
+			role = "Admin";
+		}
+		else if(id.equalsIgnoreCase("2"))
+		{
+			role = "Student";
+		}
+		else if(id.equalsIgnoreCase("3"))
+		{
+			role = "Instructor";
+		}
+		else if(id.equalsIgnoreCase("4"))
+		{
+			role = "Advisor";
+		}
+		
+		return role;
 	}
 
 

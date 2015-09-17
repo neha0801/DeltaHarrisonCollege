@@ -41,36 +41,55 @@
 					<c:out value="${errorMessage}" />
 				</div>
 			</c:if>
-
-			
-
+			<p>User Name: ${tempUser.userName}</p>
+			<p>Name: ${tempUser.firstName} ${tempUser.lastName}</p>
+			<p>Email: ${tempUser.email}</p>
+	        <p>Current Role(s):
+	        	<c:forEach var="userRole" items="${tempUser.HUserRoles}">
+					${userRole.HRole.name}
+				</c:forEach>
+        	</p>
+			<c:choose>
+			    <c:when test="${tempUser.isAdmin() or tempUser.isAdvisor() or tempUser.isInstructor()}">
+			       <p>Employee Number: ${tempUser.HStaffDetail.employeeNumber}</p>
+			       <p>Department: ${tempUser.HStaffDetail.HDepartment.name}</p>
+			    </c:when>
+			    <c:when test="${tempUser.isStudent()}">
+			        <p>Student Number: ${tempUser.HStudentDetail.studentNumber}</p>
+			        <p>Major: ${tempUser.HStudentDetail.HMajor.name}</p>
+			    </c:when>
+			    <c:otherwise>
+			       
+			    </c:otherwise>
+			</c:choose>
 			<form action="AdminEditRole" method="POST">
 
-			
-				<input type="checkbox" name="type" value="Admin" 
-							<c:if test="${user.isAdmin()}">
-								checked
-							</c:if>
-				> Admin<br>
+				<input type="hidden" value="${tempUser.userId}" name="tempUserId" />
+				Add A Role:
+				<select name="newRole">
 				
-				<input type="checkbox" name="type" value="Admin" 
-							<c:if test="${user.isStudent()}">
-								checked
-							</c:if>
-				> Student<br>
+					<option value="no">no</option>
+		        	<c:forEach var="role" items="${tempUser.getPossibleRoles()}">
+	        			<option value="${role}">${tempUser.getRoleFromId(role)}</option>
+					</c:forEach>
+				</select>
+				<br><br>
 				
-				<input type="checkbox" name="type" value="Admin" 
-							<c:if test="${user.isInstructor()}">
-								checked
-							</c:if>
-				> Instructor<br>
+				Disable A Role:
+					<br>
+					
+	        		<c:forEach var="userRole" items="${tempUser.HUserRoles}">
+	        			
+	        			
+	        				<select name="currentRole${userRole.userRoleId}">
+	        					<option value="Active" <c:if test="${userRole.status eq 'Active'}">selected</c:if> >Active</option>
+	        					
+	        					<option value="Inactive" <c:if test="${userRole.status eq 'Inactive'}">selected</c:if> >Inactive</option>
+	        				</select>
+	        				${userRole.HRole.name}<br>
+					</c:forEach>
 				
-				<input type="checkbox" name="type" value="Admin" 
-							<c:if test="${user.isAdvisor()}">
-								checked
-							</c:if>
-				> Advisor<br>
-
+				<input type="submit" value = "Save" class="btn btn-primary"/>
 			</form>
 			
 		</div>

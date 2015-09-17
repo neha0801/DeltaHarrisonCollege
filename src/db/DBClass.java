@@ -3,7 +3,9 @@ package db;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import model.HClass;
 import model.HCourse;
@@ -26,11 +28,14 @@ public class DBClass
 		{
 			whereClause += " AND 0=0 ";
 		}
+		
 		else
 		{
 			whereClause += " AND c.HCourse.HSubject.subjectId = :subjectId ";
 			hasSubject = true;
 		}
+		
+		
 		if (instructor == null || instructor.isEmpty())
 		{
 			whereClause += " AND 0=0 ";
@@ -40,6 +45,7 @@ public class DBClass
 			whereClause += " AND (c.HStaffDetail.HUser.firstName LIKE :instructor1 OR  c.HStaffDetail.HUser.lastName LIKE :instructor2) ";
 			hasInstructor = true;
 		}
+		
 		
 		if (time.equalsIgnoreCase("all"))
 		{
@@ -60,6 +66,7 @@ public class DBClass
 			whereClause += " AND c.HCourse.HMajor.HDepartment.departmentId = :departmentId ";
 			hasDepartment = true;
 		}
+		
 		System.out.println("whereClause = " + whereClause);
 		String queryStr  = "SELECT c FROM HClass c, HClassSchedule cs WHERE c.classId = cs.HClass.classId " + whereClause;
 		System.out.println("queryStr = " + queryStr);
@@ -117,6 +124,29 @@ public class DBClass
 			Query query = em.createQuery(queryStr)
 					.setParameter("status", "Active")
 					.setParameter("hSemester", hSemester);
+			classes =  query.getResultList();
+			System.out.println("size = " + classes.size());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return classes;
+	}
+	
+	public static List<HClass> getAdminClasses()
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT c FROM HClass c where c.status= :status ";
+		List<HClass> classes = null;
+		try
+		{
+			Query query = em.createQuery(queryStr)
+					.setParameter("status", "Active");
 			classes =  query.getResultList();
 			System.out.println("size = " + classes.size());
 		}
@@ -196,6 +226,62 @@ public class DBClass
 		}
 		return classes;
 	}
+
+	public static void insert(HClass newClass) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		trans.begin();
+		try {
+			em.persist(newClass);
+			trans.commit();
+			
+		} catch (Exception e) {
+			System.out.println(e);
+			trans.rollback();
+		} finally {
+			em.close();
+		}
+		
+	}
+
+	
+	public static HClass getNewClass(String status)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT c FROM HClass c where c.status= :status";
+		HClass classOBJ = null;
+		try
+		{
+			TypedQuery<HClass> query = em.createQuery(queryStr,HClass.class)
+					.setParameter("status", "New");
+			classOBJ =  query.getSingleResult();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return classOBJ;
+		
+	}
+	
+	public static void update(HClass classObj) {
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		trans.begin();
+		try {
+			em.merge(classObj);
+			trans.commit();
+		} catch (Exception e) {
+			System.out.println(e);
+			trans.rollback();
+		} finally {
+			em.close();
+		}
+	}
+
 	public static List<HClass> getInstructorClassesAllSemesters(HStaffDetail user)
 	{
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
@@ -261,6 +347,7 @@ public class DBClass
 		}
 		return classes;
 	}
+
 	public static List<HClass> getActiveClassesForDept(String deptId){
 		String whereClause = "";
 		boolean hasDepartment = false;
@@ -297,5 +384,6 @@ public class DBClass
 		}
 		return classes;
 	}
+
 	
 }

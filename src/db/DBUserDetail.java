@@ -8,6 +8,10 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import customTools.DBUtil;
+import model.HClass;
+import model.HEnrollment;
+import model.HStaffDetail;
+import model.HSubject;
 import model.HUser;
 
 public class DBUserDetail {
@@ -41,7 +45,14 @@ public class DBUserDetail {
 		try {
 			HUser user = em.find(HUser.class, userId);
 			return user;
-		} finally {
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;	
+			}
+			finally {
+		
 			em.close();
 		}
 	}
@@ -100,18 +111,6 @@ public class DBUserDetail {
 		return user;
 	}
 
-	
-	public static List<HUser> getUsersForAdmin(String name){
-		List<HUser>users=null;
-		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-		String queryStr = "SELECT u FROM HUser u WHERE u.firstName LIKE :name1 OR  u.lastName LIKE :name2 OR  u.userName LIKE :name3";
-		Query query = em.createQuery(queryStr)
-				.setParameter("name2", "%" + name + "%")
-				.setParameter("name3", "%" + name + "%")
-				.setParameter("name1", "%" + name + "%");
-		users =  query.getResultList();
-		return users;
-	}
 	public static void update(HUser user) {
 		EntityManager em = DBUtil.getEmFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();
@@ -126,4 +125,41 @@ public class DBUserDetail {
 			em.close();
 		}
 	}
+	
+	
+	public static List<HUser> getAllUser()
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT s FROM HUser s";
+		List<HUser> users = null;
+		try
+		{
+			Query query = em.createQuery(queryStr);
+					
+			users =  query.getResultList();
+			System.out.println("size = " + users.size());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return users;
+	}
+	
+	public static List<HUser> getUsersForAdmin(String name){
+		List<HUser>users=null;
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT u FROM HUser u WHERE u.firstName LIKE :name1 OR  u.lastName LIKE :name2 OR  u.userName LIKE :name3";
+		Query query = em.createQuery(queryStr)
+				.setParameter("name2", "%" + name + "%")
+				.setParameter("name3", "%" + name + "%")
+				.setParameter("name1", "%" + name + "%");
+		users =  query.getResultList();
+		return users;
+	}
+	
 }

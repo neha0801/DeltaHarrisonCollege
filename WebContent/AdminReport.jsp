@@ -24,83 +24,90 @@
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>Admin Search for User</title>
+<title>Admin Reports</title>
 <link rel="stylesheet" type="text/css" href="style.css">
+
 </head>
 <body>
-
 	<jsp:include page="./header.jsp" />
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<c:if test="${not empty errorMessage}">
+		<div class="alert alert-danger">
+			<c:out value="${errorMessage}" />
+		</div>
+	</c:if>
+
+	<c:if test="${not empty goodMessage}">
+		<div class="alert alert-success">
+			<c:out value="${goodMessage}" />
+		</div>
+	</c:if>
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-		<div class="panel-heading">Admin Search for a User to Edit </div>
+		<div class="panel-heading">Reports</div>
 		<div class="panel-body">
 
 
-			<c:if test="${not empty errorMessage}">
-				<div class="alert alert-danger">
-					<c:out value="${errorMessage}" />
-				</div>
-			</c:if>
-
-			
-
-			<form role="form" action="SearchForUser" method="GET">
-				<label for="userName">User Name:</label> 
-					<input type = "text" name="userName" />
-					<input type="submit" value="Search" class="btn btn-primary"/>
-					
-					<br>
-			</form>
-		</div>
-	</div>
-	
-	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-
+			<c:if test="${reportType eq 'ByInstructor'}">
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<th>User Name</th>
-							<th>First Name</th>
-							<th>Last Name</th>
-							<th>Role</th>
-							<th>Edit</th>
-							
+							<td>Student Name</td>
+							<td>Student Number</td>
+							<td>Major</td>
+							<td>Entry Year</td>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="currentUser" items="${users}">
+
+						<c:forEach var="item" items="${userList}">
+
 							<tr>
-								<td>${currentUser.userName}</td>
-								<td>${currentUser.firstName}</td>								
-								<td>${currentUser.lastName}</td>
-								<td>
-									<c:forEach var="userRole" items="${currentUser.HUserRoles}">
-											
-											<c:if test="${userRole.status == 'Active'}">
-												${userRole.HRole.name} -
-											</c:if> 
-									</c:forEach>
-								</td>
-								<td><a class="btn btn-success" href="AdminEditRole?tempUserId=${currentUser.userId}">Edit</a></td>
-								
-								
+
+								<td>${item.getFullName()}</td>
+								<td>${item.HStudentDetail.studentNumber}</td>
+								<td>${item.HStudentDetail.HMajor.name}</td>
+								<td>${item.HStudentDetail.entryYear}</td>
+
 							</tr>
 						</c:forEach>
 					</tbody>
-					
-
-				</table>	
-					
-						
-
-
+				</table>
+				<a href="AdminReportSelection.jsp" class="btn btn-primary"> Go Back</a>
+			</c:if>
 			
-			</div>
-	
-	
-	
-	
-	
+			<c:if test="${reportType eq 'ByClass'}">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<td>Instructor Name</td>
+							<td>Employee Number</td>
+							<td>Department</td>
+							<td>Office Number</td>
+						</tr>
+					</thead>
+					<tbody>
+
+						<c:forEach var="item" items="${instructorList}">
+
+							<tr>
+
+								<td>${item.HUser.getFullName()}</td>
+								<td>${item.employeeNumber}</td>
+								<td>${item.HDepartment.name}</td>
+								<td>${item.officeNumber}</td>
+
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<a href="AdminReportSelection.jsp" class="btn btn-primary"> Go Back</a>
+			</c:if>
+
+
+		</div>
+	</div>
+
+
 
 </body>
 </html>
