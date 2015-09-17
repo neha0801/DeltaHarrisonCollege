@@ -83,22 +83,7 @@ public class DBStudentDetail {
 	}
 
 
-//	public static List<HStudentDetail> getStudent(HClass classes) {
-//		EntityManager em = DBUtil.getEmFactory().createEntityManager();
-//		String sql = "SELECT s FROM HStudentDetail s WHERE c.userName) = :userName";
-//		System.out.println("Get Single : " + sql);
-//		TypedQuery<HUser> query = em.createQuery(sql, HUser.class).setParameter("userName", userName.toUpperCase());
-//		HUser user = null;
-//		try {
-//			user = query.getSingleResult();
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			em.close();
-//		}
-//		return user;
-//	}
+
 
 
 
