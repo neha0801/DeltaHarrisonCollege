@@ -32,13 +32,24 @@
 			<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 			<div class="panel panel-primary col-sm-6 col-sm-offset-3">
 			<h2 align="center">Unofficial Transcript</h2>
+			
+			<c:if test="${user.isAdvisor()}">
+					<form  action="Transcript" method="GET">
+					<label for="student">Student Number:</label> 
+					<input type = "text" name="student" />	
+					<input type = "hidden" value="Unofficial" name="type" />				
+					<br>					
+					<button type="submit" value="submit" class="btn btn-default">Enter</button>
+					</form>										
+			</c:if>
+			${message}
 				<table class="table table-bordered table-striped">
 					<thead>
 						<tr>
-							<td>Course Name</td>
-							<td>Semester</td>
-							<td>Grade</td>
-							<td>Status</td>
+							<th>Course Name</th>
+							<th>Semester</th>
+							<th>Grade</th>
+							<th>Status</th>
 						</tr>
 					</thead>
 					<tbody>

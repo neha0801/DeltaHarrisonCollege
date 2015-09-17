@@ -36,19 +36,34 @@ public class Transcript extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String message="";
+		String goodMessage="";
 		String transcriptType=request.getParameter("type");
 		HttpSession session = request.getSession(true);		
 		HUser user = (HUser) session.getAttribute("user");
-		HStudentDetail student=DBStudentDetail.getStudentDetail(user.getUserId());
+		HStudentDetail student=null;
+		if(user.isAdvisor()){
+		String studentNumber=request.getParameter("student");
+		student=DBStudentDetail.getStudentDetail(studentNumber);
+					
+		}
+		else{
+		student=DBStudentDetail.getStudentDetail(user.getUserId());
+		}
+		message+="<h4>Student Name:"+student.getHUser().getFirstName()+" "+student.getHUser().getLastName()+"</h4>";
+		message+="Student Number: "+student.getStudentNumber()+"<br>"+
+				"Major: "+student.getHMajor().getName()+"<br>"+
+				"Entry Year: "+student.getEntryYear()+"<br>";	
 		List<HEnrollment>enrollments=student.getHEnrollments();
-		String gpa=student.getOverallGPA();
-		
+		String gpa=student.getOverallGPA();	
+		request.setAttribute("message", message);
 		request.setAttribute("currentTranscript", enrollments);	
 		request.setAttribute("gpa",gpa );	
 		if(transcriptType.equalsIgnoreCase("Unofficial")){
 		getServletContext().getRequestDispatcher("/Transcript.jsp").forward(request, response);
 		}
 		else{
+			request.setAttribute("message1", "Thank you for the payment.<br>Your Official Transcript as below has been processed.<br>Will be mailed to you shortly. " );
 			getServletContext().getRequestDispatcher("/OfficialTranscript.jsp").forward(request, response);
 		}
 	}
