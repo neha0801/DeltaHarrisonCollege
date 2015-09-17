@@ -1,8 +1,13 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
+import db.DBCreditTuition;
+import db.DBSemester;
+
+import java.text.DecimalFormat;
 import java.util.List;
 
 
@@ -133,5 +138,26 @@ public class HCourse implements Serializable {
 	public void setHSubject(HSubject HSubject) {
 		this.HSubject = HSubject;
 	}
-
+	
+	public String getRevenue(String semesterIdStr){
+		int credits =0;
+		double revenue=0.0;
+		if(semesterIdStr!=null){
+			long semesterId = Long.parseLong(semesterIdStr);		
+			for(HClass c : this.HClasses){				
+				for(HEnrollment e : c.getHEnrollments()){					
+					long checkSemId = c.getHSemester().getSemesterId();
+					if(checkSemId==semesterId)
+					{
+						credits += c.getHCourse().getCredits();
+					}
+				}
+			}
+		}
+		HCreditTuition creditFee = DBCreditTuition.getCreditTuitionFee(DBCreditTuition.getLatestFeeID());
+		revenue = credits * creditFee.getCreditFee(); 
+		System.out.println("revenue by courses");
+		String revenueStr = DecimalFormat.getCurrencyInstance().format(revenue);
+		return revenueStr;
+	}
 }

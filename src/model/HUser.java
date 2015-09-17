@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import db.DBCreditTuition;
+import db.DBSemester;
+
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -273,7 +277,28 @@ public class HUser implements Serializable {
 		
 		return role;
 	}
-
+	public String getRevenue(String semesterIdStr){
+		int credits =0;
+		double revenue=0.0;
+		if(semesterIdStr!=null){
+			long semesterId = Long.parseLong(semesterIdStr);
+			List<HClass> classList = this.HStaffDetail.getHClasses();
+			for(HClass c : classList){		
+				for(HEnrollment e : c.getHEnrollments()){					
+					long checkSemId = c.getHSemester().getSemesterId();
+					if(checkSemId==semesterId)
+					{
+						credits += c.getHCourse().getCredits();
+					}
+				}
+			}
+		}
+		HCreditTuition creditFee = DBCreditTuition.getCreditTuitionFee(DBCreditTuition.getLatestFeeID());
+		revenue = credits * creditFee.getCreditFee(); 
+		System.out.println("revenue by instructors");
+		String revenueStr = DecimalFormat.getCurrencyInstance().format(revenue);
+		return revenueStr;
+	}
 
 
 }

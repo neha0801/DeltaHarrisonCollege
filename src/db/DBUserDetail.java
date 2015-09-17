@@ -162,4 +162,14 @@ public class DBUserDetail {
 		return users;
 	}
 	
+	public static List<HUser> getAllInstructors(){
+		List<HUser> users=null;
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "select u from HUser u INNER JOIN HUserRole r on u.userId=r.HUser.userId where r.HRole.roleId= :role";
+		Query query = em.createQuery(queryStr)
+				.setParameter("role", 3);
+		users =  query.getResultList();
+		return users;
+	}
+	
 }
