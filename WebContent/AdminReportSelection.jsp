@@ -56,7 +56,10 @@
 				<input type="hidden" value="ByClass" name="ReportType"></input>
 				<input type="submit" class="btn btn-success"
 					value="Instructors  that have taught by a class"></input>
-			</form>
+			</form> <br>
+			
+
+			
 			
 			<c:if test="${reportType eq 'ByInstructor'}">
 			<br>
@@ -101,7 +104,14 @@
 				</table>
 			</c:if>
 
- 
+			<a href="ClassesByInstructor.jsp" class ="btn btn-success">All Classes By Instructor</a><br><br>
+			<a href="ClassesByStudent.jsp" class ="btn btn-success">All Classes By Student</a><br><br>
+			<a href="AdminCourseClassSearch" class ="btn btn-success">All Classes By Course</a><br><br>
+			<a href="CurrentClassesDept" class ="btn btn-success">Current Classes By Department</a><br><br>
+			<a href="#" class ="btn btn-success">Revenue by Department</a><br><br>
+			<a href="#" class ="btn btn-success">Revenue by Instructor</a><br><br>
+			<a href="#" class ="btn btn-success">Revenue by Course</a><br><br>
+			<a href="#" class ="btn btn-success">Revenue by Class</a><br><br>
 		</div>
 	</div>
 
