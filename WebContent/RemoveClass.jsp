@@ -42,7 +42,9 @@
 		</div>
 	</c:if>
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-
+<div class="panel-heading">
+			Remove Classes <span class="glyphicon glyphicon-user"> 
+		</div>
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>

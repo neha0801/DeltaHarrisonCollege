@@ -49,10 +49,18 @@
 		</div>
 		<div class="panel-body">
 			<table class="table table-bordered table-striped">
+				<thead>
+				<tr>
+					<td><b>Class Name</b></td>
+					<td><b>Semester</b></td>
+					<td><b>Revenue</b></td>
+				</tr>
+			</thead>
 				<tbody>
 				<c:forEach var="item" items="${classList}">
 					<tr>					
 							<td>${item.HCourse.name}</td>
+							<td>${item.HSemester.getSemester()}</td>
 							<td>${item.getRevenue()}</td>					
 					</tr>
 					</c:forEach>	

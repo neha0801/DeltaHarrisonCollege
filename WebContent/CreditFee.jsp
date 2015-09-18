@@ -44,7 +44,7 @@
 		</div>
 	</c:if>
 	<div class="panel panel-success col-sm-6 col-sm-offset-3">
-		<div class="panel-heading">Tuition Credit Fee</div>
+		<div class="panel-heading" align=center><b>Tuition Credit Fee</b></div>
 		<div class="panel-body">
 			<c:if test="${action eq 'load'}">
 				<label> Tuition Fee per credit hour: </label><br>

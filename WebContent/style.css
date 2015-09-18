@@ -1,1 +1,60 @@
 
+<style>
+	.navbar-brand
+	{
+	    margin: 0px;
+	    padding: 4px;
+	}
+	
+	.navbar-inverse
+	{
+		background-color: #1E6912;
+	}
+	
+	.navbar-inverse .navbar-nav > li > a
+	{
+		color: #64B058;
+	}
+	
+	.navbar-inverse .navbar-nav > li > a:hover,
+	.navbar-inverse .navbar-nav > li > a:focus 
+	{
+	    color: #96D38D;
+	}
+	
+	
+	body 
+	{
+			background: #64B058 url("logo.png") no-repeat fixed bottom; 
+	}
+
+	.mainNav
+	{
+		margin-top: 15px;
+	}
+	.navbar-inverse .navbar-nav > .dropdown > .dropdown-menu {
+	    background-color: #3C8D2F;
+	}
+	
+	.logo
+	{
+		margin: 0px;
+		padding: 0px;
+		float:left;
+	}
+	
+	.mainNav
+	{
+		float:left;
+		width:90%;
+	}
+	.navbar-inverse 
+	{
+  		border-color: transparent;
+  		border-radius: 0 !important;
+  	}
+	
+
+	
+
+</style>
