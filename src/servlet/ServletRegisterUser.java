@@ -129,6 +129,7 @@ public class ServletRegisterUser extends HttpServlet {
 		HUserRole userRole = new HUserRole();
 		
 		userRole.setHUser(user);
+		userRole.setStatus("Active");
 		HRole role = DBRole.getRole(2);
 		System.out.println("Role " + role.getName());
 		userRole.setHRole(role);

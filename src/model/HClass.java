@@ -208,13 +208,12 @@ public class HClass implements Serializable {
 	public String getRevenue() {
 		int credits = 0;
 		double revenue = 0.0;
+		HCreditTuition creditFee =  null;
 		for (HEnrollment e : this.getHEnrollments()) {
-			credits += this.getHCourse().getCredits();
-		}
-
-		HCreditTuition creditFee = DBCreditTuition
-				.getCreditTuitionFee(DBCreditTuition.getLatestFeeID());
-		revenue = credits * creditFee.getCreditFee();
+			credits = this.getHCourse().getCredits();
+			creditFee = DBCreditTuition.getCreditTuitionFee(this.getHCreditTuition().getCreditTuitionId());
+			revenue += credits*creditFee.getCreditFee();
+		}		
 		System.out.println("revenue by classes");
 		String revenueStr = DecimalFormat.getCurrencyInstance().format(revenue);
 		return revenueStr;

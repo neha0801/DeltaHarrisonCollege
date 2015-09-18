@@ -65,7 +65,7 @@
 						in</button>
 
 
-					<a href="RegisterUser" class="btn btn-default">Register</a>
+					<a href="RegisterUser?action=load" class="btn btn-default">Register</a>
 
 				</div>
 			</form>

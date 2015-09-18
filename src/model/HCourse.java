@@ -142,6 +142,7 @@ public class HCourse implements Serializable {
 	public String getRevenue(String semesterIdStr){
 		int credits =0;
 		double revenue=0.0;
+		HCreditTuition creditFee = null;
 		if(semesterIdStr!=null){
 			long semesterId = Long.parseLong(semesterIdStr);		
 			for(HClass c : this.HClasses){				
@@ -149,13 +150,13 @@ public class HCourse implements Serializable {
 					long checkSemId = c.getHSemester().getSemesterId();
 					if(checkSemId==semesterId)
 					{
-						credits += c.getHCourse().getCredits();
+						credits = c.getHCourse().getCredits();
+						creditFee = DBCreditTuition.getCreditTuitionFee(c.getHCreditTuition().getCreditTuitionId());
+						revenue += credits*creditFee.getCreditFee();
 					}
 				}
 			}
 		}
-		HCreditTuition creditFee = DBCreditTuition.getCreditTuitionFee(DBCreditTuition.getLatestFeeID());
-		revenue = credits * creditFee.getCreditFee(); 
 		System.out.println("revenue by courses");
 		String revenueStr = DecimalFormat.getCurrencyInstance().format(revenue);
 		return revenueStr;
