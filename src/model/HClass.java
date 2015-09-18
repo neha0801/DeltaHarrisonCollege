@@ -51,6 +51,7 @@ public class HClass implements Serializable {
 	@JoinColumn(name = "CREDIT_TUITION_ID")
 	private HCreditTuition HCreditTuition;
 
+	
 	// bi-directional many-to-one association to HClassSchedule
 	@OneToMany(mappedBy = "HClass")
 	private List<HClassSchedule> HClassSchedules;

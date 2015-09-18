@@ -31,7 +31,7 @@
 	<jsp:include page="./header.jsp" />
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-		<div class="panel-heading">Register</div>
+		<div class="panel-heading">Register <span class="glyphicon glyphicon-registration-mark"></div>
 		<div class="panel-body">
 
 			<c:if test="${not empty errorMessage}">
@@ -54,6 +54,7 @@
 						 <label for="lastName"></label> 
 						 <input type="text"
 						class="form-control" name="lastName" placeholder="Last Name"
+
 						required />
 						 <label for="email"></label><input type="text"
 						class="form-control" name="email" placeholder="Email" required/>
@@ -66,6 +67,7 @@
 					</select><br> <br>
 					<label for="userName"></label> 
 					 <input type="text" class="form-control" name="userName"
+
 						placeholder="User Name" required /> <label for="password"></label>
 					<input type="password" class="form-control" name="password"
 						placeholder="Password" required />

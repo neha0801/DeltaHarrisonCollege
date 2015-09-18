@@ -24,53 +24,44 @@
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-
-<title>Current Student Schedule</title>
+<title>Admin Department Options</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<jsp:include page="./header.jsp"/>
-			<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-			<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-
-				<table class="table table-bordered table-striped">
-					<thead>
-						<tr>
-							<td>Course Name</td>
-							<td>Time</td>
-							<td>Status</td>
-							<td>Action</td>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="enrollment" items="${enrollments}">
-							<tr>
-								<td>${enrollment.HClass.HCourse.name}</td>
-								<td>${enrollment.HClass.getClassSchedule()}</td>	
-								<td>${enrollment.status}</td>		
-								<c:choose>
-								  <c:when test="${enrollment.status == 'Enrolled'}">
-								    <td><a class="btn btn-success" href="Drop?enrollmentId=${enrollment.enrollmentId}">Drop</a></td>
-								  </c:when>
-
-								  <c:otherwise>
-								   	<td> </td>
-								  </c:otherwise>
-								</c:choose>	
-								
-							</tr>
-						</c:forEach>
-					</tbody>
-					
-
-				</table>	
-					
-						
-
-
+	<jsp:include page="./header.jsp" />
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
+		<div class="panel-heading">
+			Admin Department Options <span class="glyphicon glyphicon-user"> <a class="btn btn-success" href="AddDepartment.jsp">Create New Department</a>
+		</div>
+		<form role="form" action="/ServletAdminCourse" method="POST">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<td>Department Name</td>
+						<td>Status</td>
+				</tr>
+			</thead>
 			
-			</div>
-			
+			<tbody>
+				<c:forEach var="department" items="${departments}">
+					<tr>
+						<td>${department.name}</td>
+						<td>${department.status}</td>
+						<td><a class="btn btn-success" href = "EditDepartment?departmentId=${department.departmentId}">Update Department</td>
+
+					</tr>
+				</c:forEach>
+			</tbody>
+
+
+		</table>
+</form>
+
+
+
+
+	</div>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,14 +24,16 @@
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>Edit User</title>
+<title>Admin</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<jsp:include page="./header.jsp" />
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-		<div class="panel-heading">Edit User <span class="glyphicon glyphicon-user"></div>
+		<div class="panel-heading">
+			Admin <span class="glyphicon glyphicon-user">
+		</div>
 		<div class="panel-body">
 
 			<c:if test="${not empty errorMessage}">
@@ -45,32 +47,34 @@
 					<c:out value="${goodMessage}" />
 				</div>
 			</c:if>
+			<form role="form" action="AdminCourse" method="GET">
 
-
-			<form role="form" action="EditUser" method="POST">
 				<div class="form-group">
-					<label for="firstName"></label> <input type="text"
-						class="form-control" name="firstName" value="${firstName}"
-						 /> <label for="lastName"></label> <input type="text"
-						class="form-control" name="lastName" value="${lastName}"
-						 /> <label for="email"></label> <input type="text"
-						class="form-control" name="email" value="${email}"  />
-<%-- 					 <select>
-						<option selected="selected">Major</option>
-						<c:forEach var="item" items="${major}">
-							<option id="${item.major}">${item.major}</option>
-						</c:forEach>
-					</select> --%>
-					<label for="userName"></label> 
-					<input type="text" class="form-control" name="userName"
-						value="${userName}" /> <label for="password"></label>
-					<input type="password" class="form-control" name="password"
-						 placeholder="Enter new password" required />
+					<button type="submit" value="submit" class="btn btn-default">Create, update, list or disable a course</button>
+
+
 				</div>
+			</form>
+<form role="form" action="AdminClassroom" method="GET">
 
 				<div class="form-group">
-					<button type="submit" value="submit" class="btn btn-default">Save</button>
+					<button type="submit" value="submit" class="btn btn-default">Create, update, list or disable a classroom</button>
 
+
+				</div>
+			</form>
+			<form role="form" action="AdminDepartment" method="GET">
+
+				<div class="form-group">
+					<button type="submit" value="submit" class="btn btn-default">Create, update, list or disable a department</button>
+
+
+				</div>
+			</form>
+			<form role="form" action="AdminMajor" method="GET">
+
+				<div class="form-group">
+					<button type="submit" value="submit" class="btn btn-default">Create, update, list or disable a major</button>
 
 
 				</div>

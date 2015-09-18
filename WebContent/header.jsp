@@ -80,7 +80,7 @@
 				<ul class="nav navbar-nav">
 					<c:if test="${empty user}">
 						<li><a href="LoginForm.jsp">Login</a></li>
-						<li><a href="RegisterUser.jsp">Register</a></li>
+						<li><a href="RegisterUser?action=load">Register</a></li>
 
 					</c:if>
 					<c:if test="${not empty user}">
@@ -92,10 +92,10 @@
 	      							Admin Functions <span class="caret"></span>
 	    						</a>
 		    					<ul class="dropdown-menu">
-		      						<li> <a href="#">Manage Courses</a> </li>
-		      						<li> <a href="#">Manage Classrooms</a> </li>
-		      						<li> <a href="#">Manage Departments</a> </li>
-		      						<li> <a href="#">Manage Majors</a> </li>
+		      						<li> <a href="AdminCourse">Manage Courses</a> </li>
+		      						<li> <a href="AdminClassroom">Manage Classrooms</a> </li>
+		      						<li> <a href="AdminDepartment">Manage Departments</a> </li>
+		      						<li> <a href="AdminMajor">Manage Majors</a> </li>
 		      						<li><a href="SearchForUser">Manage User Role</a>
 		      						<li><a href="AddClass?action=load">Add Class</a></li>
 		      						<li><a href="RemoveClass?action=load">Remove Class</a></li>
@@ -155,6 +155,8 @@
 				</ul>
 			</div>
 		</div>
+
 	</nav>
 </div>
+
 
