@@ -72,7 +72,8 @@
 		<br>
 		<br>
 <form action="InstructorRoster" method="GET">
-<input type="submit" value="Go back"></input>
+<input type="hidden" value="getAll" name="action"></input>
+<input type="submit" value="Go back" class="btn btn-primary"></input>
 </form>
 
 

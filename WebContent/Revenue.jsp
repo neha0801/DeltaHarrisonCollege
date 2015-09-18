@@ -48,7 +48,7 @@
 			<b>Revenue</b>
 		</div>
 		<div class="panel-body">
-			<table class="table table-bordered table-striped">
+			<table class="table">
 				<tbody>
 					<form action="Revenue" method="Get">
 						<tr>
@@ -94,7 +94,7 @@
 						<form action="Revenue" method="Get">
 						<tr>							
 								
-								<td></td><td><input type="hidden" value="ByClass" name="action"></input>
+								<td colspan="2" ><input type="hidden" value="ByClass" name="action"></input>
 								<input type="submit" class="btn btn-primary"
 								value="Revenue By Class"></input></td>
 						</tr>
