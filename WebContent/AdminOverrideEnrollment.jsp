@@ -47,7 +47,7 @@
 					<c:out value="${goodMessage}" />
 				</div>
 			</c:if>
-
+			<c:if test="${user.isAdvisor() or user.isAdmin()}"  >
 			<form role="form" action="OverrideEnrollment" method="POST">
 				<div class="form-group">
 					
@@ -76,6 +76,7 @@
 					
 				</div>
 			</form>
+			</c:if>
 		</div>
 	</div>
 	

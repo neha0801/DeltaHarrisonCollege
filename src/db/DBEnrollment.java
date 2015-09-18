@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import customTools.DBUtil;
 import model.HClass;
 import model.HEnrollment;
+import model.HStudentDetail;
 import model.HUser;
 
 public class DBEnrollment {
@@ -45,6 +46,31 @@ public class DBEnrollment {
 					.setParameter("EnrolledStatus", "Enrolled")
 					.setParameter("DropStatus","Dropped")
 					.setParameter("studentDetail", user.getHStudentDetail());
+			enrollments =  query.getResultList();
+			System.out.println("size = " + enrollments.size());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			em.close();
+		}
+		return enrollments;
+	}
+	
+	public static List<HEnrollment> getEnrollmentByStudent(HStudentDetail student)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		String queryStr = "SELECT e FROM HEnrollment e where (e.status= :EnrolledStatus or e.status= :DropStatus) and e.HStudentDetail= :studentDetail";
+		List<HEnrollment> enrollments = null;
+		try
+		{
+			Query query = em.createQuery(queryStr)
+					.setParameter("EnrolledStatus", "Enrolled")
+					.setParameter("DropStatus","Dropped")
+					.setParameter("studentDetail", student);
 			enrollments =  query.getResultList();
 			System.out.println("size = " + enrollments.size());
 		}
