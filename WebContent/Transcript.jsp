@@ -43,9 +43,11 @@
 					</form>	
 				</div>										
 			</c:if>
+
 			<form  action="Transcript" method="GET">
 			<input type = "hidden" value="Unofficial" name="type" />
 			</form>	
+
 			<div class="panel panel-default col-sm-8 col-sm-offset-2">
 			  <!-- Default panel contents -->
 			  <div class="panel-heading">
