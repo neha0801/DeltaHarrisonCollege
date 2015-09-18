@@ -32,7 +32,9 @@
 	<jsp:include page="./header.jsp" />
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-		<div class="panel-heading">Admin Search for a User to Edit </div>
+		<div class="panel-heading">
+			Admin Search for a User to Edit <span class="glyphicon glyphicon-user"> 
+		</div>
 		<div class="panel-body">
 
 

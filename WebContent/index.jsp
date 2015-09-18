@@ -99,7 +99,7 @@
 			<div>
 				<ul class="nav navbar-nav">
 					<c:if test="${empty user}">
-						<li><a href="LoginForm.jsp">Login</a></li>
+						<li><a href="LoginForm.jsp">Login <span class="glyphicon glyphicon-log-in"></a></li>
 						<li><a href="RegisterUser?action=load">Register</a></li>
 
 					</c:if>

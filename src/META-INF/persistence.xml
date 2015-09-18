@@ -6,7 +6,7 @@
 		transaction-type="RESOURCE_LOCAL">
 
 		<provider> org.eclipse.persistence.jpa.PersistenceProvider</provider>
-
+		
 		<class>model.HClass</class>
 		<class>model.HClassroom</class>
 		<class>model.HClassSchedule</class>
@@ -23,6 +23,7 @@
 		<class>model.HWeekday</class>
 		<class>model.HCreditTuition</class>
 		<class>model.HUserRole</class>
+		
 		
 		<properties>
 
