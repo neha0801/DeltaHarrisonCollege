@@ -32,6 +32,7 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
 		<table class="table table-bordered table-striped">
+			<c:if test="${not empty enrolledList}">
 			<thead>
 				<tr>
 					<td>Student Name</td>
@@ -42,6 +43,10 @@
 					<td>Action</td>
 				</tr>
 			</thead>
+			</c:if>
+			<c:if test="${empty enrolledList}">
+			<label>No Students are enrolled in this class</label>
+			</c:if>
 			<tbody>
 			
 				<c:forEach var="item" items="${enrolledList}">

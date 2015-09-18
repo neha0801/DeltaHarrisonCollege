@@ -43,8 +43,8 @@
 			<c:out value="${goodMessage}" />
 		</div>
 	</c:if>
-	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-		<div class="panel-heading">Reports</div>
+	<div class="panel panel-success col-sm-6 col-sm-offset-3">
+		<div class="panel-heading" align=center><b>Reports</b></div>
 		<div class="panel-body">
 
 			<form action="AdminReports" method="GET">
@@ -108,10 +108,7 @@
 			<a href="ClassesByStudent.jsp" class ="btn btn-success">All Classes By Student</a><br><br>
 			<a href="AdminCourseClassSearch" class ="btn btn-success">All Classes By Course</a><br><br>
 			<a href="CurrentClassesDept" class ="btn btn-success">Current Classes By Department</a><br><br>
-			<a href="#" class ="btn btn-success">Revenue by Department</a><br><br>
-			<a href="#" class ="btn btn-success">Revenue by Instructor</a><br><br>
-			<a href="#" class ="btn btn-success">Revenue by Course</a><br><br>
-			<a href="#" class ="btn btn-success">Revenue by Class</a><br><br>
+			<a href="Revenue?action=load" class ="btn btn-success">Revenue</a><br><br>
 		</div>
 	</div>
 

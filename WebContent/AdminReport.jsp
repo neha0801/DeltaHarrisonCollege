@@ -42,13 +42,14 @@
 			<c:out value="${goodMessage}" />
 		</div>
 	</c:if>
-	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-		<div class="panel-heading">Reports</div>
+	<div class="panel panel-success col-sm-6 col-sm-offset-3">
+		<div class="panel-heading" align=center><b>Reports</b></div>
 		<div class="panel-body">
 
 
 			<c:if test="${reportType eq 'ByInstructor'}">
 				<table class="table table-bordered table-striped">
+				<c:if test="${not empty userList}">
 					<thead>
 						<tr>
 							<td>Student Name</td>
@@ -57,6 +58,10 @@
 							<td>Entry Year</td>
 						</tr>
 					</thead>
+					</c:if>
+					<c:if test="${empty userList}">
+					<label><b>No records exist</b></label>
+					</c:if>
 					<tbody>
 
 						<c:forEach var="item" items="${userList}">

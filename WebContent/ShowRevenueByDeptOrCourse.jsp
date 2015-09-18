@@ -44,9 +44,16 @@
 		</div>
 	</c:if>
 	<div class="panel panel-success col-sm-6 col-sm-offset-3">
-		<div class="panel-heading">Revenue by ${criteria}</div>
+		<div class="panel-heading" align=center><b>Revenue by ${criteria}</b></div>
+		
 		<div class="panel-body">
 			<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<td><b>Name</b></td>
+					<td><b>Revenue</b></td>
+				</tr>
+			</thead>
 				<tbody>
 				<c:forEach var="item" items="${list}">
 					<tr>					

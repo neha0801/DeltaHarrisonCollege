@@ -64,6 +64,7 @@
 				<div class="form-group">
 					<button type="submit" value="submit" class="btn btn-default">Sign
 						in</button>
+						
 
 
 					<a href="RegisterUser?action=load" class="btn btn-default">Register</a>

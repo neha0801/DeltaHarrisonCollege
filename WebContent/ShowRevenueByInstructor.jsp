@@ -49,6 +49,12 @@
 		</div>
 		<div class="panel-body">
 			<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<td><b>Name</b></td>
+					<td><b>Revenue</b></td>
+				</tr>
+			</thead>
 				<tbody>
 				<c:forEach var="item" items="${instructorList}">
 					<tr>					

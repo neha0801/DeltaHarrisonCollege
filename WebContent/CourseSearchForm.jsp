@@ -50,67 +50,68 @@
 
 			<form role="form" action="CourseSearch" method="POST">
 				<div class="form-group">
-					
-					<label for="deparment">Department</label>
-					<select name="department">
-						<option value = "all">all</option>
+
+					<label for="deparment">Department</label> <select name="department">
+						<option value="all">all</option>
 
 						<c:forEach var="dept" items="${departments}">
 							<option value="${dept.departmentId}">${dept.name}</option>
 						</c:forEach>
 
 					</select>
-					
+
 				</div>
 
 				<div class="form-group">
 					<button type="submit" value="submit" class="btn btn-default">Search</button>
 
-					
+
 				</div>
 			</form>
 		</div>
 	</div>
-	
+
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
 
-				<table class="table table-bordered table-striped">
-					<thead>
-						<tr>
-							<th>Course Name</th>
-							<th>Description</th>
-							<th>Credits</th>
-							<th>Department</th>
-							
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="currentCourse" items="${courses}">
-							<tr>
-								<td>${currentCourse.name}</td>
-								<td>${currentCourse.description}</td>								
-								<td>${currentCourse.credits}</td>
-								<td>${currentCourse.HMajor.HDepartment.name}</td>
-								
-								
-								
-							</tr>
-						</c:forEach>
-					</tbody>
-					
+		<table class="table table-bordered table-striped">
+			<c:if test="${not empty courses}">
+				<thead>
+					<tr>
+						<th>Course Name</th>
+						<th>Description</th>
+						<th>Credits</th>
+						<th>Department</th>
 
-				</table>	
-					
-						
+					</tr>
+				</thead>
+			</c:if>
+			<tbody>
+				<c:forEach var="currentCourse" items="${courses}">
+					<tr>
+						<td>${currentCourse.name}</td>
+						<td>${currentCourse.description}</td>
+						<td>${currentCourse.credits}</td>
+						<td>${currentCourse.HMajor.HDepartment.name}</td>
 
 
-			
-			</div>
-	
-	
-	
-	
-	
+
+					</tr>
+				</c:forEach>
+			</tbody>
+
+
+		</table>
+
+
+
+
+
+	</div>
+
+
+
+
+
 
 </body>
 </html>
