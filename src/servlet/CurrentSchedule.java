@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import db.DBEnrollment;
+import db.DBStudentDetail;
 import model.HEnrollment;
+import model.HStudentDetail;
 import model.HUser;
 
 /**
@@ -35,9 +37,17 @@ public class CurrentSchedule extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(true);		
-		HUser user=(HUser) session.getAttribute("user");		
+		HUser user=(HUser) session.getAttribute("user");
+		HStudentDetail student=null;
 		List<HEnrollment>enrollments=null;
-		enrollments=DBEnrollment.getEnrollmentByStudent(user);
+		if(user.isAdvisor()){
+			String studentNumber=request.getParameter("student");
+			student=DBStudentDetail.getStudentDetail(studentNumber);
+			enrollments=DBEnrollment.getEnrollmentByStudent(student);		
+			}
+		else{
+			enrollments=DBEnrollment.getEnrollmentByStudent(user);
+		}
 		request.setAttribute("enrollments", enrollments);		
 		getServletContext().getRequestDispatcher("/CurrentSchedule.jsp").forward(request, response);
 	}
