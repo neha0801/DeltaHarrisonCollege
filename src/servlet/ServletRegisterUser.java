@@ -42,14 +42,22 @@ public class ServletRegisterUser extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
-		List<HMajor> majors = DBMajor.getMajors();
-		for (HMajor m : majors) {
-			System.out.println("Major: " + m.getName());
+		String action = request.getParameter("action");
+		if(action.equalsIgnoreCase("load"))
+		{
+			List<HMajor> majors = DBMajor.getMajors();
+			for (HMajor m : majors) {
+				System.out.println("Major: " + m.getName());
+			}
+			request.setAttribute("majors", majors);
+			getServletContext().getRequestDispatcher("/RegisterUser.jsp").forward(
+					request, response);
 		}
-		request.setAttribute("majors", majors);
-		getServletContext().getRequestDispatcher("/RegisterUser.jsp").forward(
-				request, response);
+		else
+		{
+			response.sendError(400,"Invalid Request");
+		}
+
 	}
 
 	/**

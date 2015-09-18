@@ -24,59 +24,51 @@
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-<title>Edit User</title>
+<title>Add Classroom</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<jsp:include page="./header.jsp" />
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-		<div class="panel-heading">Edit User <span class="glyphicon glyphicon-user"></div>
+		<div class="panel-heading">Add Classroom</div>
 		<div class="panel-body">
 
-			<c:if test="${not empty errorMessage}">
-				<div class="alert alert-danger">
-					<c:out value="${errorMessage}" />
+
+<form role="form" action="AddClassroom" method="POST">
+
+			<div class="form-group">
+				<label for="classroomName">Building Name: </label> <input type="text"
+					class="form-control" name="classroomName"
+					 required />
+			</div>
+			<div class="form-group">
+					<label for="classroomNumber">Room Number: </label> <input type="text"
+						class="form-control" name="classroomNumber" 
+						required />
 				</div>
-			</c:if>
-
-			<c:if test="${not empty goodMessage}">
-				<div class="alert alert-success">
-					<c:out value="${goodMessage}" />
-				</div>
-			</c:if>
-
-
-			<form role="form" action="EditUser" method="POST">
 				<div class="form-group">
-					<label for="firstName"></label> <input type="text"
-						class="form-control" name="firstName" value="${firstName}"
-						 /> <label for="lastName"></label> <input type="text"
-						class="form-control" name="lastName" value="${lastName}"
-						 /> <label for="email"></label> <input type="text"
-						class="form-control" name="email" value="${email}"  />
-<%-- 					 <select>
-						<option selected="selected">Major</option>
-						<c:forEach var="item" items="${major}">
-							<option id="${item.major}">${item.major}</option>
-						</c:forEach>
-					</select> --%>
-					<label for="userName"></label> 
-					<input type="text" class="form-control" name="userName"
-						value="${userName}" /> <label for="password"></label>
-					<input type="password" class="form-control" name="password"
-						 placeholder="Enter new password" required />
+					<label for="classroomMaxCapacity">Max Capacity: </label> <input type="text"
+						class="form-control" name="classroomMaxCapacity" 
+						required />
 				</div>
+				<label for="sel1">Status: </label><select class="form-control"
+					name="classroomStatus">
+					<option value="#">Select</option>
 
-				<div class="form-group">
-					<button type="submit" value="submit" class="btn btn-default">Save</button>
-
-
+					<option value="Active">Active</option>
+					<option value="Inactive">Inactive</option>
+				</select>
+					<div class="form-group">
+					<button type="submit" value="submit" class="btn btn-default">Create Classroom</button>
+${errorMessage}
 
 				</div>
-			</form>
+</form>
+
 		</div>
 	</div>
 
 </body>
+</html>
 </html>

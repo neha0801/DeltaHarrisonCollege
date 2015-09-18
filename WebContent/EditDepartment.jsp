@@ -24,53 +24,40 @@
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.js"></script>
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js"></script>
-
-<title>Current Student Schedule</title>
+<title>Edit Department</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-	<jsp:include page="./header.jsp"/>
-			<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-			<div class="panel panel-primary col-sm-6 col-sm-offset-3">
-
-				<table class="table table-bordered table-striped">
-					<thead>
-						<tr>
-							<td>Course Name</td>
-							<td>Time</td>
-							<td>Status</td>
-							<td>Action</td>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="enrollment" items="${enrollments}">
-							<tr>
-								<td>${enrollment.HClass.HCourse.name}</td>
-								<td>${enrollment.HClass.getClassSchedule()}</td>	
-								<td>${enrollment.status}</td>		
-								<c:choose>
-								  <c:when test="${enrollment.status == 'Enrolled'}">
-								    <td><a class="btn btn-success" href="Drop?enrollmentId=${enrollment.enrollmentId}">Drop</a></td>
-								  </c:when>
-
-								  <c:otherwise>
-								   	<td> </td>
-								  </c:otherwise>
-								</c:choose>	
-								
-							</tr>
-						</c:forEach>
-					</tbody>
-					
-
-				</table>	
-					
-						
+	<jsp:include page="./header.jsp" />
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<div class="panel panel-primary col-sm-6 col-sm-offset-3">
+		<div class="panel-heading">Edit Department</div>
+		<div class="panel-body">
 
 
-			
+<form role="form" action="EditDepartment" method="POST">
+
+			<div class="form-group">
+				<label for="departmentName">Department Name: </label> <input type="text"
+					class="form-control" name="departmentName"
+					value="${department.name}" required />
 			</div>
-			
+			<div class="form-group">
+			<label for="sel1">Status: </label>
+				<select class="form-control" name="departmentStatus">
+						<option value="Active" <c:if test="${department.status eq 'Active'}">selected</c:if> >Active</option>
+						<option value="Inactive" <c:if test="${department.status eq 'Inactive'}">selected</c:if> >Inactive</option>
+				</select>
+					<div class="form-group">
+					<button type="submit" value="submit" class="btn btn-default">Update</button>
+${errorMessage}
+
+				</div>
+</form>
+
+		</div>
+	</div>
 
 </body>
+</html>
 </html>

@@ -26,10 +26,12 @@
 		<class>model.HCreditTuition</class>
 		
 		<properties>
+
 			<property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe" />
 			<property name="javax.persistence.jdbc.user" value="testdb" />
 			<property name="javax.persistence.jdbc.password" value="password" />
 			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver" />
+
 		</properties>
 	</persistence-unit>
 </persistence>

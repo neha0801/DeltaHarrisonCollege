@@ -1,12 +1,15 @@
 package db;
 
 
+
 import java.util.ArrayList;
+
+
+
 import java.util.List;
 
-
-
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
@@ -126,4 +129,56 @@ public class DBCourse {
 		}
 		return course;
 	}
+
+
+	
+	public static HCourse getCourse(long courseId)
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		try
+		{
+			HCourse course = em.find(HCourse.class, courseId);
+			return course;
+		}
+		finally
+		{
+			em.close();
+		}
+	}
+	public static void update(HCourse course) 
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		trans.begin(); 
+		try 
+		{
+			em.merge(course);
+			trans.commit();
+		} catch (Exception e) 
+		{
+			System.out.println(e);
+			trans.rollback();
+		} 
+		finally 
+		{
+			em.close();
+		}
+	}
+	
+	 public static void insertCourse(HCourse course) 
+	    {
+	    	EntityManager em = DBUtil.getEmFactory().createEntityManager();
+	    	EntityTransaction profile = em.getTransaction();
+	    	profile.begin();
+	    	try {
+	    	em.persist(course);
+	    	profile.commit();
+	    	} catch (Exception e) {
+	    	System.out.println(e);
+	    	profile.rollback();
+	    	} finally {
+	    
+	    	}
+	    }
+
 }
