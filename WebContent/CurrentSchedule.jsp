@@ -61,7 +61,7 @@
 								<td>${enrollment.status}</td>		
 								<c:choose>
 								  <c:when test="${enrollment.status == 'Enrolled'}">
-								    <td><a class="btn btn-success" href="Drop?enrollmentId=${enrollment.enrollmentId}">Drop</a></td>
+								    <td><a class="btn btn-success" href="Drop?enrollmentId=${enrollment.enrollmentId}&&student=${enrollment.HStudentDetail.studentNumber}">Drop</a></td>
 								  </c:when>
 
 								  <c:otherwise>
