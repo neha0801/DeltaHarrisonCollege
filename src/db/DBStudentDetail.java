@@ -89,8 +89,7 @@ public class DBStudentDetail {
 		HStudentDetail student=null;
 		try
 		{
-			Query query = em.createQuery(queryStr)
-					
+			Query query = em.createQuery(queryStr)					
 					.setParameter("studentNumber", studentNumber);
 			student =  (HStudentDetail) query.getSingleResult();
 			

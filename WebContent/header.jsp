@@ -118,7 +118,7 @@
 	    						</a>
 		    					<ul class="dropdown-menu">
 		      						<li><a href="Transcript?type=Unofficial">View Unofficial Transcript</a></li>
-		      						<li><a href="Transcript?type=Official">Order Official Transcript</a></li>
+		      						<li><a href="OfficialTranscript.jsp">Order Official Transcript</a></li>
 		    					</ul>
 	  						</li>
 	
@@ -127,7 +127,9 @@
 						
 						
 						<c:if test="${user.isAdvisor()}">
-						
+							<li><a href="CurrentSchedule.jsp">Manage Student Schedule</a></li>
+							<li><a href="Transcript.jsp">View Student Transcript</a></li>
+							<li><a href="OverrideEnrollment">Enroll a student</a></li>
 						</c:if>
 						
 						

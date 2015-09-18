@@ -55,7 +55,7 @@ public class OverrideEnrollment extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session=request.getSession();
 		HUser user=(HUser) session.getAttribute("user");
-		if(user.isAdmin()){
+		if(user.isAdmin() || user.isAdvisor() ){
 			String studentNumber = request.getParameter("student");
 			String classId = request.getParameter("class");
 			HStudentDetail student=DBStudentDetail.getStudentDetail(studentNumber);

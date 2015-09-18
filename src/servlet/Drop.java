@@ -44,7 +44,10 @@ public class Drop extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(true);		
 		HUser user = (HUser) session.getAttribute("user");
-	
+		if(user.isAdvisor()){
+			String studentNumber=request.getParameter("student");
+			request.setAttribute("student",studentNumber);
+		}
 		int enrollmentId=Integer.parseInt(request.getParameter("enrollmentId"));
 		
 		HEnrollment enrollment= DBEnrollment.getEnrollment(enrollmentId);

@@ -71,7 +71,7 @@ public class ServletLogin extends HttpServlet {
 			}
 			else if (user.isAdvisor())
 			{
-				getServletContext().getRequestDispatcher("/CurrentSchedule").forward(request, response);
+				getServletContext().getRequestDispatcher("/Transcript.jsp").forward(request, response);
 			}
 			else if (user.isInstructor())
 			{

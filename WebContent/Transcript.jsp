@@ -38,12 +38,17 @@
 					<form  action="Transcript" method="GET">
 					<label for="student">Student Number:</label> 
 					<input type = "text" name="student" />	
-					<input type = "hidden" value="Unofficial" name="type" />				
+					<input type = "hidden" value="Unofficial" name="type" />									
 					<br>					
 					<button type="submit" value="submit" class="btn btn-default">Enter</button>
 					</form>	
 				</div>										
 			</c:if>
+
+			<form  action="Transcript" method="GET">
+			<input type = "hidden" value="Unofficial" name="type" />
+			</form>	
+
 			<div class="panel panel-default col-sm-8 col-sm-offset-2">
 			  <!-- Default panel contents -->
 			  <div class="panel-heading">
