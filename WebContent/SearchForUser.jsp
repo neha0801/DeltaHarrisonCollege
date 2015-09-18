@@ -76,7 +76,7 @@
 								<td>
 									<c:forEach var="userRole" items="${currentUser.HUserRoles}">
 											
-											<c:if test="${userRole.status == 'Active'}">
+											<c:if test="${userRole.roleStatus == 'Active'}">
 												${userRole.HRole.name} -
 											</c:if> 
 									</c:forEach>

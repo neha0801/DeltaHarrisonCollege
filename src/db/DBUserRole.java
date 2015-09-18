@@ -15,6 +15,7 @@ public class DBUserRole {
 		EntityTransaction trans = em.getTransaction();
 		trans.begin();
 		try {
+			
 			em.persist(userRole);
 			trans.commit();
 		} catch (Exception e) {

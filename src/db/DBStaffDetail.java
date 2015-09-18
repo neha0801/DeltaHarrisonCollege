@@ -3,11 +3,13 @@ package db;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import model.HCourse;
 import model.HStaffDetail;
+import model.HStudentDetail;
 import customTools.DBUtil;
 
 public class DBStaffDetail {
@@ -39,6 +41,27 @@ public class DBStaffDetail {
 			em.close();
 		}
 		return instructors;
+	}
+	
+	public static void insert(HStaffDetail staff) 
+	{
+		EntityManager em = DBUtil.getEmFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		trans.begin(); 
+		try 
+		{
+			em.persist(staff);
+			trans.commit();
+		} 
+		catch (Exception e) 
+		{
+			System.out.println(e);
+			trans.rollback();
+		} 
+		finally 
+		{
+			em.close();
+		}
 	}
 	
 
