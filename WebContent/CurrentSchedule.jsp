@@ -30,6 +30,18 @@
 <body>
 	<jsp:include page="./header.jsp"/>
 			<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+			
+			<c:if test="${user.isAdvisor()}">
+				<div class="col-sm-8 col-sm-offset-2" style="padding:10px;">
+					<h4>Please enter a Student Number to drop him/her from a class:</h4>
+					<form  action="CurrentSchedule" method="GET">
+					<label for="student">Student Number:</label> 
+					<input type = "text" name="student" />										
+					<br>					
+					<button type="submit" value="submit" class="btn btn-default">Enter</button>
+					</form>	
+				</div>										
+			</c:if>
 			<div class="panel panel-primary col-sm-6 col-sm-offset-3">
 
 				<table class="table table-bordered table-striped">
