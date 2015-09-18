@@ -20,9 +20,9 @@
 		<class>model.HStudentDetail</class>
 		<class>model.HSubject</class>
 		<class>model.HUser</class>
-		<class>model.HUserRole</class>
 		<class>model.HWeekday</class>
 		<class>model.HCreditTuition</class>
+		<class>model.HUserRole</class>
 		
 		<properties>
 

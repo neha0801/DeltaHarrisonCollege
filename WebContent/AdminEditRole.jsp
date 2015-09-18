@@ -82,9 +82,9 @@
 	        			
 	        			
 	        				<select name="currentRole${userRole.userRoleId}">
-	        					<option value="Active" <c:if test="${userRole.status eq 'Active'}">selected</c:if> >Active</option>
+	        					<option value="Active" <c:if test="${userRole.roleStatus eq 'Active'}">selected</c:if> >Active</option>
 	        					
-	        					<option value="Inactive" <c:if test="${userRole.status eq 'Inactive'}">selected</c:if> >Inactive</option>
+	        					<option value="Inactive" <c:if test="${userRole.roleStatus eq 'Inactive'}">selected</c:if> >Inactive</option>
 	        				</select>
 	        				${userRole.HRole.name}<br>
 					</c:forEach>

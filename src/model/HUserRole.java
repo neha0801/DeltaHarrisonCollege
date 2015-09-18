@@ -9,7 +9,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="H_USER_ROLE", schema="TESTDB")
+@Table(name="H_USER_ROLE")
 @NamedQuery(name="HUserRole.findAll", query="SELECT h FROM HUserRole h")
 public class HUserRole implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -18,9 +18,11 @@ public class HUserRole implements Serializable {
 	@Column(name="USER_ROLE_ID")
 	private long userRoleId;
 
-	@Column(name="STATUS")
-	private String status;
 	
+	@Column(name="ROLE_STATUS")
+	private String roleStatus;
+	
+
 	//bi-directional many-to-one association to HRole
 	@ManyToOne
 	@JoinColumn(name="ROLE_ID")
@@ -30,15 +32,31 @@ public class HUserRole implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="USER_ID")
 	private HUser HUser;
-
 	
 	
-	public String getStatus() {
-		return status;
+	
+	public String getRoleStatus() {
+		return roleStatus;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setRoleStatus(String roleStatus) {
+		this.roleStatus = roleStatus;
+	}
+
+	public HRole getHRole() {
+		return HRole;
+	}
+
+	public void setHRole(HRole hRole) {
+		HRole = hRole;
+	}
+
+	public HUser getHUser() {
+		return HUser;
+	}
+
+	public void setHUser(HUser hUser) {
+		HUser = hUser;
 	}
 
 	public HUserRole() {
@@ -51,25 +69,9 @@ public class HUserRole implements Serializable {
 	public void setUserRoleId(long userRoleId) {
 		this.userRoleId = userRoleId;
 	}
-	
-	
 
-	public HRole getHRole() {
-		return this.HRole;
-	}
 
-	public void setHRole(HRole HRole) {
-		this.HRole = HRole;
-	}
 
-	public HUser getHUser() {
-		return this.HUser;
-	}
 
-	public void setHUser(HUser HUser) {
-		this.HUser = HUser;
-	}
-	
-	
 
 }
